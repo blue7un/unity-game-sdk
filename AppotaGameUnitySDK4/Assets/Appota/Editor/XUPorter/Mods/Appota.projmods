@@ -1,0 +1,24 @@
+{
+    "group": "Appota",
+    "libs": ["libxml2.dylib","libz.dylib",
+    		"libsqlite3.dylib","libiconv.2.dylib"],
+    "frameworks": [
+                    "Accounts.framework",
+                    "Twitter.framework",
+                    "Social.framework",
+                    "StoreKit.framework",
+                    "ImageIO.framework"
+                    "Security.framework"
+                    "MessageUI.framework"
+                    "AdSupport.framework"],
+    "headerpaths": ["iOS/DemoXUPorter/**"],
+    "files":   ["iOS/Appota/OnClanBundle.bundle",
+    			"iOS/Appota/OnClanSDK.framework",
+    			"iOS/Appota/AppotaBundle.bundle",
+    			"iOS/Appota/AppotaSDK.framework",
+    			"iOS/Appota/FacebookSDK.framework"],
+    "folders": [],    
+    "excludes": ["^.*.meta$", "^.*.mdown$", "^.*.pdf$"],
+    "compiler_flags": [],
+    "linker_flags": ["-lc++", "$inherited", "-lz", "-ObjC"]
+}

@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>1. 初始化SDK: <a name = "init-function"> </a></title>
+
+</head>
+<body>
+<h1>Appota Game SDK4 Classes (Unity3D)</h1>
+
+<hr />
+
+<h2>AppotaSDKHandler.cs</h2>
+
+<ul>
+<li><h4>Descriptions:</h4></li>
+<li><h4>Syntax:</h4>
+
+<p><code>AppotaSDKHandler.Instance.Function()</code> : 需要 <code>Instance</code> 来返回<code>AppotaSDKHandler</code>的正确性</p></li>
+</ul>
+
+
+<h3>1. 初始化SDK: <a name = "init-function"> </a></h3>
+
+<ul>
+<li><code>Init()</code> : 该功能出现在第一界面或者玩家想登录时</li>
+<li><code>SetSDKButtonVisible(bool isVisible)</code> : 开启该功能来设置隐藏或者显示浮动按钮</li>
+<li><code>SetKeepLoginSession(bool isKeepLoginSession)</code> : 该功能将控制Appota的登录会话 （Login Session），当开启应用时被保留或者更换（当功能被删除时玩家打开应用后要重新登录）</li>
+<li><code>SetAutoShowLogin(bool autoShowLogin)</code> : 该功能将控制Appota的登录界面（ Login View）在开启应用时将自动刷出(当用户没有登陆) 或者你要开启<a href="#show-login-view">ShowLoginView</a>功能。</li>
+<li><code>FinishSDK()</code> : 在<code>OnApplicationQuit</code>里开启 (只要求安卓平台)</li>
+</ul>
+
+
+<h3>2. 用户功能: <a name = "user-function"> </a></h3>
+
+<ul>
+<li><code>ShowLoginView()</code>: 该功能显示登陆界面（当玩家没有登陆时）</li>
+<li><code>Logout()</code>: 退出功能</li>
+<li><code>SwitchAccount()</code>: 用该功能来更改登陆账号.当更改账号成功时记得查看返回(在<code>OnLoginSuccess()</code>再一次显示)</li>
+<li><code>ShowUserInfo()</code>: 该功能将刷出玩家信息界面</li>
+<li><code>IsUserLogin()</code>: 该功能返回玩家登录状态</li>
+<li><code>GetAppotaSession()</code>: 若登录就返回AppotaSession</li>
+<li><code>SetCharacter(string name, string server, string characterID)</code>: 设置角色功能支持在网站管理角色</li>
+</ul>
+
+
+<h3>3. 支付功能: <a name = "payment-function"> </a></h3>
+
+<ul>
+<li><code>MakePayment()</code>: 可以默认支付包来显示支付界面(配how payment view with default list payment packages</li>
+<li><code>MakePayment(string packageID)</code>: 按你们游戏内包的机制你可以显示某一种支付界面</li>
+</ul>
+
+
+<h3>4. 分析功能: <a name = "analytic-function"> </a></h3>
+
+<ul>
+<li><code>SendView(string activityName)</code>:</li>
+<li><code>SendEvent(string category,string action,string label)</code>:</li>
+<li><code>SendEvent(string category,string action,string label, int value)</code>:</li>
+</ul>
+
+
+<h3>5. 通知功能: <a name = "notification-function"> </a></h3>
+
+<ul>
+<li><code>SetPushGroup(string groupName)</code>: 注册并且设置群推送通知的功</li>
+</ul>
+
+
+<hr />
+
+<h2>AppotaSDKReceiver.cs <a name = "appota-sdk-receiver"> </a></h2>
+
+<ul>
+<li><h4>Description:</h4>
+
+<p>从Appota取得返回及·通过功能里的“result processing”处理</p></li>
+<li><h4>Usage:</h4>
+
+<p>在调动功能设置代码</p></li>
+</ul>
+
+
+<h3>1. SDK callbacks: <a name = "sdk-callback"> </a></h3>
+
+<ul>
+<li><code>OnCloseLoginView()</code>: 调动在登陆界面关闭时</li>
+</ul>
+
+
+<p>```c#</p>
+
+<pre><code>public void OnCloseLoginView()
+{
+    // Set processing code
+}
+</code></pre>
+
+<pre><code>
+### 2. User callbacks: &lt;a name = "user-callback"&gt; &lt;/a&gt;
+
+* `OnLoginSuccess(string appotaSession)`: 登陆之后的调动. `appotaSession`玩家在JSON格式的信息。为了让研发者方便操作，我们分析玩家信息到`AppotaSession`
+
+```c#
+
+    public void OnLoginSuccess(string appotaSession)
+    {
+        // Parse user information to AppotaSession
+        AppotaSession appotaSessionObj = new AppotaSession(appotaSession);
+        AppotaSession.Instance.UpdateInstance(appotaSessionObj);
+
+        // Set processing code
+    }
+</code></pre>
+
+<ul>
+<li><code>OnLoginError(string error)</code>: 调动在登录失败时. SDK native 将一个错误通知到Unity3D。</li>
+</ul>
+
+
+<p>```c#</p>
+
+<pre><code>public void OnLoginError(string error)
+{   
+    // @error message
+    // Set processing code
+}
+</code></pre>
+
+<pre><code>
+* `OnLogoutSuccess()`: 调动在登录成功。
+
+```c#
+
+    public void OnLogoutSuccess()
+    {   
+        // Set processing code
+    }
+</code></pre>
+
+<h3>3. 支付调动: <a name = "payment-callback"> </a></h3>
+
+<ul>
+<li><code>OnPaymentSuccess(string transactionResult)</code>: 调动在支付成功. <code>transactionResult</code> 是JSON 格式的支付信息. 为了让研发者方便操作，我们分析支付信息到<code>AppotaPaymentResult</code></li>
+</ul>
+
+
+<p>```c#</p>
+
+<pre><code>public void OnPaymentSuccess(string transactionResult)
+{   
+    // Parse Transaction result into class AppotaPaymentResult.cs
+    AppotaPaymentResult paymentResult = new AppotaPaymentResult(transactionResult);
+
+    // Set processing code
+}
+</code></pre>
+
+<pre><code>
+* `OnPaymentFailed(string error)`:  调动在支付失败时。SDK native 将一个错误通知到Unity3D。
+
+```c#
+
+    public void OnPaymentFailed(string error)
+    {   
+        // @error message
+        // Set processing code
+    }
+</code></pre>
+
+<ul>
+<li><code>GetPaymentState(string packageID)</code>:</li>
+</ul>
+
+
+<hr />
+
+<h2>AppotaSession.cs <a name = "appota-session"> </a></h2>
+
+<p>玩家信息Object class.</p>
+
+<ul>
+<li>(string) <code>AccessToken</code>: access token为字符串格式。</li>
+<li>(string) <code>Email</code>: 用户邮箱</li>
+<li>(string) <code>ExpireDate</code>: 字符穿格式的access token的限期.</li>
+<li>(string) <code>RefreshToken</code>:</li>
+<li>(string) <code>UserID</code>: 用户ID.</li>
+<li>(string) <code>UserName</code>: 用户名称.</li>
+</ul>
+
+
+<hr />
+
+<h2>AppotaPaymentResult.cs <a name = "appota-payment-result"> </a></h2>
+
+<p>Object class about payment information.</p>
+
+<ul>
+<li>(string) <code>PackageID</code>: 支付包ID.</li>
+<li>(string) <code>Currency</code>: 支付货币.</li>
+<li>(string) <code>Time</code>: 支付时间.</li>
+<li>(string) <code>TransactionID</code>: 交易 ID</li>
+<li>(string) <code>Type</code>: 支付类型.</li>
+<li>(string) <code>ProductID</code>: 物品 ID.</li>
+<li>(string) <code>MethodINAPP</code>: INAPP方式.</li>
+</ul>
+
+</body>
+</html>

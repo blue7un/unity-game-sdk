@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PuzzleGame</string>
+    <string name="action_settings">Open Settings</string>
+	<string name="phone_num_validation">Phone Number contains 6 - 20 digit number</string>
+	<string name="user_has_no_email_warning">You have to update your email first. The email cannot be changed after it is set.</string>
+	<string name="accept">Click on \"Accept\" below</string>
+	<string name="logout_confim">You are about to logout. Do you want to continue?</string>
+	<string name="com_appota_guild_show_sdk_button_again">Place the device face down to show floating button again.</string>
+	<string name="com_appota_dont_show_again">Don\'t show again</string>
+	<string name="com_appota_no_package_suite">Please choose other payment methods.</string>
+</resources>

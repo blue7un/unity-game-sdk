@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>1. SDK Init functions: <a name = "init-function"> </a></title>
+
+</head>
+<body>
+<h1>Appota Game SDK4 Classes (Unity3D)</h1>
+
+<hr />
+
+<h2>AppotaSDKHandler.cs</h2>
+
+<ul>
+<li><h4>Descriptions:</h4></li>
+<li><h4>Syntax:</h4>
+
+<p><code>AppotaSDKHandler.Instance.Function()</code> : need <code>Instance</code> to return right instance of <code>AppotaSDKHandler</code></p></li>
+</ul>
+
+
+<h3>1. SDK Init functions: <a name = "init-function"> </a></h3>
+
+<ul>
+<li><code>Init()</code> : Call this function in your first scene or when you want user to login</li>
+<li><code>SetSDKButtonVisible(bool isVisible)</code> : Call this function to setting hide or show SDK floating button</li>
+<li><code>SetKeepLoginSession(bool isKeepLoginSession)</code> : This function will control the Appota Login Session will be kept or removed at app lauching (when session's removed user has to login again when app start).</li>
+<li><code>SetAutoShowLogin(bool autoShowLogin)</code> : This function will control the Appota Login View will be automatically show at app lauching (when user's not logged in). Or you have to call <a href="#show-login-view">ShowLoginView</a> function to show the LoginView.</li>
+<li><code>FinishSDK()</code> : Call this function in <code>OnApplicationQuit</code> script (only require in Android platform)</li>
+</ul>
+
+
+<h3>2. User functions: <a name = "user-function"> </a></h3>
+
+<ul>
+<li><code>ShowLoginView()</code>: Show login view function (when user's not logged in)</li>
+<li><code>Logout()</code>: Logout function</li>
+<li><code>SwitchAccount()</code>: Call this function when you want to switch logged in user to other Appota User. Remember to check callback after switching successful (it'll be called in <code>OnLoginSuccess()</code> again)</li>
+<li><code>ShowUserInfo()</code>: This function will show user profile view</li>
+<li><code>IsUserLogin()</code>: This function will return user logged in state</li>
+<li><code>GetAppotaSession()</code>: Return <code>AppotaSession</code> if logged in</li>
+<li><code>SetCharacter(string name, string server, string characterID)</code>: Set character function to support character management on web</li>
+</ul>
+
+
+<h3>3. Payment functions: <a name = "payment-function"> </a></h3>
+
+<ul>
+<li><code>MakePayment()</code>: Show payment view with default list payment packages</li>
+<li><code>MakePayment(string packageID)</code>: Show a specific package depends on your in-game mechanism</li>
+</ul>
+
+
+<h3>4. Analytics functions: <a name = "analytic-function"> </a></h3>
+
+<ul>
+<li><code>SendView(string activityName)</code>:</li>
+<li><code>SendEvent(string category,string action,string label)</code>:</li>
+<li><code>SendEvent(string category,string action,string label, int value)</code>:</li>
+</ul>
+
+
+<h3>5. Notification functions: <a name = "notification-function"> </a></h3>
+
+<ul>
+<li><code>SetPushGroup(string groupName)</code>: Register and set push group for push notification</li>
+</ul>
+
+
+<hr />
+
+<h2>AppotaSDKReceiver.cs <a name = "appota-sdk-receiver"> </a></h2>
+
+<ul>
+<li><h4>Description:</h4>
+
+<p>Getting results returned from Appota and handling by setting “result processing” in functions</p></li>
+<li><h4>Usage:</h4>
+
+<p>Set processing code inside these callback funtions</p></li>
+</ul>
+
+
+<h3>1. SDK callbacks: <a name = "sdk-callback"> </a></h3>
+
+<ul>
+<li><code>OnCloseLoginView()</code>: Callback call when login view is closed</li>
+</ul>
+
+
+<p>```c#</p>
+
+<pre><code>public void OnCloseLoginView()
+{
+    // Set processing code
+}
+</code></pre>
+
+<pre><code>
+### 2. User callbacks: &lt;a name = "user-callback"&gt; &lt;/a&gt;
+
+* `OnLoginSuccess(string appotaSession)`: Callback call after login. `appotaSession` is user information in JSON format. For the convenience of developer, we parsed user information to class object `AppotaSession`
+
+```c#
+
+    public void OnLoginSuccess(string appotaSession)
+    {
+        // Parse user information to AppotaSession
+        AppotaSession appotaSessionObj = new AppotaSession(appotaSession);
+        AppotaSession.Instance.UpdateInstance(appotaSessionObj);
+
+        // Set processing code
+    }
+</code></pre>
+
+<ul>
+<li><code>OnLoginError(string error)</code>: Callback call when login failed. SDK native will send to Unity3D an error message.</li>
+</ul>
+
+
+<p>```c#</p>
+
+<pre><code>public void OnLoginError(string error)
+{   
+    // @error message
+    // Set processing code
+}
+</code></pre>
+
+<pre><code>
+* `OnLogoutSuccess()`: Callback call when logout success.
+
+```c#
+
+    public void OnLogoutSuccess()
+    {   
+        // Set processing code
+    }
+</code></pre>
+
+<h3>3. Payment callback: <a name = "payment-callback"> </a></h3>
+
+<ul>
+<li><code>OnPaymentSuccess(string transactionResult)</code>: Callback call after making payment successful. <code>transactionResult</code> is payment information in JSON format. For the convenience of developer, we parsed payment information to class object <code>AppotaPaymentResult</code></li>
+</ul>
+
+
+<p>```c#</p>
+
+<pre><code>public void OnPaymentSuccess(string transactionResult)
+{   
+    // Parse Transaction result into class AppotaPaymentResult.cs
+    AppotaPaymentResult paymentResult = new AppotaPaymentResult(transactionResult);
+
+    // Set processing code
+}
+</code></pre>
+
+<pre><code>
+* `OnPaymentFailed(string error)`:  Callback call when making payment failed. SDK native will send to Unity3D an error message.
+
+```c#
+
+    public void OnPaymentFailed(string error)
+    {   
+        // @error message
+        // Set processing code
+    }
+</code></pre>
+
+<ul>
+<li><code>GetPaymentState(string packageID)</code>:</li>
+</ul>
+
+
+<hr />
+
+<h2>AppotaSession.cs <a name = "appota-session"> </a></h2>
+
+<p>Object class about user information.</p>
+
+<ul>
+<li>(string) <code>AccessToken</code>: Login access token in string format.</li>
+<li>(string) <code>Email</code>: Email user.</li>
+<li>(string) <code>ExpireDate</code>: Expire date of access token in string format.</li>
+<li>(string) <code>RefreshToken</code>:</li>
+<li>(string) <code>UserID</code>: User ID.</li>
+<li>(string) <code>UserName</code>: User name.</li>
+</ul>
+
+
+<hr />
+
+<h2>AppotaPaymentResult.cs <a name = "appota-payment-result"> </a></h2>
+
+<p>Object class about payment information.</p>
+
+<ul>
+<li>(string) <code>PackageID</code>: Payment package ID.</li>
+<li>(string) <code>Currency</code>: Payment currency.</li>
+<li>(string) <code>Time</code>: Payment time.</li>
+<li>(string) <code>TransactionID</code>: Transaction ID</li>
+<li>(string) <code>Type</code>: Payment type.</li>
+<li>(string) <code>ProductID</code>: Product ID.</li>
+<li>(string) <code>MethodINAPP</code>: Method INAPP.</li>
+</ul>
+
+</body>
+</html>

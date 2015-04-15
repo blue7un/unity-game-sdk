@@ -1,0 +1,530 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Appota Game SDK Unity第4版</title>
+
+</head>
+<body>
+<h1>Appota Game SDK Unity第4版</h1>
+
+<h2>重要点</h2>
+
+<ul>
+<li><strong>Appota 登陆</strong> – 支持Appota, Google, Facebook, Twitter, Guest多种登录方式.</li>
+<li><strong>Appota 支付</strong> – 支持　SMS, Card, E-Bank, Apple Payment各种支付方式.</li>
+<li><strong>Appota 分析</strong> – 可收集、可视化及了解用户和用用数据(session, 活动, 错误记录, ...)的大规模服务.</li>
+<li><strong>推送通知</strong></li>
+</ul>
+
+
+<h2>概括</h2>
+
+<ol>
+<li><a href="#head1-integrate-sdk">集成SDK</a></li>
+<li><a href="#head1-client-api">Client API</a>
+
+<ul>
+<li><a href="#head2-init-sdk">初始化并且设置SDK</a></li>
+<li><a href="#head2-user-function">用户功能</a></li>
+<li><a href="#head2-payment-function">支付功能</a></li>
+<li><a href="#head2-analytic-function">分析功能</a></li>
+<li><a href="#head2-push-notification-function">推送通知</a></li>
+</ul>
+</li>
+<li><a href="#head1-class-document">Class document</a></li>
+<li><a href="#head1-faq">FAQ and 说明</a></li>
+</ol>
+
+
+<h2>1. 集成 SDK <a name = "head1-integrate-sdk"> </a></h2>
+
+<p><a href="Sample/">sample apps</a> 是可以为你设置的独立项目。你可以把Unity SDK集成到现有的应用。</p>
+
+<h3>1.1. 先决条件 <a name = "head2-prerequisites">  </a></h3>
+
+<p>开始 Appota Game Unity SDK 你可以设置SDK并且开始建设新项目。 你可以试一试来了解SDK的运行机制。</p>
+
+<p>Required Unity 4.5 or later</p>
+
+<h3>1.2. 取 app api key 和 client key <a name="head2-obtain-app-api-key-and-client-key"> </a></h3>
+
+<ul>
+<li>从应用管理页面取得<code>ClientKey</code>, <code>APIKey</code>, <code>ClientSecret</code> 等Appota应用. <a name="head3-appota-appid"> </a> 若你还没向Appota注册Appota应用，你应该<a href="https://developer.appota.com/manage-content.html">建设新应用</a></li>
+<li>取得 Application ID. <a name="head3-facebook-appid"> </a> <a href="https://developers.facebook.com/docs/ios/getting-started">建设、取得及设置IOS的Facebook app info 具体查看</a>.</li>
+<li>取得 Google Client ID 和　Client Secret. <a name="head3-google-appid"> </a> <a href="https://developers.google.com/+/mobile/ios/getting-started">建设、取得及设置IOS的Google app 具体查看</a></li>
+</ul>
+
+
+<h3>1.3. 配置Unity项目 <a name="head2-configure-your-xcode-project"> </a></h3>
+
+<h4>1.3.1. 输入 plugin</h4>
+
+<p><img src="images/import.gif" alt="" /></p>
+
+<h4>1.3.2. 配置 Unity 项目project</h4>
+
+<ul>
+<li>用在[集成SDK]建设的<code>FacebookAppID</code>, <code>ApiKey</code>, <code>GoogleClientID</code>, <code>GoogleClientSecret</code> has created in <a href="#head1-integrate-sdk">IntegrateSDK</a>来更新设置
+<img src="images/config.png" height="400" width="400" alt="" /></li>
+</ul>
+
+
+<h2>2. Client API <a name="head1-client-api"> </a></h2>
+
+<h3>2.1 初始化并且设置SDK <a name = "head2-init-sdk"> </a></h3>
+
+<p>相关class 和功能:<br/>
+<a href="class-document/UnityClasses_cn.html#init-function">AppotaSDKHandler</a><br/>
+<a href="class-document/UnityClasses_cn.html#appota-sdk-receiver">AppotaSDKReceiver</a>  <br/>
+Appota SDK初始化当应用通过<a href="class-document/UnityClasses_cn.html#init-function">AppotaSDKHandler</a>调动<code>AppotaSDKHandler.Instance.Init()</code>class时要出现，因此大部分时间<code>AppotaSDKHandler.Instance.Init()</code>将出现在第一个界面</p>
+
+<pre><code>AppotaSDKHandler.Instance.Init();
+</code></pre>
+
+<p>SDK flows的控制功能:</p>
+
+<ul>
+<li><code>SetKeepLoginSession(BOOL)</code> <a name="set-keep-login-session"> </a> 该功能将控制Appota的登录会话 （Login Session），当开启应用时被保留或者更换（当功能被删除时玩家打开应用后要重新登录）. <br/>
+<strong>Note</strong> 如果该功能没有刷出，登录会话将为默认.</li>
+<li><p><code>SetAutoShowLogin(BOOL)</code> <a name="set-auto-show-login-dialog"> </a> 该功能将控制Appota的登录界面（ Login View）在开启应用时将自动刷出(当用户没有登陆) 或者你要开启<a href="#show-login-view">ShowLoginView</a>功能. <br/>
+<strong>Note</strong> 如果该功能没有刷出, 登录界面（ Login View）在开启应用时将自动刷出(当用户没有登陆)</p></li>
+<li><p>开启<code>SetSDKButtonVisible(BOOL)</code>该功能来设置显示或者隐藏SDK 浮动按钮</p></li>
+<li><p>开启<code>FinishSDK()</code>该功能在<code>OnApplicationQuit</code> 脚本</p>
+
+<h3>2.2. 用户功能<a name="head2-user-function"> </a></h3>
+
+<p>相关class 和功能:</p></li>
+<li><p><a href="class-document/UnityClasses_cn.html#user-function">AppotaSDKHandler</a></p></li>
+<li><a href="class-document/UnityClasses_cn.html#user-callback">AppotaSDKReceiver</a></li>
+<li><a href="class-document/UnityClasses_cn.html#appota-session">AppotaSession</a></li>
+</ul>
+
+
+<p>当完成SDK初始化时，开启使用登录功能。</p>
+
+<h4>2.2.1. 显示登陆界面（login view） <a name = "head2-show-login-view"> </a></h4>
+
+<p>按上面所提的内容，登陆界面被<a href="#set-auto-show-login-dialog">SetAutoShowLoginDialog(BOOL)</a>控制.开启应用后登陆界面自动显示或者需要的话可以通过<code>ShowLoginView</code>开启:</p>
+
+<ul>
+<li><strong>显示登陆界面</strong></li>
+</ul>
+
+
+<pre><code>AppotaSDKHandler.Instance.ShowLoginView();
+</code></pre>
+
+<p><a name="show-login-view"> </a>
+Appota 登陆界面含有 <strong>Facebook</strong>, <strong>Google</strong>, <strong>Twitter</strong>, <strong>Appota User</strong> 和 <strong>快速登录</strong>等5个登录方式</p>
+
+<p><img src="images/login_dialog.png" alt="Appota Login Dialog" /></p>
+
+<ul>
+<li><strong> 退出功能 </strong></li>
+</ul>
+
+
+<pre><code>AppotaSDKHandler.Instance.Logout();
+</code></pre>
+
+<ul>
+<li><strong> 更改账号功能 </strong></li>
+</ul>
+
+
+<p>用该功能来更改登陆账号.当更改账号成功时记得查看返回(在<code>OnLoginSucceed</code>再一次显示)
+<code>
+AppotaSDKHandler.Instance.SwitchAccount();
+</code></p>
+
+<ul>
+<li><strong> 显示玩家信息的功能 </strong></li>
+</ul>
+
+
+<p>该功能将刷出玩家信息界面</p>
+
+<pre><code>AppotaSDKHandler.Instance.ShowUserInfo();
+</code></pre>
+
+<ul>
+<li><strong> 查看用户登录 </strong>
+该功能返回玩家登录状态</li>
+</ul>
+
+
+<pre><code>AppotaSDKHandler.Instance.IsUserLogin();
+</code></pre>
+
+<ul>
+<li><strong> 取 AppotaSession </strong>
+若登录就返回AppotaSession</li>
+</ul>
+
+
+<pre><code>AppotaSDKHandler.Instance.GetAppotaSession();
+</code></pre>
+
+<ul>
+<li><strong> 设置角色</strong>
+设置角色功能支持在网站管理角色</li>
+</ul>
+
+
+<pre><code>public void SetCharacter(string name, string server, string characterID)
+</code></pre>
+
+<h4>2.2.2. callbacks验证 <a name = "login-handle-login-response"> </a></h4>
+
+<p>AppotaSDK provide 4 callbacks delegate for login defined in <a href="class-document/UnityClasses_cn.html#appota-sdk-receiver"><code>AppotaSDKReceiver</code></a> , please implement these functions to handle login result</p>
+
+<hr />
+
+<p><strong>登录成功调动</strong><br/>
+从<code>AppotaSession</code>取得Appota用户后然后通知到服务器来确认并且创造游戏用户。用户在服上集成，具体查看：<a href="https://github.com/appota/ios-game-sdk/wiki/Integrate-user-system">User Integration</a></p>
+
+<p><strong>Note</strong> 对玩家进行集成之前，要记得在服务器验证Appota UserID, UserName 和 Access token</p>
+
+<pre><code>public void  OnLoginSucceed(string appotaSession)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appotaSession</td>
+<td><code>appotaSession</code> 是 json 字符串，其包括所有用户信息， 移转字符串到AppotaSession或者容易取得玩家信息(<code>AppotaSession.Appota_AccessToken</code>, <code>AppotaSession.Appota_UserName</code>) </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<p><strong>登录失败调动</strong><br/>
+调动在登陆发生问题时</p>
+
+<pre><code>public void  OnLoginError(string error);
+</code></pre>
+
+<hr />
+
+<p><strong>退出调动</strong><br/>
+退出之后调动</p>
+
+<pre><code>public void  OnLogoutSuccess(string userName)
+</code></pre>
+
+<hr />
+
+<p><strong>关闭登陆界面调动</strong><br/>
+调动在玩家开启应用后关闭登陆界面时</p>
+
+<pre><code>public void  OnCloseLoginView();
+</code></pre>
+
+<h3>2.2. 支付功能 <a name="head2-payment-function"> </a></h3>
+
+<p>相关class 和功能:</p>
+
+<ul>
+<li><a href="class-document/UnityClasses_cn.html#payment-function">AppotaSDKHandler - payment function</a></li>
+<li><a href="class-document/UnityClasses_cn.html#payment-callback">AppotaSDKReceiver</a></li>
+<li><a href="class-document/UnityClasses_cn.html#appota-payment-result">AppotaPaymentResult</a></li>
+</ul>
+
+
+<p>要使用 AppotaSDK 支付功能，你要了解Appota支付机制. 请查看Appota支付机制在<a href="https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN">Appota Payment Document</a> and payment configuration at <a href="">Appota Developer Portal</a>.</p>
+
+<h4>2.2.1. 显示支付界面<a name="head3-show-payment-view"> </a></h4>
+
+<hr />
+
+<p>有三个支付界面的显示方式。 每个界面显示一个支付包或者一个支付列表。每种支包含有游戏内金额或者的信息。</p>
+
+<p><strong> 显示默认支付列表界面 </strong></p>
+
+<p>可以默认支付包来显示支付界面(配置在<a href="">Appota Developer Portal</a>)</p>
+
+<pre><code>AppotaSDKHandler.Instance.MakePayment()
+</code></pre>
+
+<p><img src="images/list_item.gif" alt="" /></p>
+
+<hr />
+
+<p><strong> 一包的支付界面 </strong></p>
+
+<p>按你们游戏内包的机制你可以显示某一种支付界面</p>
+
+<pre><code>AppotaGameSDK.Instance.MakePayment(string packageID)
+</code></pre>
+
+<p><img src="images/one_item.gif" alt="" /></p>
+
+<hr />
+
+<p><strong> 从SDK 浮动按钮显示支付界面</strong><br/>
+用户可以从浮动按钮打开支付、信息和交易等界面</p>
+
+<p>(Show image of floating button and then SDK show gif)</p>
+
+<h4>2.2.2 支付调动处理 <a name="head3-handle-payment-callback"> </a></h4>
+
+<hr />
+
+<p>你要补充并且修改在<code>AppotaSDKReceiver</code>里所有的调动.</p>
+
+<p><strong> 支付成功调动 </strong></p>
+
+<p>按你的支付机制(IPN, 烦请查看<a href="https://github.com/appota/ios-game-sdk/wiki/Integrate-payment-system">Appota Payment</a>), 继续验证支付或通知支付成功</p>
+
+<pre><code>public void OnPaymentSuccess(string transactionResult);
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>transactionResult</code></td>
+<td><code>transactionResult</code> 是json字符串，其包括所有支付信息 (金额, 游戏货币, package　id), 字符串兑换成 <code>AppotaPaymentResult</code>或容易取得支付信息</td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<p><strong> Callback for payment state </strong></p>
+
+<p><strong> 你要补充该功能以保证充值的正确性 </strong><br/>
+<strong>PAYMENT_STATE</strong> 是必须的，让我们SDK可以正确进行支付操作。按你的支付包。<br/>
+比如： packageID: <code>com.gold.package1</code> - (在集成过程中确认) 对应于1000元宝档位和Y服的X玩家。支付状态为： com.gold.package1_1000_gold_X_Y (按你的格式).</p>
+
+<pre><code>public void GetPaymentState(string packageID);
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>packageID</code></td>
+<td><code>packageID</code> 是被购买的包, <code>packageID</code>在支付配置过程中确认</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>2.3. 分析功能 <a name="head2-analytic-function"> </a></h3>
+
+<p>Appota SDK 支持重返界面和活动。 这些信息对宣传和监视运营游戏有好处。</p>
+
+<p><strong> 监视功能 </strong><br/>
+当进了一个场景将发送视图</p>
+
+<pre><code>public void SendView(string name);
+</code></pre>
+
+<p><strong> 活动监视功能 </strong><br/>
+当用户做一个活动时将发送活动追踪</p>
+
+<pre><code>public void SendEvent(string category,string action,string label)
+</code></pre>
+
+<p>确定活动具体的 <code>category</code>, <code>action</code>, <code>label</code></p>
+
+<h3>2.3. 推送通知功能 <a name="head3-push-notification-function"> </a></h3>
+
+<p><strong> 注册群推送通知的功能 </strong><br/>
+注册推送通知 (目前只支持iOS). 使用群名称来选择推送用户群(比如：只推送1服的用户，群名称将为 = "server 1").</p>
+
+<pre><code>public void setPushGroup(string groupName)
+</code></pre>
+
+<h2>3. Class Document <a name="head1-class-document"> </a></h2>
+
+<ul>
+<li><a href="class-document/UnityClasses_cn.html#init-function">AppotaSDKHandler</a></li>
+<li><a href="class-document/UnityClasses_cn.html#appota-sdk-receiver">AppotaSDKReceiver</a></li>
+<li><a href="class-document/UnityClasses_cn.html#appota-session">AppotaSession</a></li>
+<li><a href="class-document/UnityClasses_cn.html#appota-payment-result">AppotaPaymentResult</a></li>
+</ul>
+
+
+<h2>4. FAQ and Glossary <a name="head1-faq"></a></h2>
+
+<ul>
+<li><code>IPN</code> 是Appota系统为玩家新增元宝的机制. 具体查看： https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN</li>
+<li><code>PackageID</code> 每个游戏内的支付包应该附带 package ID (SDKTool提供) 来确认包。</li>
+<li><code>PaymentState</code> 需要与<code>GetPaymentState</code>功能补充。 使用<code>PackageID</code>和游戏服务器信息来建设 <code>PaymentState</code>. <br/>
+比如 packageID: <code>com.gold.package1</code> - (在集成过程中确认)对应于1000元宝档位和Y服的X玩家。支付状态设为： com.gold.package1_1000_gold_X_Y (按你的格式).</li>
+</ul>
+
+</body>
+</html>

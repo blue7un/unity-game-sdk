@@ -1,0 +1,45 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.unity3d.player" android:installLocation="preferExternal" android:theme="@android:style/Theme.NoTitleBar" android:versionCode="3" android:versionName="1.01">
+  <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+  <!-- Need this permission for error tracking -->
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <!-- Need this permission for error tracking -->
+  <uses-permission android:name="android.permission.GET_TASKS" />
+  <!-- Need this permission for login in google -->
+  <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+  <!-- use this for google payment -->
+  <uses-permission android:name="com.android.vending.BILLING" />
+  <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
+    <meta-data android:name="sandbox" android:value="false" />
+    <activity android:name="com.unity3d.player.UnityPlayerNativeActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
+    </activity>
+    <activity android:name="com.appota.gamesdk.v4.core.AppotaGameSDK" android:configChanges="screenSize|orientation|keyboardHidden" android:theme="@android:style/Theme.Dialog">
+    </activity>
+    <!-- Declare Login Activity for Facebook login -->
+    <activity android:name="com.appota.gamesdk.v4.ui.BaseSDKActivty" android:configChanges="screenSize|orientation|keyboardHidden" android:theme="@android:style/Theme.Dialog">
+    </activity>
+    <!-- android:theme="@android:style/Theme.Dialog" -->
+    <!-- Declare Login Activity for Facebook login -->
+    <activity android:name="com.appota.facebook.LoginActivity" android:label="@string/app_name" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <!-- set Appota Api Key -->
+    <meta-data android:name="com.appota.apiKey" android:value="K-A164833-U00000-FSHFTL-AAB432B007C2EDBE" />
+    <meta-data android:name="com.crashlytics.ApiKey" android:value="041977b270d261673d4bb3f97e261b2427c6f6f0" />
+    <!-- user this for twitter login -->
+    <meta-data android:name="com.appota.twitter.consumer.key" android:value="8JssO2TP6DPUvsMxIiuBA" />
+    <meta-data android:name="com.appota.twitter.consumer.secret" android:value="t20smaekjNGQONWvN63joVQQ3xZmoGmbnjeunFjI" />
+    <!-- Set Facebook Application ID -->
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 355161784671889" />
+    <meta-data android:name="com.onclan.gameId" android:value="" />
+  </application>
+</manifest>
