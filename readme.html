@@ -1,0 +1,537 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Version 4 of the Appta Game SDK for Unity</title>
+
+</head>
+<body>
+<h1>Version 4 of the Appta Game SDK for Unity</h1>
+
+<h2>Highlights</h2>
+
+<ul>
+<li><strong>Appota Login</strong> – Support multiple login methods Appota, Google, Facebook, Twitter, Guest.</li>
+<li><strong>Appota Payment</strong> – Support mutiple payment methos SMS, Card, E-Bank, Apple Payment.</li>
+<li><strong>Appota Analytics</strong> – A service for collecting, visualizing, and understanding user and app data (session, active, error log, ...) at scale.</li>
+<li><strong>Push Notification</strong> on multiple platforms (iOS, Android, WP).</li>
+</ul>
+
+
+<h2>Overview</h2>
+
+<ol>
+<li><a href="#head1-integrate-sdk">Integrate SDK</a></li>
+<li><a href="#head1-client-api">Client API</a>
+
+<ul>
+<li><a href="#head2-init-sdk">Init and setup SDK</a></li>
+<li><a href="#head2-user-function">User function</a></li>
+<li><a href="#head2-payment-function">Payment function</a></li>
+<li><a href="#head2-analytic-function">Analytic function</a></li>
+<li><a href="#head2-push-notification-function">Push notification function</a></li>
+</ul>
+</li>
+<li><a href="#head1-class-document">Class document</a></li>
+<li><a href="#head1-faq">FAQ and Glossary</a></li>
+</ol>
+
+
+<h2>1. Integrate SDK <a name = "head1-integrate-sdk"> </a></h2>
+
+<p>The <a href="AppotaGameUnitySDK4/">sample apps</a> are standalone projects that are already set up for you. You can also integrate the SDK for Unity with an existing application.</p>
+
+<h3>1.1. Prerequisites <a name = "head2-prerequisites">  </a></h3>
+
+<p>To get started with the Appota Game SDK for Unity, you can set up the SDK and start building a new project, or you can integrate the SDK in an existing project. You can also run the samples to get a sense of how the SDK works.</p>
+
+<p>Required Unity 4.5 or later</p>
+
+<h3>1.2. Obtain app api key and client key <a name="head2-obtain-app-api-key-and-client-key"> </a></h3>
+
+<ul>
+<li>Retreive Appota app information <code>ClientKey</code>, <code>APIKey</code>, <code>ClientSecret</code> from app dashboard. <a name="head3-appota-appid"> </a> If you haven't already registered your app with Appota by creating a Appota app, you should <a href="https://developer.appota.com/manage-content.html">create a new app</a> then retreive app information from developer dashboard.</li>
+<li>Retreive Facebook Application ID.   <a name="head3-facebook-appid"> </a><br/>
+<a href="https://developers.facebook.com/docs/ios/getting-started">Detail about how to create ,retreive and setup Facebook app info for iOS</a>. If you can not access Facebook Developer page, please contact our support (sale@appota.com) to get the application id.</li>
+<li>Retreive Google Client ID and Client Secret. <a name="head3-google-appid"> </a> <br/>
+Create new project from <a href="https://console.developers.google.com">https://console.developers.google.com</a>, in <code>API &amp; Auth-Credentials</code> add iOS support and get ClientID and ClientSecret. If you can not access Google Developer page, please contact our support (sale@appota.com) to get the application id and secret.</li>
+</ul>
+
+
+<h3>1.3. Configure your Unity Project <a name="head2-configure-your-xcode-project"> </a></h3>
+
+<h4>1.3.1. Import plugin</h4>
+
+<p><img src="images/import.gif" alt="" /></p>
+
+<h4>1.3.2. Configure Unity project</h4>
+
+<ul>
+<li>Use <code>FacebookAppID</code>, <code>ApiKey</code>, <code>GoogleClientID</code>, <code>GoogleClientSecret</code> has created in <a href="#head1-integrate-sdk">IntegrateSDK</a> to update setting
+<img src="images/config.png" height="400" width="400" alt="" /></li>
+</ul>
+
+
+<h2>2. Client API <a name="head1-client-api"> </a></h2>
+
+<h3>2.1 Init and setup SDK <a name = "head2-init-sdk"> </a></h3>
+
+<p>Related class and function:<br/>
+<a href="class-document/UnityClasses.html#init-function">AppotaSDKHandler</a><br/>
+<a href="class-document/UnityClasses.html#appota-sdk-receiver">AppotaSDKReceiver</a>  <br/>
+Appota SDK init must be called once when application start via <a href="class-document/UnityClasses.html#init-function">AppotaSDKHandler</a> class call <code>AppotaSDKHandler.Instance.Init()</code> so most of the time it will be called in your first scene</p>
+
+<pre><code>AppotaSDKHandler.Instance.Init();
+</code></pre>
+
+<p>There are some functions to control SDK flows:</p>
+
+<ul>
+<li><code>SetKeepLoginSession(BOOL)</code> <a name="set-keep-login-session"> </a> this function will control the Appota Login Session will be kept or removed at app lauching (when session's removed user has to login again when app start). <br/>
+<strong>Note</strong> If this function is not called, login session will be kept by default.</li>
+<li><p><code>SetAutoShowLogin(BOOL)</code> <a name="set-auto-show-login-dialog"> </a> this function will control the Appota Login View will be automatically show at app lauching (when user's not logged in) or you have to call <a href="#show-login-view">ShowLoginView</a> function to show the LoginView. <br/>
+<strong>Note</strong> If this function is not called, login view will automatically show at app lauching (when user's not logged in)</p></li>
+<li><p><code>SetSDKButtonVisible(BOOL)</code> call this function to setting hide or show SDK floating button</p></li>
+<li><p><code>FinishSDK()</code> call this function in <code>OnApplicationQuit</code> script</p>
+
+<h3>2.2. User function <a name="head2-user-function"> </a></h3>
+
+<p>Related class and function:</p></li>
+<li><p><a href="class-document/UnityClasses.html#user-function">AppotaSDKHandler</a></p></li>
+<li><a href="class-document/UnityClasses.html#user-callback">AppotaSDKReceiver</a></li>
+<li><a href="class-document/UnityClasses.html#appota-session">AppotaSession</a></li>
+</ul>
+
+
+<p>Once you've implemented init SDK function, start using login features.</p>
+
+<h4>2.2.1. Show login view <a name = "head2-show-login-view"> </a></h4>
+
+<p>As mentioned above login dialog flow can be control by function <a href="#set-auto-show-login-dialog">SetAutoShowLoginDialog(BOOL)</a>. Automatically show login view at app launching or manual call <code>ShowLoginView</code> when you need:</p>
+
+<ul>
+<li><strong> Show Login View </strong></li>
+</ul>
+
+
+<pre><code>AppotaSDKHandler.Instance.ShowLoginView();
+</code></pre>
+
+<p><a name="show-login-view"> </a>
+Appota Login Dialog contains 5 authorization methods: <strong>Facebook</strong>, <strong>Google</strong>, <strong>Twitter</strong>, <strong>Appota User</strong> and <strong>Quick Login</strong></p>
+
+<p><img src="images/login_dialog.png" alt="Appota Login Dialog" /></p>
+
+<p>Follow this mechanism for login function, please implement <a href="#did-login-succeed"><code>didLoginSuccess</code></a> callback to authenticate your in-game user.
+<img src="images/unity_login_user_sequence.png" alt="Appota Login Mechanism" /></p>
+
+<ul>
+<li><strong> Logout function </strong></li>
+</ul>
+
+
+<pre><code>AppotaSDKHandler.Instance.Logout();
+</code></pre>
+
+<ul>
+<li><strong> Switch account function </strong></li>
+</ul>
+
+
+<p>Call this function when user logged in will show a login view and allow to login other account. When switch account succeed <code>OnLoginSucceed</code> callback will be called again, so please logout your game account and reauthenticate with new switched account.</p>
+
+<pre><code>AppotaSDKHandler.Instance.SwitchAccount();
+</code></pre>
+
+<p><img src="images/unity_switch_user_sequence.png" alt="Appota Switch Account Mechanism" /></p>
+
+<ul>
+<li><strong> Show User Info function </strong></li>
+</ul>
+
+
+<p>This function will show user profile view</p>
+
+<pre><code>AppotaSDKHandler.Instance.ShowUserInfo();
+</code></pre>
+
+<ul>
+<li><strong> Check user login </strong>
+This function will return user logged in state</li>
+</ul>
+
+
+<pre><code>AppotaSDKHandler.Instance.IsUserLogin();
+</code></pre>
+
+<ul>
+<li><strong> Get AppotaSession </strong>
+Return AppotaSession if logged in</li>
+</ul>
+
+
+<pre><code>AppotaSDKHandler.Instance.GetAppotaSession();
+</code></pre>
+
+<ul>
+<li><strong> Set Character</strong>
+Set character function to support character management on web</li>
+</ul>
+
+
+<pre><code>public void SetCharacter(string name, string server, string characterID)
+</code></pre>
+
+<h4>2.2.2. Handle authenticaiton callbacks <a name = "login-handle-login-response"> </a></h4>
+
+<p>AppotaSDK provide 4 callbacks delegate for login defined in <a href="class-document/UnityClasses.html#appota-sdk-receiver"><code>AppotaSDKReceiver</code></a> , please implement these functions to handle login result</p>
+
+<hr />
+
+<p><strong>Login succeed callback</strong><br/>
+Retreive Appota user info from <code>AppotaSession</code> then post to your server to verify and create game user. For more detail about user integration on server: <a href="https://github.com/appota/ios-game-sdk/wiki/Integrate-user-system">User Integration</a></p>
+
+<p><strong>Note</strong> Remember verify Appota UserID, UserName and Access token on your server before procceeding game user integration</p>
+
+<pre><code>public void  OnLoginSucceed(string appotaSession)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appotaSession</td>
+<td><code>appotaSession</code> is a json string included all user info, convert the string to AppotaSession ot easily retrevie user information (<code>AppotaSession.Appota_AccessToken</code>, <code>AppotaSession.Appota_UserName</code>) </td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<p><strong>Login fail callback</strong><br/>
+Callback when login have problems</p>
+
+<pre><code>public void  OnLoginError(string error);
+</code></pre>
+
+<hr />
+
+<p><strong>Logout callback</strong><br/>
+Callback after user logout with user name, please logout your game account and call <code>showLoginView</code> to login other account</p>
+
+<pre><code>public void  OnLogoutSuccess(string userName)
+</code></pre>
+
+<hr />
+
+<p><strong>Close login view callback</strong><br/>
+Callback when user close login view at app launching</p>
+
+<pre><code>public void  OnCloseLoginView();
+</code></pre>
+
+<h3>2.2. Payment function <a name="head2-payment-function"> </a></h3>
+
+<p>Related class and function:</p>
+
+<ul>
+<li><a href="class-document/UnityClasses.html#payment-function">AppotaSDKHandler - payment function</a></li>
+<li><a href="class-document/UnityClasses.html#payment-callback">AppotaSDKReceiver</a></li>
+<li><a href="class-document/UnityClasses.html#appota-payment-result">AppotaPaymentResult</a></li>
+</ul>
+
+
+<p>Because using AppotaSDK payment function you should understand Appota Payment mechanism and configuration. Please study Appota payment mechanism at <a href="https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN">Appota Payment Document</a> and payment configuration at <a href="">Appota Developer Portal</a>.</p>
+
+<h4>2.2.1. Show payment view <a name="head3-show-payment-view"> </a></h4>
+
+<hr />
+
+<p>You have 3 methods to show payment view. Each payment view represents one or list of payment package. Each package contains information of game coin amount or in-game package.</p>
+
+<p><strong> Show default list payment view </strong></p>
+
+<p>You can show payment view with default list payment packages (which is configured on <a href="">Appota Developer Portal</a>)</p>
+
+<pre><code>AppotaSDKHandler.Instance.MakePayment()
+</code></pre>
+
+<p><img src="images/list_item.gif" alt="" /></p>
+
+<hr />
+
+<p><strong> Show payment view for a specific package </strong></p>
+
+<p>You can show a specific package depends on your in-game mechanism</p>
+
+<pre><code>AppotaGameSDK.Instance.MakePayment(string packageID)
+</code></pre>
+
+<p><img src="images/one_item.gif" alt="" /></p>
+
+<hr />
+
+<p><strong> Show payment view from SDK floating button</strong><br/>
+User can open Payment, Information and Transaction History view via floating button</p>
+
+<p>(Show image of floating button and then SDK show gif)</p>
+
+<h4>2.2.2 Handle payment callback <a name="head3-handle-payment-callback"> </a></h4>
+
+<hr />
+
+<p>You have to implement and modified all callbacks in <code>AppotaSDKReceiver</code>.</p>
+
+<p><strong> Callback after a successful payment </strong></p>
+
+<p>Depends on your payment machenism (IPN, please readmore about <a href="https://github.com/appota/ios-game-sdk/wiki/Integrate-payment-system">Appota Payment</a>), proceed payment verification or alert payment succeed for user</p>
+
+<pre><code>public void OnPaymentSuccess(string transactionResult);
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>transactionResult</code></td>
+<td><code>transactionResult</code> is is a json string included all payment  info (amount, game currency, package id), convert the string to <code>AppotaPaymentResult</code> ot easily retrevie payment information</td>
+</tr>
+</tbody>
+</table>
+
+
+<hr />
+
+<p><strong> Callback for payment state </strong></p>
+
+<p><strong> YOU HAVE TO IMPLEMENT THIS FUNCTION TO ENSURE GOLD CHARING CORRECTLY </strong><br/>
+<strong>PAYMENT_STATE</strong> is required for our SDK to make correct payment with package. Depends on your payment package implement this function and return a correct payment state.<br/>
+For example packageID: <code>com.gold.package1</code> - (defined in integration process) corresponds with a package of 1000 gold and current game user is X in server Y. Then payment state can be constructed : com.gold.package1_1000_gold_X_Y (depends on your format).</p>
+
+<pre><code>public void GetPaymentState(string packageID);
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>packageID</code></td>
+<td><code>packageID</code> is id of the package has been bought, <code>packageID</code> is defined during payment configuration process</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>2.3. Analytic function <a name="head2-analytic-function"> </a></h3>
+
+<p>Appota SDK support calling track for view and event. These track information is very use for game advertisement and tracking.</p>
+
+<p><strong> View tracking function </strong><br/>
+When enter a view send view for tracking</p>
+
+<pre><code>public void SendView(string name);
+</code></pre>
+
+<p><strong> Event tracking function </strong><br/>
+When user perform an event send event for tracking</p>
+
+<pre><code>public void SendEvent(string category,string action,string label)
+</code></pre>
+
+<p>Define <code>category</code>, <code>action</code>, <code>label</code> detail of the action</p>
+
+<h3>2.3. Push notification function <a name="head3-push-notification-function"> </a></h3>
+
+<p><strong> Register push notification with groupname </strong><br/>
+Register push notification (currenly only support iOS). Use group name to choose user group for easy pushing (for example only push user in server 1 then groupName = "server 1").</p>
+
+<pre><code>public void setPushGroup(string groupName)
+</code></pre>
+
+<h2>3. Class Document <a name="head1-class-document"> </a></h2>
+
+<ul>
+<li><a href="class-document/UnityClasses.html#init-function">AppotaSDKHandler</a></li>
+<li><a href="class-document/UnityClasses.html#appota-sdk-receiver">AppotaSDKReceiver</a></li>
+<li><a href="class-document/UnityClasses.html#appota-session">AppotaSession</a></li>
+<li><a href="class-document/UnityClasses.html#appota-payment-result">AppotaPaymentResult</a></li>
+</ul>
+
+
+<h2>4. FAQ and Glossary <a name="head1-faq"></a></h2>
+
+<ul>
+<li><code>IPN</code> is payment machenism used by Appota System to increase gold for game user. Detail in https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN</li>
+<li><code>PackageID</code> each payment package in game should be defined along with a package ID (provided by SDKTool) to identify package.</li>
+<li><code>PaymentState</code> payment state must be implemented in <code>GetPaymentState</code> function. And use <code>PackageID</code> and game server information to build up <code>PaymentState</code>. <br/>
+For example packageID: <code>com.gold.package1</code> - (defined in integration process) corresponds with a package of 1000 gold and current game user is X in server Y. Then payment state can be constructed : com.gold.package1_1000_gold_X_Y (depends on your format).</li>
+</ul>
+
+</body>
+</html>
