@@ -1,5 +1,7 @@
 #Version 4 of the Appta Game SDK for Unity
 
+<b> Version 4 of the Appota Game for Unity has been published in this reposity and in Developer Preview. Version 3 will continue to be available in our [appota-ios-game-sdk3](https://github.com/appota/unity-game-sdk3) repository. If you upgrade from SDK3 to SDK4 please check our [Upgrade Document](Upgrade.md) </b>   
+
 
 ##Highlights
 
