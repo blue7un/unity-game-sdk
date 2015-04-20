@@ -80,7 +80,7 @@ Once you've implemented init SDK function, start using login features.
 ####2.2.1. Show login view <a name = "head2-show-login-view"> </a>
 As mentioned above login dialog flow can be control by function [SetAutoShowLoginDialog(BOOL)](#set-auto-show-login-dialog). Automatically show login view at app launching or manual call `ShowLoginView` when you need:  
 
-- ** Show Login View **
+- **Show Login View**
 
 ```
 AppotaSDKHandler.Instance.ShowLoginView();
@@ -95,13 +95,13 @@ Follow this mechanism for login function, please implement [`didLoginSuccess`](#
 ![Appota Login Mechanism](images/unity_login_user_sequence.png)
 
 
-- ** Logout function **
+- **Logout function**
  
 ```
 AppotaSDKHandler.Instance.Logout();
 ```
 
-- ** Switch account function **
+- **Switch account function**
 
 Call this function when user logged in will show a login view and allow to login other account. When switch account succeed `OnLoginSucceed` callback will be called again, so please logout your game account and reauthenticate with new switched account.
 
@@ -112,7 +112,7 @@ AppotaSDKHandler.Instance.SwitchAccount();
 ![Appota Switch Account Mechanism](images/unity_switch_user_sequence.png)
 
 
-- ** Show User Info function **
+- **Show User Info function**
 
 This function will show user profile view  
 
@@ -120,21 +120,21 @@ This function will show user profile view
 AppotaSDKHandler.Instance.ShowUserInfo();
 
 ```
-- ** Check user login **
+- **Check user login**
 This function will return user logged in state
 
 ```
 AppotaSDKHandler.Instance.IsUserLogin();
 ```
 
-- ** Get AppotaSession **
+- **Get AppotaSession**
 Return AppotaSession if logged in
 
 ```
 AppotaSDKHandler.Instance.GetAppotaSession();
 ```
 
-- ** Set Character**
+- **Set Character**
 Set character function to support character management on web
 
 ```
@@ -199,7 +199,7 @@ Because using AppotaSDK payment function you should understand Appota Payment me
 ---------
 You have 3 methods to show payment view. Each payment view represents one or list of payment package. Each package contains information of game coin amount or in-game package.
 
-** Show default list payment view **
+**Show default list payment view**
 
 You can show payment view with default list payment packages (which is configured on [Appota Developer Portal]())
 
@@ -209,7 +209,7 @@ AppotaSDKHandler.Instance.MakePayment()
 ![](images/list_item.gif)
 
 ----
-** Show payment view for a specific package **
+**Show payment view for a specific package**
 
 You can show a specific package depends on your in-game mechanism
 
@@ -220,7 +220,7 @@ AppotaGameSDK.Instance.MakePayment(string packageID)
 ![](images/one_item.gif)
 
 ----
-** Show payment view from SDK floating button**  
+**Show payment view from SDK floating button**  
 User can open Payment, Information and Transaction History view via floating button
 
 (Show image of floating button and then SDK show gif)
@@ -231,7 +231,7 @@ User can open Payment, Information and Transaction History view via floating but
 ---------
 You have to implement and modified all callbacks in `AppotaSDKReceiver`.
 
-** Callback after a successful payment **
+**Callback after a successful payment**
 
 Depends on your payment machenism (IPN, please readmore about [Appota Payment](https://github.com/appota/unity-game-sdk/wiki/Integrate-payment-system)), proceed payment verification or alert payment succeed for user
 
@@ -244,7 +244,7 @@ public void OnPaymentSuccess(string transactionResult);
 |`transactionResult`|`transactionResult` is is a json string included all payment  info (amount, game currency, package id), convert the string to `AppotaPaymentResult` ot easily retrevie payment information|
 
 ----
-** Callback for payment state **
+**Callback for payment state**
 
 ** YOU HAVE TO IMPLEMENT THIS FUNCTION TO ENSURE GOLD CHARING CORRECTLY **  
 **PAYMENT_STATE** is required for our SDK to make correct payment with package. Depends on your payment package implement this function and return a correct payment state.  
