@@ -192,7 +192,7 @@ Related class and function:
 - [AppotaSDKReceiver](class-document/UnityClasses.html#payment-callback)
 - [AppotaPaymentResult](class-document/UnityClasses.html#appota-payment-result)
 
-Because using AppotaSDK payment function you should understand Appota Payment mechanism and configuration. Please study Appota payment mechanism at [Appota Payment Document](https://github.com/appota/unity-game-sdk/wiki/Passive-Confirmation-via-IPN) and payment configuration at [Appota Developer Portal]().
+Because using AppotaSDK payment function you should understand Appota Payment mechanism and configuration. Please study Appota payment mechanism at [Appota Payment Document](https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN) and payment configuration at [Appota Developer Portal]().
 
 ####2.2.1. Show payment view <a name="head3-show-payment-view"> </a>
 
@@ -233,7 +233,7 @@ You have to implement and modified all callbacks in `AppotaSDKReceiver`.
 
 **Callback after a successful payment**
 
-Depends on your payment machenism (IPN, please readmore about [Appota Payment](https://github.com/appota/unity-game-sdk/wiki/Integrate-payment-system)), proceed payment verification or alert payment succeed for user
+Depends on your payment machenism (IPN, please readmore about [Appota Payment](https://github.com/appota/ios-game-sdk/wiki/Integrate-payment-system)), proceed payment verification or alert payment succeed for user
 
 ```
 public void OnPaymentSuccess(string transactionResult);
@@ -292,7 +292,7 @@ public void setPushGroup(string groupName)
 - [AppotaPaymentResult](class-document/UnityClasses.html#appota-payment-result)
 
 ##4. FAQ and Glossary <a name="head1-faq"></a>
-- `IPN` is payment machenism used by Appota System to increase gold for game user. Detail in https://github.com/appota/unity-game-sdk/wiki/Passive-Confirmation-via-IPN
+- `IPN` is payment machenism used by Appota System to increase gold for game user. Detail in https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN
 - `PackageID` each payment package in game should be defined along with a package ID (provided by SDKTool) to identify package.
 - `PaymentState` payment state must be implemented in `GetPaymentState` function. And use `PackageID` and game server information to build up `PaymentState`.   
 For example packageID: `com.gold.package1` - (defined in integration process) corresponds with a package of 1000 gold and current game user is X in server Y. Then payment state can be constructed : com.gold.package1_1000_gold_X_Y (depends on your format).
