@@ -11,12 +11,12 @@
 #import "AppotaBaseObject.h"
 
 @interface AppotaPaymentResult : AppotaBaseObject
--(float)getAmountPaymentResult;
--(NSString *)transactionID;
--(NSString *)type;
--(NSString *)currency;
--(NSString *)time;
+- (float)getAmountPaymentResult;
+- (NSString *)transactionID;
+- (NSString *)type;
+- (NSString *)currency;
+- (NSString *)time;
+- (NSString *)packageID;
 //Payment Apple
--(NSString *)productID;
--(NSString *)methodINAPP;
+- (NSString *)appleProductID;
 @end

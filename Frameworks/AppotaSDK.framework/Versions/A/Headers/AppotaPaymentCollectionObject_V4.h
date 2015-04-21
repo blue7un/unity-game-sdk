@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, SMSTYPE) {
 
 - (NSString*) getPaymentCollectionImageName;
 - (NSString*) getPaymentCollectionName;
-- (NSString*) getVendorName;
+- (id) getVendorName;
 
 +(PAYMENT_METHOD) getPaymentMethodFromString:(NSString*) pMethod;
 + (NSString*) getStringFromPaymentMethod:(PAYMENT_METHOD) pMethod;

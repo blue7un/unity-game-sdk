@@ -41,11 +41,11 @@
 /**
  *  Flag to show or disable auto show login dialog at application startup
  */
-@property (readwrite) BOOL autoShowLoginDialog;
+- (void) setAutoShowLoginDialog:(BOOL)autoShowLoginDialog;
 /**
  *  Delegate for callback function to handle PAYMENT, LOGIN callback
  */
-@property (nonatomic, unsafe_unretained) id<AppotaGameSDKCallback> delegate;
+@property (nonatomic, weak) id<AppotaGameSDKCallback> delegate;
 
 
 

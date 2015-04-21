@@ -25,6 +25,7 @@ typedef enum {
 @interface AppotaDevConfigObject : AppotaBaseObject
 - (NSArray*) getListLoginMethod;
 
+- (BOOL) isHasLoginMethod:(AppotaLoginMethod ) loginMethod;
 - (NSArray*) getListPaymentPackage;
 //TODO: HIEUTRINH
 - (NSMutableArray *) getListPackageID;
@@ -47,10 +48,4 @@ typedef enum {
 
 - (NSArray*) filterPackageWithPaymentCollection:(AppotaPaymentCollectionObject_V4*) paymentCollection  andAppotaTrackObject:(AppotaTrackObject *)trackObject withPackageID:(NSString *)packageID;
 
-//- (NSArray*) getListPaymentMethods;
-//- (NSString*) getMoneyCurrencyWithPaymentMethod:(PAYMENT_METHOD) pMethod
-//                                 withContryCode:(NSString*) countryCode;
-//- (NSArray*) getListAmountWithPaymentMethod:(PAYMENT_METHOD) pMethod
-//                            withCountryCode:(NSString*) countryCode;
-//- (AppotaGameCurrency*) getGameCurrency;
 @end

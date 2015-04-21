@@ -17,6 +17,14 @@
  * Callback after close loginview
  */
 - (void) didCloseLoginView;
+/*
+ * Callback when login error
+ */
+- (void) didLoginErrorWithMessage:(NSString *)message withError:(NSError *)error;
+/*
+ * Callback when payment error
+ */
+- (void) didPaymentErrorWithMessage:(NSString *)message withError:(NSError *)error;
 @required
 
 
@@ -26,24 +34,18 @@
  *  @return PAYMENT_STATE
  */
 
-- (NSString*) getPaymentState:(NSString *) packageID;
+- (NSString*) getPaymentStateWithPackageID:(NSString *) packageID;
 
 /*
  * Callback after login
  */
-- (void) didFinishLogin:(AppotaUserLoginResult*) userLoginResult;
-/*
- * Callback when login error
- */
-- (void) didLoginErrorWithMessage:(NSString *)message withError:(NSError *)error;
+- (void) didLoginSuccess:(AppotaUserLoginResult*) userLoginResult;
 /*
  * Callback after logout
  */
 - (void) didLogOut:(NSString*) userName;
-
+/*
+ * Callback when Payment success
+ */
 - (void) didPaymentSuccessWithResult:(AppotaPaymentResult*) paymentResult withPackage:(NSString *) packageID;
-
-- (void) didPaymentErrorWithMessage:(NSString *)message withError:(NSError *)error;
-
-
 @end
