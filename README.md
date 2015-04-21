@@ -45,7 +45,7 @@ Create new project from [https://console.developers.google.com](https://console.
 ####1.3.2. Configure Unity project
 
 - Use `FacebookAppID`, `ApiKey`, `GoogleClientID`, `GoogleClientSecret` has created in [IntegrateSDK](#head1-integrate-sdk) to update setting
-![](images/config.png =400x400)
+<img src="images/config.png" style="width:400;height:400">
 
 
 ##2. Client API <a name="head1-client-api"> </a>
