@@ -60,7 +60,7 @@ Appota SDK init must be called once when application start via [AppotaSDKHandler
 AppotaSDKHandler.Instance.Init();
 ```
 
-There are some functions to control SDK flows:
+There are some functions to control SDK flows, have to them call before `AppotaSDKHandler.Instance.Init()`
 
 - `SetKeepLoginSession(BOOL)` <a name="set-keep-login-session"> </a> this function will control the Appota Login Session will be kept or removed at app lauching (when session's removed user has to login again when app start).   
 **Note** If this function is not called, login session will be kept by default.
