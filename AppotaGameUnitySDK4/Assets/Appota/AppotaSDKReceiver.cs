@@ -71,8 +71,8 @@ public class AppotaSDKReceiver : MonoBehaviour {
 	
 	public void GetPaymentState(string packageID)
 	{
-		Debug.Log ("AppotaSDK: Get Payment State");
-		string paymentState = packageID;
+		Debug.Log ("AppotaSDK: PackageID: " + packageID);
+		string paymentState = packageID + "server1";
 
 		AppotaSDKHandler.Instance.SendStateToWrapper(paymentState);
 	}

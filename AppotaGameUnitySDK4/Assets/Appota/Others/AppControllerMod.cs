@@ -42,6 +42,23 @@ public class AppControllerMod
 			fixedAppController += textAppController.Substring(fixupMid+1);
 		}
 
+		// Add callback register Push Notification
+		int notiPosStart = fixedAppController.IndexOf("didReceiveRemoteNotification", System.StringComparison.Ordinal);
+		if (notiPosStart <= 0)
+			return;
+		int notiPosEnd = fixedAppController.IndexOf("{", notiPosStart);
+		if (notiPosEnd <= 0)
+			return;
+		
+		string pushNotiString = fixedAppController.Substring(0, notiPosEnd);
+		
+		if (fixedAppController.IndexOf("AppotaGameSDK handlePushNotification", System.StringComparison.Ordinal) <= 0){
+			pushNotiString += "{\n\t[AppotaGameSDK handlePushNotification:userInfo];";
+		}
+		
+		pushNotiString += fixedAppController.Substring(notiPosEnd+1);
+		fixedAppController = pushNotiString;
+
 		// Add callback register Push Notification with Token data
 		int regPosStart = fixedAppController.IndexOf("didRegisterForRemoteNotificationsWithDeviceToken", System.StringComparison.Ordinal);
 		if (regPosStart <= 0)
@@ -53,7 +70,7 @@ public class AppControllerMod
 		string tempString = fixedAppController.Substring(0, regPosEnd);
 
 		if (fixedAppController.IndexOf("AppotaGameSDK configurePushNotificationWithTokenData", System.StringComparison.Ordinal) <= 0){
-			tempString += "{\n[AppotaGameSDK configurePushNotificationWithTokenData:deviceToken];";
+			tempString += "{\n\t[AppotaGameSDK configurePushNotificationWithTokenData:deviceToken];";
 		}
 
 		tempString += fixedAppController.Substring(regPosEnd+1);

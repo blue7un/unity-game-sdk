@@ -26,29 +26,33 @@ extern "C" {
         return res;
     }
     
-// SDK Functions
+    // SDK Functions
     const void init() {
         [AppotaGameSDK configure];
         [AppotaGameSDK sharedInstance].delegate = [AppotaWrapper sharedInstance];
-	}
+    }
     
     const void setSDKButtonVisible(bool isVisible) {
         [[AppotaGameSDK sharedInstance] setSDKButtonVisible:isVisible];
     }
     
     const void setAutoShowLogin(bool autoShowLogin) {
-        [AppotaGameSDK sharedInstance].autoShowLoginDialog = autoShowLogin;
+        [[AppotaGameSDK sharedInstance] setAutoShowLoginDialog: autoShowLogin];
     }
-
+    
+    const void setHideWelcomeView(bool property) {
+        [[AppotaGameSDK sharedInstance] setHideWelcomeView: property];
+    }
+    
     const void setKeepLoginSession(bool isKeepLoginSession) {
         [[AppotaGameSDK sharedInstance] setKeepLoginSession:isKeepLoginSession];
-    }    
+    }
     
     const void inviteFacebookFriends(){
         [AppotaGameSDK inviteFacebookFriends];
     }
     
-// User Functions
+    // User Functions
     const void showUserInfoView(){
         [AppotaGameSDK showProfileView];
     }
@@ -89,7 +93,7 @@ extern "C" {
         return [AppotaGameSDK checkUserLogin];
     }
     
-// Payment Functions
+    // Payment Functions
     const void showPaymentView(){
         [AppotaGameSDK showPaymentView];
     }
@@ -102,25 +106,34 @@ extern "C" {
         sharedMyInstance.wrapperPaymentState = cStringCopy(state);
     }
     
-    const void setCharacter(const char *name, const char *server, const char *characterID){
-        
+    const void setCharacter(const char *name, const char *characterID, const char *serverName, const char *serverID){
+        [AppotaGameSDK setCharacterWithCharacterName: [NSString stringWithUTF8String:name] characterID:[NSString stringWithUTF8String:characterID] serverName:[NSString stringWithUTF8String:serverName] serverID:[NSString stringWithUTF8String:serverID] onCompleteBlock:^(NSDictionary *dict) {
+            
+        } onErrorBlock:^(NSError *error) {
+            
+        }];
     }
     
     const void closePaymentView(){
         [AppotaGameSDK closePaymentView];
     }
     
-// Track Functions
-    const void sendEventWithCategory(const char *category, const char *action, const char *label, int value){
-        [AppotaGameSDK sendEventWithCategory:[NSString stringWithUTF8String:category] withEventAction:[NSString stringWithUTF8String:action] withLabel:[NSString stringWithUTF8String:label] withValue:[NSNumber numberWithInteger: value]];
-
+    // Track Functions
+    const void sendEventWithCategoryWithValue(const char *category, const char *action, const char *label, int value){
+        [AppotaGameSDK sendEventWithCategory:[NSString stringWithUTF8String:category] withEventAction:[NSString stringWithUTF8String:action] withLabel:[NSString stringWithUTF8String:label] withValue:value];
+        
+    }
+    
+    const void sendEventWithCategory(const char *category, const char *action, const char *label){
+        [AppotaGameSDK sendEventWithCategory:[NSString stringWithUTF8String:category] withEventAction:[NSString stringWithUTF8String:action] withLabel:[NSString stringWithUTF8String:label]];
+        
     }
     
     const void sendViewWithName(const char *name){
         [AppotaGameSDK sendViewWithName:[NSString stringWithUTF8String:name]];
     }
     
-// Notification Functions
+    // Notification Functions
     const void registerPushNotificationWithGroupName(const char *name){
         [AppotaGameSDK registerPushNotificationWithGroupName:[NSString stringWithUTF8String:name]];
     }
@@ -133,15 +146,14 @@ extern "C" {
     UnitySendMessage("AppotaSDKReceiver", "OnCloseLoginView", "");
 }
 
-- (NSString*) getPaymentState:(NSString *) packageID {
-    UnitySendMessage("AppotaSDKReceiver", "GetPaymentState", [packageID UTF8String]);
+- (NSString*) getPaymentStateWithPackageID:(NSString *) packageID {
     return [NSString stringWithFormat:@"%s", sharedMyInstance.wrapperPaymentState];
 }
 
 /*
  * Callback after login
  */
-- (void) didFinishLogin:(AppotaUserLoginResult*) userLoginResult {
+- (void) didLoginSuccess:(AppotaUserLoginResult*) userLoginResult {
     NSLog(@"Login Success!!!");
     NSString *json = @"{";
     json = [json stringByAppendingString:@"\"accessToken\":\""];
@@ -197,10 +209,7 @@ extern "C" {
     json = [json stringByAppendingString:paymentResult.type];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"\"productID\":\""];
-    json = [json stringByAppendingString:paymentResult.productID];
-    json = [json stringByAppendingString:@"\","];
-    json = [json stringByAppendingString:@"\"methodINAPP\":\""];
-    json = [json stringByAppendingString:paymentResult.methodINAPP];
+    json = [json stringByAppendingString:paymentResult.appleProductID];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"}"];
     
