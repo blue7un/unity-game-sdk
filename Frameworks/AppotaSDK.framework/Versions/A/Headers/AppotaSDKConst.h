@@ -12,13 +12,7 @@
 
 #define AppotaSDK_DEBUG NO
 #define APPOTA_BUILD_UNITY
-
-//#ifdef AppotaSDK_DEBUG
-//#define OCLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-//#ifndef AppotaSDK_DEBUG
-//#define OCLog(fmt, ...)
-//#endif
-//#endif
+//#define APPOTA_BUILD_ANE
 
 typedef void (^AppotaSDKStringBlock)(NSString *returnString);
 typedef void (^AppotaSDKArrayBlock)(NSArray *list);
