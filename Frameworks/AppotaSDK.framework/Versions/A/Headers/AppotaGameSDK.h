@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AppotaGameSDKCallback.h"
+#import "AppotaSDKConst.h"
 
 @interface AppotaGameSDK : NSObject
 
@@ -41,11 +42,11 @@
 /**
  *  Flag to show or disable auto show login dialog at application startup
  */
-@property (readwrite) BOOL autoShowLoginDialog;
+- (void) setAutoShowLoginDialog:(BOOL)autoShowLoginDialog;
 /**
  *  Delegate for callback function to handle PAYMENT, LOGIN callback
  */
-@property (nonatomic, unsafe_unretained) id<AppotaGameSDKCallback> delegate;
+@property (nonatomic, weak) id<AppotaGameSDKCallback> delegate;
 
 
 
@@ -115,9 +116,17 @@
  *  @param categoryName : Required = YES . Description: The event category
  *  @param action       : Required = YES . Description: The event action
  *  @param label        : Required = NO  . Description: The event label
+ */
++ (void)sendEventWithCategory:(NSString *)categoryName withEventAction:(NSString *)action withLabel:(NSString *)label;
+/**
+ *  tracking
+ *
+ *  @param categoryName : Required = YES . Description: The event category
+ *  @param action       : Required = YES . Description: The event action
+ *  @param label        : Required = NO  . Description: The event label
  *  @param value        : Required = NO  . Description: The event value
  */
-+ (void) sendEventWithCategory:(NSString*) categoryName withEventAction:(NSString*) action withLabel:(NSString*) label withValue:(NSNumber*) value;
++ (void) sendEventWithCategory:(NSString*) categoryName withEventAction:(NSString*) action withLabel:(NSString*) label withValue:(int) value;
 /**
  *
  *
@@ -159,4 +168,15 @@
  *  Register push notification with Group Name
  */
 + (NSString*) configurePushNotificationWithTokenData:(NSData*) deviceTokenData;
+/**
+ *  handle push notification with Group Name
+ */
++ (void) handlePushNotification:(NSDictionary *)receiveDictionary;
+/**
+ *  Set Character;
+ */
++ (void) setCharacterWithCharacterName:(NSString *)characterName characterID:(NSString *)characterID
+               serverName:(NSString *)serverName serverID:(NSString *)serverID
+          onCompleteBlock:(AppotaSDKDictionaryBlock ) completeBlock
+             onErrorBlock:(AppotaSDKErrorBlock ) errorBlock;
 @end

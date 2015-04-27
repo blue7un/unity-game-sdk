@@ -11,6 +11,7 @@
 
 
 #define AppotaSDK_DEBUG NO
+#define APPOTA_BUILD_UNITY
 
 //#ifdef AppotaSDK_DEBUG
 //#define OCLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
@@ -86,7 +87,6 @@ typedef void (^AppotaSDKObjectHandler) (id object, NSError *error);
 #define DEBUG_APPOTA_RESOURCE NO
 
 #define APPOTA_LOG NO
-//#define APPOTA_BUILD_UNITY
 
 // Device Macro"Giao dịch thất bại" = "Transaction failed";
 

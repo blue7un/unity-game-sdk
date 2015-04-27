@@ -16,13 +16,9 @@ public class GUIController : MonoBehaviour {
 
 		#if UNITY_ANDROID
 		AppotaSDKHandler.Instance.Init();
-		AppotaSDKHandler.Instance.SetKeepLoginSession(false);
+		AppotaSDKHandler.Instance.SetKeepLoginSession(true);
 		#endif
 
-		#if UNITY_WP8
-		AppotaSDKHandler.Instance.Init();
-		AppotaSDKHandler.Instance.SetAutoShowLogin(false);
-		#endif
 	}
 	
 	// Update is called once per frame

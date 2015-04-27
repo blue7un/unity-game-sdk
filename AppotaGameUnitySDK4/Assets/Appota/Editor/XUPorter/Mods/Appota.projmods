@@ -7,10 +7,11 @@
                     "Twitter.framework",
                     "Social.framework",
                     "StoreKit.framework",
-                    "ImageIO.framework"
-                    "Security.framework"
-                    "MessageUI.framework"
-                    "AdSupport.framework"],
+                    "ImageIO.framework",
+                    "Security.framework",
+                    "MessageUI.framework",
+                    "AdSupport.framework",
+                    "CoreTelephony.framework"],
     "headerpaths": ["iOS/DemoXUPorter/**"],
     "files":   ["iOS/Appota/OnClanBundle.bundle",
     			"iOS/Appota/OnClanSDK.framework",

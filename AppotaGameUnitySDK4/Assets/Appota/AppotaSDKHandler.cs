@@ -29,9 +29,9 @@ public class AppotaSDKHandler {
 	[DllImport("__Internal")]
 	private static extern void setKeepLoginSession(bool isKeepLoginSession);
 
-//	// Notification functions
-//	[DllImport("__Internal")]
-//	private static extern bool setHideWelcomeView(bool isHideWelcomeView);
+	// Notification functions
+	[DllImport("__Internal")]
+	private static extern bool setHideWelcomeView(bool isHideWelcomeView);
 	
 	[DllImport("__Internal")]
 	private static extern void inviteFacebookFriends();
@@ -39,9 +39,7 @@ public class AppotaSDKHandler {
 	// User Functions
 	[DllImport("__Internal")]
 	private static extern void setAutoShowLogin(bool autoShowLogin);
-
-
-
+	
 	[DllImport("__Internal")]
 	private static extern void showUserInfoView();
 	
@@ -80,14 +78,17 @@ public class AppotaSDKHandler {
 	private static extern void sendStateToWrapper(string state);
 	
 	[DllImport("__Internal")]
-	private static extern void setCharacter(string name, string server, string characterID);
+	private static extern void setCharacter(string characterName, string characterID, string serverName, string serverID);
 	
 	[DllImport("__Internal")]
 	private static extern void closePaymentView();
 	
 	// Track functions
 	[DllImport("__Internal")]
-	private static extern void sendEventWithCategory(string category, string action, string label, int value);
+	private static extern void sendEventWithCategoryWithValue(string category, string action, string label, int value);
+
+	[DllImport("__Internal")]
+	private static extern void sendEventWithCategory(string category, string action, string label);
 	
 	[DllImport("__Internal")]
 	private static extern void sendViewWithName(string name);
@@ -129,7 +130,7 @@ public class AppotaSDKHandler {
 	public void SetAutoShowLogin(bool autoShowLogin) {
 		setAutoShowLogin(autoShowLogin);
 	}
-	
+
 	/*
 	 * Call this function in `OnApplicationQuit` script
 	 * */
@@ -191,8 +192,8 @@ public class AppotaSDKHandler {
 	/*
 	 * Set character function to support character management on web
 	 * */
-	public void SetCharacter(string name, string server, string characterID) {
-		setCharacter(name, server, characterID);
+	public void SetCharacter(string characterName, string characterID, string serverName, string serverID) {
+		setCharacter(characterName, characterID, serverName, serverID);
 	}
 	
 	public void ShowFacebookLogin()
@@ -250,11 +251,11 @@ public class AppotaSDKHandler {
 	}
 	
 	public void SendEvent(string category,string action,string label) {
-		
+		sendEventWithCategory(category, action, label);
 	}
 	
 	public void SendEvent(string category,string action,string label, int value) {
-		sendEventWithCategory(category, action, label, value);
+		sendEventWithCategoryWithValue(category, action, label, value);
 	}
 	#endregion
 	
@@ -295,13 +296,13 @@ public class AppotaSDKHandler {
 		cls_AppotaUnityHandler.CallStatic("SetKeepLoginSession", args);
 	}
 	
-//	// Have to call this function before Init() function.
-//	public void HideWelcomeView(bool autoHideWelcomeView) {
-//		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-//		object[] args = new object[1];
-//		args [0] = autoHideWelcomeView;
-//		cls_AppotaUnityHandler.CallStatic("HideWelcomeView", args);
-//	}
+	// Have to call this function before Init() function.
+	public void HideWelcomeView(bool autoHideWelcomeView) {
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		object[] args = new object[1];
+		args [0] = autoHideWelcomeView;
+		cls_AppotaUnityHandler.CallStatic("HideWelcomeView", args);
+	}
 	
 	public void FinishSDK()
 	{
@@ -383,12 +384,13 @@ public class AppotaSDKHandler {
 		cls_AppotaUnityHandler.CallStatic("MakePayment", args);
 	}
 	
-	public void SetCharacter(string name, string server, string characterID) {
+	public void SetCharacter(string characterName, string characterID, string serverName, string serverID) {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		object[] args = new object[3];
-		args [0] = name;
-		args [1] = server;
-		args [2] = characterID;
+		object[] args = new object[4];
+		args [0] = characterName;
+		args [1] = characterID;
+		args [2] = serverName;
+		args [3] = serverID;
 		cls_AppotaUnityHandler.CallStatic("SetCharacter", args);
 	}
 	
@@ -445,74 +447,5 @@ public class AppotaSDKHandler {
 	#endregion
 	
 	#endif
-	
-	
-	#if UNITY_WP8
-	
-	public delegate void AppotaSDK();
-	public AppotaSDK _Init = null;
-	public AppotaSDK _Logout = null;
-	public AppotaSDK _MakePayment	= null;
-	public AppotaSDK _ShowUserInfo	= null;
-	public AppotaSDK _ShowLoginView	= null;
-	public Action<bool> _SetAutoShowLogin	= null;
-	
-	
-	public void Init(){
-		
-		if(string.IsNullOrEmpty(AppotaSetting.InAppApiKey)){
-			Debug.LogError("Missing Apikey. Please check your ID Setting.");
-		} else
-		if (string.IsNullOrEmpty(AppotaSetting.NoticeURL)){
-			Debug.LogError("Missing NoticeUrl. Please check your ID Setting.");
-		} else 
-		if (string.IsNullOrEmpty(AppotaSetting.ConfigURL)){
-			Debug.LogError("Missing ConfigUrl. Please check your ID Setting.");
-		}
-		
-		if (_Init != null)
-		{
-			_Init();
-		}
-	}
-	
-	public void Logout() {
-		if (_Logout != null)
-		{
-			_Logout();
-		}
-	}
-	
-	public void MakePayment()
-	{
-		if (_MakePayment != null)
-		{
-			_MakePayment();
-		}
-	}
-	
-	public void ShowUserInfo()
-	{
-		if (_ShowUserInfo != null)
-		{
-			_ShowUserInfo();
-		}
-	}
-	
-	public void ShowLoginView()
-	{
-		if (_ShowLoginView != null)
-		{
-			_ShowLoginView();
-		}
-	}
-	
-	public void SetAutoShowLogin(bool isAutoShowLogin) {
-		if (_SetAutoShowLogin != null)
-		{
-			_SetAutoShowLogin(isAutoShowLogin);
-		}
-	}
-	
-	#endif
+
 }
