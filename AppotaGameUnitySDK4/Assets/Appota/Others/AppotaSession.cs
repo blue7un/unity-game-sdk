@@ -9,7 +9,6 @@ public class AppotaSession {
 	private string _appotaRefreshToken;	
 	private string _appotaUserId;	
 	private string _appotaUsername;
-	private static string _onclanUsername;
 
 	private static AppotaSession _instance;
 
@@ -40,7 +39,6 @@ public class AppotaSession {
 		_appotaRefreshToken = "";
 		_appotaUserId = "";
 		_appotaUsername = "";
-		_onclanUsername = "";
 	}
 	
 	// Singleton AppotaSession
@@ -126,19 +124,6 @@ public class AppotaSession {
 			if (_appotaUsername != value)
 			{
 				_appotaUsername = value;
-			}
-		}
-	}
-
-	// Not use for single AppotaSDK
-	public static string OnClanUserName
-	{
-		get { return _onclanUsername; }
-		set
-		{
-			if (_onclanUsername != value)
-			{
-				_onclanUsername = value;
 			}
 		}
 	}

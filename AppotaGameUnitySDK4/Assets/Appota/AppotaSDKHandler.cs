@@ -303,6 +303,13 @@ public class AppotaSDKHandler {
 		args [0] = autoHideWelcomeView;
 		cls_AppotaUnityHandler.CallStatic("HideWelcomeView", args);
 	}
+
+	public void SetSDKButtonVisible(bool isVisibility) {
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		object[] args = new object[1];
+		args [0] = isVisibility;
+		cls_AppotaUnityHandler.CallStatic("SetSDKButtonVisibility", args);
+    }
 	
 	public void FinishSDK()
 	{
