@@ -45,6 +45,7 @@ Create new project from [https://console.developers.google.com](https://console.
 ####1.3.2. Configure Unity project
 
 - Use `FacebookAppID`, `ApiKey`, `GoogleClientID`, `GoogleClientSecret` has created in [IntegrateSDK](#head1-integrate-sdk) to update setting
+
 <img src="images/config.png" style="width:400;height:400">
 
 ###1.4. Configure Frameworks (iOS platform only) <a name="head2-configure-your-xcode-project"> </a>
