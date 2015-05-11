@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, AppotaCountryCode) {
 - (AppotaCountryCode) getCountryCodeType;
 - (BOOL) isHideHeadProfile;
 - (BOOL) isDebugMode;
+- (BOOL) isEnableActiveCode;
 - (NSString*) getGATrackingID;
 - (NSString*) getPID;
 - (NSArray*) getListPaymentMethodName;
