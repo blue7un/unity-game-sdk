@@ -37,7 +37,7 @@ Required Unity 4.5 or later
 Create new project from [https://console.developers.google.com](https://console.developers.google.com), in `API & Auth-Credentials` add iOS support and get ClientID and ClientSecret. If you can not access Google Developer page, please contact our support (sale@appota.com) to get the application id and secret.
 
 
-###1.3. Configure your Unity Project <a name="head2-configure-your-xcode-project"> </a>
+###1.3. Configure your Unity Project <a name="head2-configure-your-unity-project"> </a>
 
 ####1.3.1. Import plugin
 ![](images/import.gif)
@@ -45,22 +45,27 @@ Create new project from [https://console.developers.google.com](https://console.
 ####1.3.2. Configure Unity project
 
 - Use `FacebookAppID`, `ApiKey`, `GoogleClientID`, `GoogleClientSecret` has created in [IntegrateSDK](#head1-integrate-sdk) to update setting
+
 <img src="images/config.png" style="width:400;height:400">
 
+###1.4. Configure Frameworks (iOS platform only) <a name="head2-configure-your-xcode-project"> </a>
+To use the SDK for the iOS platform, drag and drop <code>AppotaSDK.framework</code>, <code>AppotaBundle.bundle</code> and <code>FacebookSDK.framework</code> into your Xcode project (which project you get from Unity3D)
+
+Tick on checkbox: “Copy items into destination group's folder (if needed)”.
 
 ##2. Client API <a name="head1-client-api"> </a>
 
 ###2.1 Init and setup SDK <a name = "head2-init-sdk"> </a>
 Related class and function:  
-[AppotaSDKHandler](class-document/UnityClasses.html#init-function)  
-[AppotaSDKReceiver](class-document/UnityClasses.html#appota-sdk-receiver)    
-Appota SDK init must be called once when application start via [AppotaSDKHandler](class-document/UnityClasses.html#init-function) class call `AppotaSDKHandler.Instance.Init()` so most of the time it will be called in your first scene
+[AppotaSDKHandler](class-document/UnityClasses.md#init-function)  
+[AppotaSDKReceiver](class-document/UnityClasses.md#appota-sdk-receiver)    
+Appota SDK init must be called once when application start via [AppotaSDKHandler](class-document/UnityClasses.md#init-function) class call `AppotaSDKHandler.Instance.Init()` so most of the time it will be called in your first scene
 
 ```
 AppotaSDKHandler.Instance.Init();
 ```
 
-There are some functions to control SDK flows, have to them call before `AppotaSDKHandler.Instance.Init()`
+There are some functions to control SDK flows, have to call them after `AppotaSDKHandler.Instance.Init()`
 
 - `SetKeepLoginSession(BOOL)` <a name="set-keep-login-session"> </a> this function will control the Appota Login Session will be kept or removed at app lauching (when session's removed user has to login again when app start).   
 **Note** If this function is not called, login session will be kept by default.
@@ -73,9 +78,9 @@ There are some functions to control SDK flows, have to them call before `AppotaS
 ###2.2. User function <a name="head2-user-function"> </a>
 Related class and function:
 
-- [AppotaSDKHandler](class-document/UnityClasses.html#user-function)
-- [AppotaSDKReceiver](class-document/UnityClasses.html#user-callback)
-- [AppotaSession](class-document/UnityClasses.html#appota-session)
+- [AppotaSDKHandler](class-document/UnityClasses.md#user-function)
+- [AppotaSDKReceiver](class-document/UnityClasses.md#user-callback)
+- [AppotaSession](class-document/UnityClasses.md#appota-session)
 
 Once you've implemented init SDK function, start using login features.
 
@@ -144,7 +149,7 @@ public void SetCharacter(string name, string server, string characterID)
 ```
 ####2.2.2. Handle authenticaiton callbacks <a name = "login-handle-login-response"> </a>
 
-AppotaSDK provide 4 callbacks delegate for login defined in [`AppotaSDKReceiver`](class-document/UnityClasses.html#appota-sdk-receiver) , please implement these functions to handle login result
+AppotaSDK provide 4 callbacks delegate for login defined in [`AppotaSDKReceiver`](class-document/UnityClasses.md#appota-sdk-receiver) , please implement these functions to handle login result
 
 ----
 **Login succeed callback**  
@@ -158,7 +163,7 @@ public void  OnLoginSucceed(string appotaSession)
 ```
 |Parameter|Description|  
 |-------|-----------|  
-|appotaSession|`appotaSession` is a json string included all user info, convert the string to AppotaSession ot easily retrevie user information (`AppotaSession.Appota_AccessToken`, `AppotaSession.Appota_UserName`) |
+|appotaSession|`appotaSession` is a json string included all user info, convert the string to AppotaSession ot easily retrevie user information (`AppotaSession.AccessToken`, `AppotaSession.UserName`) |
 
 ----
 **Login fail callback**  
@@ -190,9 +195,9 @@ public void  OnCloseLoginView();
 
 Related class and function:
 
-- [AppotaSDKHandler - payment function](class-document/UnityClasses.html#payment-function)
-- [AppotaSDKReceiver](class-document/UnityClasses.html#payment-callback)
-- [AppotaPaymentResult](class-document/UnityClasses.html#appota-payment-result)
+- [AppotaSDKHandler - payment function](class-document/UnityClasses.md#payment-function)
+- [AppotaSDKReceiver](class-document/UnityClasses.md#payment-callback)
+- [AppotaPaymentResult](class-document/UnityClasses.md#appota-payment-result)
 
 Because using AppotaSDK payment function you should understand Appota Payment mechanism and configuration. Please study Appota payment mechanism at [Appota Payment Document](https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN) and payment configuration at [Appota Developer Portal]().
 
@@ -288,10 +293,10 @@ public void setPushGroup(string groupName)
 ```
 
 ##3. Class Document <a name="head1-class-document"> </a>
-- [AppotaSDKHandler](class-document/UnityClasses.html#init-function)
-- [AppotaSDKReceiver](class-document/UnityClasses.html#appota-sdk-receiver)
-- [AppotaSession](class-document/UnityClasses.html#appota-session)
-- [AppotaPaymentResult](class-document/UnityClasses.html#appota-payment-result)
+- [AppotaSDKHandler](class-document/UnityClasses.md#init-function)
+- [AppotaSDKReceiver](class-document/UnityClasses.md#appota-sdk-receiver)
+- [AppotaSession](class-document/UnityClasses.md#appota-session)
+- [AppotaPaymentResult](class-document/UnityClasses.md#appota-payment-result)
 
 ##4. FAQ and Glossary <a name="head1-faq"></a>
 - `IPN` is payment machenism used by Appota System to increase gold for game user. Detail in https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN

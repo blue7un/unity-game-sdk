@@ -1,4 +1,4 @@
-![Payment Diagram](https://github.com/appota/ios-game-sdk/raw/master/md/payment_flow_passive.png)
+![Payment Diagram](md/payment_flow_passive.png)
 
 ### 1. What is Instant Payment Notification - IPN?
 * This is passive method to confirm a transaction.
