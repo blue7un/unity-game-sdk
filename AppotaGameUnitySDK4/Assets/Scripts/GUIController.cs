@@ -18,7 +18,6 @@ public class GUIController : MonoBehaviour {
 		AppotaSDKHandler.Instance.Init();
 		AppotaSDKHandler.Instance.SetKeepLoginSession(true);
 		AppotaSDKHandler.Instance.SetAutoShowLogin(true);
-		AppotaSDKHandler.Instance.HideWelcomeView(true);
 		#endif
 
 	}
