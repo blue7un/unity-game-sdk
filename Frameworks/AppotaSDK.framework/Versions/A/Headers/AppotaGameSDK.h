@@ -24,7 +24,7 @@
 /**
  *  enable/disable show welcome like game center
  *
- *  @param property : YES -> show, no -> don't show
+ *  @param property : YES -> hide, no -> show Welcome View
  */
 - (void) setHideWelcomeView:(BOOL) property;
 /**
