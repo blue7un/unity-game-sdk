@@ -23,16 +23,20 @@ typedef enum {
 @class AppotaTrackObject;
 
 @interface AppotaDevConfigObject : AppotaBaseObject
+// get list login method
 - (NSArray*) getListLoginMethod;
-
+// check valid devconfig object :
+- (BOOL) isValidDevConfigObject;
+// check if has Login method
 - (BOOL) isHasLoginMethod:(AppotaLoginMethod ) loginMethod;
+//get listPayment package
 - (NSArray*) getListPaymentPackage;
-//TODO: HIEUTRINH
+//get list packageId
 - (NSMutableArray *) getListPackageID;
-
+//check valid packageId
 - (BOOL) isValidPackageID:(NSString *)packageID;
-
-- (AppotaPaymentPackage_V4 *) getPackagewithItPackageID:(NSString *)packageID;
+//get package with packageId
+- (AppotaPaymentPackage_V4 *) getPackageWithItPackageID:(NSString *)packageID;
 
 - (NSArray*) filterPaymentPackageWithListPaymentMethods:(NSArray*) listPaymentMethods
                                         withCountryCode:(NSString*) countryCode;

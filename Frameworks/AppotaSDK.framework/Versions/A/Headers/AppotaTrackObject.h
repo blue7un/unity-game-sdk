@@ -18,13 +18,23 @@ typedef NS_ENUM(NSInteger, AppotaCountryCode) {
 
 @class AppotaLanguageObject;
 @interface AppotaTrackObject : AppotaBaseObject
+//get country code
 - (NSString*) getCountryCode;
+//get country code type
 - (AppotaCountryCode) getCountryCodeType;
+// validate track object
+- (BOOL) isValidTrackObject;
+//hide head profile
 - (BOOL) isHideHeadProfile;
+//check isDebugmode
 - (BOOL) isDebugMode;
+//check enable active code
 - (BOOL) isEnableActiveCode;
+// get GA tracking id
 - (NSString*) getGATrackingID;
+//get pid
 - (NSString*) getPID;
+// get list paymentMethod name
 - (NSArray*) getListPaymentMethodName;
 
 /**
