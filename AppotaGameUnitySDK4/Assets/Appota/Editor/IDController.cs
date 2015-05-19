@@ -23,7 +23,7 @@ public class IDController : EditorWindow {
 	static int minHeight;
 	static int minWidth;
 
-	string version = "Version: 4.0.4";
+	string version = "Version: 4.0.5";
 
 	public Texture2D appotaLogo;
 	

@@ -164,14 +164,16 @@ extern "C" {
     json = [json stringByAppendingString:userLoginResult.email];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"\"userId\":\""];
-    json = [json stringByAppendingString:userLoginResult.email];
+    json = [json stringByAppendingString:userLoginResult.userID];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"\"username\":\""];
-    json = [json stringByAppendingString:userLoginResult.email];
+    json = [json stringByAppendingString:userLoginResult.userName];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"}"];
     
     UnitySendMessage("AppotaSDKReceiver", "OnLoginSuccess", [json UTF8String]);
+    
+    [FBAppEvents logEvent:@"appota_mobile_complete_login"];
 }
 
 /*
@@ -219,7 +221,10 @@ extern "C" {
     
     UnitySendMessage("AppotaSDKReceiver", "OnPaymentSuccess", [json UTF8String]);
     
-    [FBAppEvents logPurchase:[paymentResult getAmountPaymentResult] currency:paymentResult.currency];
+    // Purchase
+    [FBAppEvents logPurchase:[paymentResult getAmountPaymentResult] currency:[paymentResult currency]
+                  parameters:@{FBAppEventParameterNameContentType:[paymentResult type],
+                               FBAppEventParameterNameContentID:[paymentResult packageID]}];
 }
 
 - (void) didPaymentErrorWithMessage:(NSString *)message withError:(NSError *)error {
