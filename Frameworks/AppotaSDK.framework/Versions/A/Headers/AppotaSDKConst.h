@@ -50,6 +50,7 @@ typedef void (^AppotaSDKObjectHandler) (id object, NSError *error);
 
 #define DEBUG_APPOTA_RESOURCE NO
 
+
 #define APPOTAGameSDK_LOG NO
 
 
