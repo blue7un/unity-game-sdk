@@ -316,6 +316,18 @@ public class AppotaSDKHandler {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		cls_AppotaUnityHandler.CallStatic("FinishSDK");
 	}
+
+	public void ActivateApp()
+	{
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		cls_AppotaUnityHandler.CallStatic("ActivateApp");
+	}
+
+	public void DeactivateApp()
+	{
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		cls_AppotaUnityHandler.CallStatic("DeactivateApp");
+	}
 	#endregion
 	
 	#region User functions

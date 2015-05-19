@@ -1,5 +1,6 @@
 #import "AppotaWrapper.h"
 #import "AppotaSDK/AppotaSDK.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation AppotaWrapper
 
@@ -196,6 +197,9 @@ extern "C" {
     json = [json stringByAppendingString:@"\"packageID\":\""];
     json = [json stringByAppendingString:packageID];
     json = [json stringByAppendingString:@"\","];
+    json = [json stringByAppendingString:@"\"amount\":\""];
+    json = [json stringByAppendingString:[[NSNumber numberWithFloat:paymentResult.getAmountPaymentResult] stringValue]];
+    json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"\"currency\":\""];
     json = [json stringByAppendingString:paymentResult.currency];
     json = [json stringByAppendingString:@"\","];
@@ -214,6 +218,8 @@ extern "C" {
     json = [json stringByAppendingString:@"}"];
     
     UnitySendMessage("AppotaSDKReceiver", "OnPaymentSuccess", [json UTF8String]);
+    
+    [FBAppEvents logPurchase:[paymentResult getAmountPaymentResult] currency:paymentResult.currency];
 }
 
 - (void) didPaymentErrorWithMessage:(NSString *)message withError:(NSError *)error {

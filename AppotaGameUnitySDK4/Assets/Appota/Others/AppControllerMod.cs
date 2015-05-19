@@ -59,6 +59,23 @@ public class AppControllerMod
 		pushNotiString += fixedAppController.Substring(notiPosEnd+1);
 		fixedAppController = pushNotiString;
 
+		// Call Facebook activeApp() inside applicationDidBecomeActive function 
+		int fbActivePosStart = fixedAppController.IndexOf("applicationDidBecomeActive", System.StringComparison.Ordinal);
+		if (fbActivePosStart <= 0)
+			return;
+		int fbActivePosEnd = fixedAppController.IndexOf("{", fbActivePosStart);
+		if (fbActivePosEnd <= 0)
+			return;
+		
+		string fbActiveString = fixedAppController.Substring(0, fbActivePosEnd);
+		
+		if (fixedAppController.IndexOf("FBAppEvents activateApp", System.StringComparison.Ordinal) <= 0){
+			fbActiveString += "{\n\t[FBAppEvents activateApp];";
+		}
+		
+		fbActiveString += fixedAppController.Substring(fbActivePosEnd+1);
+		fixedAppController = fbActiveString;
+
 		// Add callback register Push Notification with Token data
 		int regPosStart = fixedAppController.IndexOf("didRegisterForRemoteNotificationsWithDeviceToken", System.StringComparison.Ordinal);
 		if (regPosStart <= 0)
