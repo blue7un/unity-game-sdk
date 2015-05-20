@@ -329,4 +329,54 @@ public class ManifestMod
 		return serviceElement;
 	}
 	#endregion
+
+	#region AppFlyers Elements 
+	private static XmlNode CreateAppFlyerReceiverElement(XmlDocument doc, string ns)
+	{
+		XmlNode activityNode = doc.CreateNode("element", "receiver", "");
+		
+		XmlAttribute attr = doc.CreateAttribute("name", ns);
+		attr.Value = "com.appsflyer.MultipleInstallBroadcastReceiver";
+		activityNode.Attributes.SetNamedItem(attr);
+
+		XmlAttribute attrExporter = doc.CreateAttribute("exported", ns);
+		attrExporter.Value = "true";
+		activityNode.Attributes.SetNamedItem(attrExporter);
+
+		XmlNode intentFilterNode = doc.CreateNode("element", "intent-filter", "");
+		
+		XmlElement actionElement = doc.CreateElement("action");
+		actionElement.SetAttribute("name", ns, "com.android.vending.INSTALL_REFERRER");
+		
+		intentFilterNode.AppendChild(actionElement);
+		
+		activityNode.AppendChild(intentFilterNode);
+		return activityNode;
+	}
+	#endregion
+
+	#region AdsWorks Elements 
+	private static XmlNode CreateAdsWorkReceiverElement(XmlDocument doc, string ns)
+	{
+		XmlNode activityNode = doc.CreateNode("element", "receiver", "");
+		
+		XmlAttribute attr = doc.CreateAttribute("name", ns);
+		attr.Value = "com.google.ads.conversiontracking.InstallReceiver";
+		activityNode.Attributes.SetNamedItem(attr);
+
+		XmlAttribute attrExporter = doc.CreateAttribute("exported", ns);
+		attrExporter.Value = "true";
+		activityNode.Attributes.SetNamedItem(attrExporter);
+		
+		XmlNode intentFilterNode = doc.CreateNode("element", "intent-filter", "");
+		
+		XmlElement actionElement = doc.CreateElement("action");
+		actionElement.SetAttribute("name", ns, "com.android.vending.INSTALL_REFERRER");
+		
+		intentFilterNode.AppendChild(actionElement);
+		
+		activityNode.AppendChild(intentFilterNode);
+		return activityNode;
+	}
+	#endregion
 }

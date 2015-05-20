@@ -9,15 +9,15 @@ public class GUIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 		#if UNITY_IPHONE
 		AppotaSDKHandler.Instance.Init();
+		AppotaSDKHandler.Instance.SetAutoShowLogin(false);
 		#endif
 
 		#if UNITY_ANDROID
 		AppotaSDKHandler.Instance.Init();
-		AppotaSDKHandler.Instance.SetKeepLoginSession(true);
-		AppotaSDKHandler.Instance.SetAutoShowLogin(true);
+		AppotaSDKHandler.Instance.SetAutoShowLogin(false);
+		AppotaSDKHandler.Instance.ConfigureAppFlyer(AppotaSetting.AppFlyerKey);
 		#endif
 
 	}

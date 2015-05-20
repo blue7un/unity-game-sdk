@@ -20,3 +20,11 @@ MonoBehaviour:
   inAppApiKey: K-A164833-U00000-FSHFTL-AAB432B007C2EDBE
   paymentState: game_state
   gameID: 
+  usingAppFlyer: 0
+  appleAppID: 
+  appFlyerKey: ARDuQcYYMeAiZycPmvoQxg
+  usingAdsWork: 0
+  adsWorkConversionID: 123
+  adsWorkLabel: 123
+  adsWorkValue: 123
+  adsWorkIsRepeatable: 1

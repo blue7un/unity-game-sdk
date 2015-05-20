@@ -17,6 +17,17 @@ public class IDController : EditorWindow {
 	static string _googleSecretID;
 	static string _gameID;
 	static string _inAppApiKey;
+	// AppFlyer key
+	static bool _usingAppFlyer;
+	static string _appleAppID;
+	static string _appFlyerKey;
+	// AdsWork key
+	static bool _usingAdsWork;
+	static string _adsWorkConversionID;
+	static string _adsWorkLabel;
+	static string _adsWorkValue;
+	static bool _adsWorkIsRepeatable;
+
 	private AppotaSetting instance;
 	static bool isUsingOnClanSDK = false;
 	static bool isUsingAppotaSDK = false;
@@ -40,20 +51,10 @@ public class IDController : EditorWindow {
 		isUsingAppotaSDK = System.Type.GetType("AppotaSDKHandler,Assembly-CSharp") != null;
 		
 		windows = GetWindow(typeof (IDController), false, "Appota", true) as IDController;
-		
-		if (isUsingAppotaSDK && isUsingOnClanSDK){
-			windows.minSize = new Vector2(400, 620);
-			windows.maxSize = new Vector2(600, 620);
-		} else 
-		if (isUsingAppotaSDK){
-			windows.minSize = new Vector2(400, 450);
-			windows.maxSize = new Vector2(600, 450);
-		} else 
-		if (isUsingOnClanSDK){
-			windows.minSize = new Vector2(400, 450);
-			windows.maxSize = new Vector2(600, 450);
-		}
-		
+
+		windows.minSize = new Vector2(400, 550);
+		windows.maxSize = new Vector2(600, 700);
+
 		windows.Show();
 		
 		EditorWindow.GetWindow(typeof (IDController)).Show();
@@ -66,14 +67,24 @@ public class IDController : EditorWindow {
 		_googleSecretID = AppotaSetting.GoogleClientSecretId;
 		_gameID = AppotaSetting.GameID;
 		_inAppApiKey = AppotaSetting.InAppApiKey;
-		
+
+		_usingAppFlyer = AppotaSetting.UsingAppFlyer;
+		_appleAppID = AppotaSetting.AppleAppID;
+		_appFlyerKey = AppotaSetting.AppFlyerKey;
+
+		_usingAdsWork = AppotaSetting.UsingAdsWork;
+		_adsWorkConversionID = AppotaSetting.AdsWorkConversionID;
+		_adsWorkLabel = AppotaSetting.AdsWorkLabel;
+		_adsWorkValue = AppotaSetting.AdsWorkValue;
+		_adsWorkIsRepeatable = AppotaSetting.AdsWorkIsRepeatable;
 	}
 	
 	void OnGUI()
 	{
 		GUILayout.Label(appotaLogo,GUILayout.MaxHeight(120), GUILayout.MaxWidth(400));
 		
-		//GUILayout.Space(20);
+		GUILayout.Space(20);
+		GUILayout.Label (version, EditorStyles.label);
 		
 		EditorGUILayout.BeginVertical();
 		
@@ -101,6 +112,37 @@ public class IDController : EditorWindow {
 		}
 		
 		GUILayout.Space(20);
+
+		if (PenaltyEditorTools.DrawHeader("Other Settings"))
+		{
+			// AppFlyer Configure
+			if (_usingAppFlyer) GUI.backgroundColor = Color.green; else GUI.backgroundColor = Color.white;
+			_usingAppFlyer = EditorGUILayout.Toggle("Using AppFlyer",_usingAppFlyer);
+			GUI.backgroundColor = Color.white;
+			if (_usingAppFlyer) {
+				_appleAppID = EditorGUILayout.TextField("Apple AppID", _appleAppID);
+				_appFlyerKey = EditorGUILayout.TextField("AppFlyer Key", _appFlyerKey);
+				GUILayout.Space(20);
+			}
+
+			// AdsWork Configure
+			if (_usingAdsWork) GUI.backgroundColor = Color.green; else GUI.backgroundColor = Color.white;
+			_usingAdsWork = EditorGUILayout.Toggle("Using AdsWork",_usingAdsWork);
+			GUI.backgroundColor = Color.white;
+			if (_usingAdsWork) {
+				_adsWorkConversionID = EditorGUILayout.TextField("ConversionID", _adsWorkConversionID);
+				_adsWorkLabel = EditorGUILayout.TextField("Label", _adsWorkLabel);
+				_adsWorkValue = EditorGUILayout.TextField("Value", _adsWorkValue);
+				if (_adsWorkIsRepeatable) GUI.backgroundColor = Color.green; else GUI.backgroundColor = Color.white;
+				_adsWorkIsRepeatable = EditorGUILayout.Toggle("IsRepeatable",_adsWorkIsRepeatable);
+				GUI.backgroundColor = Color.white;
+			}
+
+
+		}
+		
+		GUILayout.Space(10);
+
 		EditorGUILayout.EndVertical();
 		
 		EditorGUILayout.BeginHorizontal();
@@ -109,7 +151,6 @@ public class IDController : EditorWindow {
 		
 		if (GUILayout.Button("Update Setting!", GUILayout.ExpandWidth(true), GUILayout.MinWidth(250), GUILayout.MinHeight(50)))
 		{
-			
 			SaveSetting();
 		}
 		GUILayout.Space(10);
@@ -125,7 +166,6 @@ public class IDController : EditorWindow {
 		
 		GUILayout.Space(10);
 
-		GUILayout.Label (version, EditorStyles.label);
 	}
 	
 	//Save or Update Settings Data
@@ -140,6 +180,16 @@ public class IDController : EditorWindow {
 		AppotaSetting.GoogleClientSecretId = _googleSecretID;
 		AppotaSetting.InAppApiKey = _inAppApiKey;
 		AppotaSetting.GameID = _gameID;
+
+		AppotaSetting.UsingAppFlyer = _usingAppFlyer;
+		AppotaSetting.AppleAppID = _appleAppID;
+		AppotaSetting.AppFlyerKey = _appFlyerKey;
+		
+		AppotaSetting.UsingAdsWork = _usingAdsWork;
+		AppotaSetting.AdsWorkConversionID = _adsWorkConversionID;
+		AppotaSetting.AdsWorkLabel = _adsWorkLabel;
+		AppotaSetting.AdsWorkValue = _adsWorkValue;
+		AppotaSetting.AdsWorkIsRepeatable = _adsWorkIsRepeatable;
 		ManifestMod.GenerateManifest();
 		Debug.Log("Complete setting!!!");
 		

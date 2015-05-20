@@ -65,6 +65,26 @@ public class AppotaSetting : ScriptableObject
 	[HideInInspector] [SerializeField]
 	private string gameID;
 
+	// AppFlyer configure key
+	[HideInInspector] [SerializeField]
+	private bool usingAppFlyer;
+	[HideInInspector] [SerializeField]
+	private string appleAppID;
+	[HideInInspector] [SerializeField]
+	private string appFlyerKey;
+
+	// AdsWork configure key
+	[HideInInspector] [SerializeField]
+	private bool usingAdsWork;
+	[HideInInspector] [SerializeField]
+	private string adsWorkConversionID;
+	[HideInInspector] [SerializeField]
+	private string adsWorkLabel;
+	[HideInInspector] [SerializeField]
+	private string adsWorkValue;
+	[HideInInspector] [SerializeField]
+	private bool adsWorkIsRepeatable;
+
 	public static string FacebookAppID
 	{
 		get { return Instance.facebookAppID; }
@@ -177,6 +197,112 @@ public class AppotaSetting : ScriptableObject
 			if (Instance.gameID != value)
 			{
 				Instance.gameID = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	// AppFlyer configure key
+	public static bool UsingAppFlyer
+	{
+		get { return Instance.usingAppFlyer; }
+		set
+		{
+			if (Instance.usingAppFlyer != value)
+			{
+				Instance.usingAppFlyer = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	public static string AppleAppID
+	{
+		get { return Instance.appleAppID; }
+		set
+		{
+			if (Instance.appleAppID != value)
+			{
+				Instance.appleAppID = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	public static string AppFlyerKey
+	{
+		get { return Instance.appFlyerKey; }
+		set
+		{
+			if (Instance.appFlyerKey != value)
+			{
+				Instance.appFlyerKey = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	// AdsWork configure key
+	public static bool UsingAdsWork
+	{
+		get { return Instance.usingAdsWork; }
+		set
+		{
+			if (Instance.usingAdsWork != value)
+			{
+				Instance.usingAdsWork = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	public static string AdsWorkConversionID
+	{
+		get { return Instance.adsWorkConversionID; }
+		set
+		{
+			if (Instance.adsWorkConversionID != value)
+			{
+				Instance.adsWorkConversionID = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	public static string AdsWorkLabel
+	{
+		get { return Instance.adsWorkLabel; }
+		set
+		{
+			if (Instance.adsWorkLabel != value)
+			{
+				Instance.adsWorkLabel = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	public static string AdsWorkValue
+	{
+		get { return Instance.adsWorkValue; }
+		set
+		{
+			if (Instance.adsWorkValue != value)
+			{
+				Instance.adsWorkValue = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	public static bool AdsWorkIsRepeatable
+	{
+		get { return Instance.adsWorkIsRepeatable; }
+		set
+		{
+			if (Instance.adsWorkIsRepeatable != value)
+			{
+				Instance.adsWorkIsRepeatable = value;
 				DirtyEditor();
 			}
 		}
