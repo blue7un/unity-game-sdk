@@ -27,11 +27,11 @@ public class AppControllerMod
 		// Add callback register Push Notification with Token data
 		AppControllerSource = AddCallbackRegisterPushNotificationWithTokenData(AppControllerSource);
 
-		//if (AppotaSetting.UsingAppFlyer) 
+		if (AppotaSetting.UsingAppFlyer) 
 			AppControllerSource = AddAppFlyerConfigure(AppControllerSource);
 
-		//if (AppotaSetting.UsingAdsWork)
-			AppControllerSource = AddAdsWorkConfigure(AppControllerSource);
+		if (AppotaSetting.UsingAdWords)
+			AppControllerSource = AddAdWordsConfigure(AppControllerSource);
 
         var writer = new StreamWriter(fullPath, false);
 		writer.Write(AppControllerSource);
@@ -212,9 +212,9 @@ public class AppControllerMod
 		return finalAppController;
 	}
 
-	private static string AddAdsWorkConfigure(string AppControllerSource) {
+	private static string AddAdWordsConfigure(string AppControllerSource) {
 		// Add header import
-		Debug.Log("Add AdsWork Configure");
+		Debug.Log("Add AdWords Configure");
 		string finalAppController = "";
 		
 		int fixupStart = AppControllerSource.IndexOf("#import <OpenGLES/EAGL.h", System.StringComparison.Ordinal);
@@ -244,10 +244,10 @@ public class AppControllerMod
 		string tempString = finalAppController.Substring(0, regPosEnd);
 		
 		if (finalAppController.IndexOf("ACTConversionReporter reportWithConversionID", System.StringComparison.Ordinal) <= 0){
-			string isRepeatable = AppotaSetting.AdsWorkIsRepeatable?"YES":"NO";
-			tempString += "{\n\t[ACTAutomatedUsageTracker enableAutomatedUsageReportingWithConversionID:@\"" + AppotaSetting.AdsWorkConversionID +"\"];" +
-				"\n\t[ACTConversionReporter reportWithConversionID:@\"" + AppotaSetting.AdsWorkConversionID 
-				+ "\" label:@\"" + AppotaSetting.AdsWorkLabel + "\" value:@\"" + AppotaSetting.AdsWorkValue + "\" isRepeatable:" 
+			string isRepeatable = AppotaSetting.AdWordsIsRepeatable?"YES":"NO";
+			tempString += "{\n\t[ACTAutomatedUsageTracker enableAutomatedUsageReportingWithConversionID:@\"" + AppotaSetting.AdWordsConversionID +"\"];" +
+				"\n\t[ACTConversionReporter reportWithConversionID:@\"" + AppotaSetting.AdWordsConversionID 
+				+ "\" label:@\"" + AppotaSetting.AdWordsLabel + "\" value:@\"" + AppotaSetting.AdWordsValue + "\" isRepeatable:" 
 				+ isRepeatable + "];";
 		}
 		

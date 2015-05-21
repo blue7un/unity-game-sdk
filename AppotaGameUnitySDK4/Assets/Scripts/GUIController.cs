@@ -17,7 +17,7 @@ public class GUIController : MonoBehaviour {
 		#if UNITY_ANDROID
 		AppotaSDKHandler.Instance.Init();
 		AppotaSDKHandler.Instance.SetAutoShowLogin(false);
-		AppotaSDKHandler.Instance.ConfigureAppFlyer(AppotaSetting.AppFlyerKey);
+
 		#endif
 
 	}

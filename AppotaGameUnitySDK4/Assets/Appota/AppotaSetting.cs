@@ -73,17 +73,17 @@ public class AppotaSetting : ScriptableObject
 	[HideInInspector] [SerializeField]
 	private string appFlyerKey;
 
-	// AdsWork configure key
+	// AdWords configure key
 	[HideInInspector] [SerializeField]
-	private bool usingAdsWork;
+	private bool usingAdWords;
 	[HideInInspector] [SerializeField]
-	private string adsWorkConversionID;
+	private string adWordsConversionID;
 	[HideInInspector] [SerializeField]
-	private string adsWorkLabel;
+	private string adWordsLabel;
 	[HideInInspector] [SerializeField]
-	private string adsWorkValue;
+	private string adWordsValue;
 	[HideInInspector] [SerializeField]
-	private bool adsWorkIsRepeatable;
+	private bool adWordsIsRepeatable;
 
 	public static string FacebookAppID
 	{
@@ -243,66 +243,66 @@ public class AppotaSetting : ScriptableObject
 	}
 
 	// AdsWork configure key
-	public static bool UsingAdsWork
+	public static bool UsingAdWords
 	{
-		get { return Instance.usingAdsWork; }
+		get { return Instance.usingAdWords; }
 		set
 		{
-			if (Instance.usingAdsWork != value)
+			if (Instance.usingAdWords != value)
 			{
-				Instance.usingAdsWork = value;
+				Instance.usingAdWords = value;
 				DirtyEditor();
 			}
 		}
 	}
 
-	public static string AdsWorkConversionID
+	public static string AdWordsConversionID
 	{
-		get { return Instance.adsWorkConversionID; }
+		get { return Instance.adWordsConversionID; }
 		set
 		{
-			if (Instance.adsWorkConversionID != value)
+			if (Instance.adWordsConversionID != value)
 			{
-				Instance.adsWorkConversionID = value;
+				Instance.adWordsConversionID = value;
 				DirtyEditor();
 			}
 		}
 	}
 
-	public static string AdsWorkLabel
+	public static string AdWordsLabel
 	{
-		get { return Instance.adsWorkLabel; }
+		get { return Instance.adWordsLabel; }
 		set
 		{
-			if (Instance.adsWorkLabel != value)
+			if (Instance.adWordsLabel != value)
 			{
-				Instance.adsWorkLabel = value;
+				Instance.adWordsLabel = value;
 				DirtyEditor();
 			}
 		}
 	}
 
-	public static string AdsWorkValue
+	public static string AdWordsValue
 	{
-		get { return Instance.adsWorkValue; }
+		get { return Instance.adWordsValue; }
 		set
 		{
-			if (Instance.adsWorkValue != value)
+			if (Instance.adWordsValue != value)
 			{
-				Instance.adsWorkValue = value;
+				Instance.adWordsValue = value;
 				DirtyEditor();
 			}
 		}
 	}
 
-	public static bool AdsWorkIsRepeatable
+	public static bool AdWordsIsRepeatable
 	{
-		get { return Instance.adsWorkIsRepeatable; }
+		get { return Instance.adWordsIsRepeatable; }
 		set
 		{
-			if (Instance.adsWorkIsRepeatable != value)
+			if (Instance.adWordsIsRepeatable != value)
 			{
-				Instance.adsWorkIsRepeatable = value;
+				Instance.adWordsIsRepeatable = value;
 				DirtyEditor();
 			}
 		}

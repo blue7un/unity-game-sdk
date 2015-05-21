@@ -21,12 +21,12 @@ public class IDController : EditorWindow {
 	static bool _usingAppFlyer;
 	static string _appleAppID;
 	static string _appFlyerKey;
-	// AdsWork key
-	static bool _usingAdsWork;
-	static string _adsWorkConversionID;
-	static string _adsWorkLabel;
-	static string _adsWorkValue;
-	static bool _adsWorkIsRepeatable;
+	// AdWords key
+	static bool _usingAdWords;
+	static string _adWordsConversionID;
+	static string _adWordsLabel;
+	static string _adWordsValue;
+	static bool _adWordsIsRepeatable;
 
 	private AppotaSetting instance;
 	static bool isUsingOnClanSDK = false;
@@ -34,7 +34,7 @@ public class IDController : EditorWindow {
 	static int minHeight;
 	static int minWidth;
 
-	string version = "Version: 4.0.5";
+	string version = "Version: 4.0.6";
 
 	public Texture2D appotaLogo;
 	
@@ -72,11 +72,11 @@ public class IDController : EditorWindow {
 		_appleAppID = AppotaSetting.AppleAppID;
 		_appFlyerKey = AppotaSetting.AppFlyerKey;
 
-		_usingAdsWork = AppotaSetting.UsingAdsWork;
-		_adsWorkConversionID = AppotaSetting.AdsWorkConversionID;
-		_adsWorkLabel = AppotaSetting.AdsWorkLabel;
-		_adsWorkValue = AppotaSetting.AdsWorkValue;
-		_adsWorkIsRepeatable = AppotaSetting.AdsWorkIsRepeatable;
+		_usingAdWords = AppotaSetting.UsingAdWords;
+		_adWordsConversionID = AppotaSetting.AdWordsConversionID;
+		_adWordsLabel = AppotaSetting.AdWordsLabel;
+		_adWordsValue = AppotaSetting.AdWordsValue;
+		_adWordsIsRepeatable = AppotaSetting.AdWordsIsRepeatable;
 	}
 	
 	void OnGUI()
@@ -111,7 +111,7 @@ public class IDController : EditorWindow {
 			_googleSecretID = EditorGUILayout.TextField("Google Client Secret ID", _googleSecretID);
 		}
 		
-		GUILayout.Space(20);
+		GUILayout.Space(10);
 
 		if (PenaltyEditorTools.DrawHeader("Other Settings"))
 		{
@@ -125,16 +125,16 @@ public class IDController : EditorWindow {
 				GUILayout.Space(20);
 			}
 
-			// AdsWork Configure
-			if (_usingAdsWork) GUI.backgroundColor = Color.green; else GUI.backgroundColor = Color.white;
-			_usingAdsWork = EditorGUILayout.Toggle("Using AdsWork",_usingAdsWork);
+			// AdWords Configure
+			if (_usingAdWords) GUI.backgroundColor = Color.green; else GUI.backgroundColor = Color.white;
+			_usingAdWords = EditorGUILayout.Toggle("Using AdWords",_usingAdWords);
 			GUI.backgroundColor = Color.white;
-			if (_usingAdsWork) {
-				_adsWorkConversionID = EditorGUILayout.TextField("ConversionID", _adsWorkConversionID);
-				_adsWorkLabel = EditorGUILayout.TextField("Label", _adsWorkLabel);
-				_adsWorkValue = EditorGUILayout.TextField("Value", _adsWorkValue);
-				if (_adsWorkIsRepeatable) GUI.backgroundColor = Color.green; else GUI.backgroundColor = Color.white;
-				_adsWorkIsRepeatable = EditorGUILayout.Toggle("IsRepeatable",_adsWorkIsRepeatable);
+			if (_usingAdWords) {
+				_adWordsConversionID = EditorGUILayout.TextField("ConversionID", _adWordsConversionID);
+				_adWordsLabel = EditorGUILayout.TextField("Label", _adWordsLabel);
+				_adWordsValue = EditorGUILayout.TextField("Value", _adWordsValue);
+				if (_adWordsIsRepeatable) GUI.backgroundColor = Color.green; else GUI.backgroundColor = Color.white;
+				_adWordsIsRepeatable = EditorGUILayout.Toggle("IsRepeatable",_adWordsIsRepeatable);
 				GUI.backgroundColor = Color.white;
 			}
 
@@ -185,11 +185,11 @@ public class IDController : EditorWindow {
 		AppotaSetting.AppleAppID = _appleAppID;
 		AppotaSetting.AppFlyerKey = _appFlyerKey;
 		
-		AppotaSetting.UsingAdsWork = _usingAdsWork;
-		AppotaSetting.AdsWorkConversionID = _adsWorkConversionID;
-		AppotaSetting.AdsWorkLabel = _adsWorkLabel;
-		AppotaSetting.AdsWorkValue = _adsWorkValue;
-		AppotaSetting.AdsWorkIsRepeatable = _adsWorkIsRepeatable;
+		AppotaSetting.UsingAdWords = _usingAdWords;
+		AppotaSetting.AdWordsConversionID = _adWordsConversionID;
+		AppotaSetting.AdWordsLabel = _adWordsLabel;
+		AppotaSetting.AdWordsValue = _adWordsValue;
+		AppotaSetting.AdWordsIsRepeatable = _adWordsIsRepeatable;
 		ManifestMod.GenerateManifest();
 		Debug.Log("Complete setting!!!");
 		

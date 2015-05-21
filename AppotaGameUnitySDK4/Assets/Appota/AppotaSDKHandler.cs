@@ -466,21 +466,25 @@ public class AppotaSDKHandler {
 	#endregion
 
 	#region Other Functions
-	public void ConfigureAppFlyer(string appFlyerKey) {
-		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		object[] args = new object[1];
-		args [0] = appFlyerKey;
-		cls_AppotaUnityHandler.CallStatic("ConfigureAppFlyer", args);
+	public void ConfigureAppFlyer() {
+		if (AppotaSetting.UsingAppFlyer) {
+			cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+			object[] args = new object[1];
+			args [0] = AppotaSetting.AppFlyerKey;
+			cls_AppotaUnityHandler.CallStatic("ConfigureAppFlyer", args);
+		}
 	}
 
-	public void ConfigureAdwords(string conversionId, string label, string value, bool isRepeatable) {
-		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		object[] args = new object[4];
-		args [0] = conversionId;
-		args [1] = label;
-		args [2] = value;
-		args [3] = isRepeatable;
-		cls_AppotaUnityHandler.CallStatic("ConfigureAdwords", args);
+	public void ConfigureAdwords() {
+		if (AppotaSetting.UsingAdWords) {
+			cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+			object[] args = new object[4];
+			args [0] = AppotaSetting.AdWordsConversionID;
+			args [1] = AppotaSetting.AdWordsLabel;
+			args [2] = AppotaSetting.AdWordsValue;
+			args [3] = AppotaSetting.AdWordsIsRepeatable;
+			cls_AppotaUnityHandler.CallStatic("ConfigureAdwords", args);
+		}
 	}
 
 	#endregion
