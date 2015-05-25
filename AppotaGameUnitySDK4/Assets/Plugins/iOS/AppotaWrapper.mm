@@ -33,8 +33,8 @@ extern "C" {
         [AppotaGameSDK sharedInstance].delegate = [AppotaWrapper sharedInstance];
     }
     
-    const void setSDKButtonVisible(bool isVisible) {
-        [[AppotaGameSDK sharedInstance] setSDKButtonVisible:isVisible];
+    const void setSDKButtonVisibility(bool isVisible) {
+        [[AppotaGameSDK sharedInstance] setSDKButtonVisibility:isVisible];
     }
     
     const void setAutoShowLogin(bool autoShowLogin) {
@@ -55,7 +55,7 @@ extern "C" {
     
     // User Functions
     const void showUserInfoView(){
-        [AppotaGameSDK showProfileView];
+        [AppotaGameSDK showUserInfoView];
     }
     
     const void showLoginView(){
@@ -86,12 +86,12 @@ extern "C" {
         [AppotaGameSDK showTransactionHistory];
     }
     
-    const void logOut(){
-        [AppotaGameSDK logOut];
+    const void logout(bool willShowLoginView){
+        [AppotaGameSDK logOutWithShowLoginView:willShowLoginView];
     }
     
-    const bool checkUserLogin(){
-        return [AppotaGameSDK checkUserLogin];
+    const bool isUserLoggedIn(){
+        return [AppotaGameSDK isUserLoggedIn];
     }
     
     // Payment Functions
@@ -99,8 +99,8 @@ extern "C" {
         [AppotaGameSDK showPaymentView];
     }
     
-    const void showPaymentViewWithPackage(const char *packageID){
-        [AppotaGameSDK showPaymentViewWithPackage:[NSString stringWithUTF8String:packageID]];
+    const void showPaymentViewWithPackageID(const char *packageID){
+        [AppotaGameSDK showPaymentViewWithPackageID:[NSString stringWithUTF8String:packageID]];
     }
     
     const void sendStateToWrapper(const char *state){

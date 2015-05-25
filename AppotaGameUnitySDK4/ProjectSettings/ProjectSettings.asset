@@ -119,7 +119,7 @@ PlayerSettings:
     rgba: 0
   iOSLaunchScreenFillPct: 1
   iOSLaunchScreenCustomXibPath: 
-  AndroidTargetDevice: 3
+  AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
@@ -376,7 +376,7 @@ PlayerSettings:
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 0
   WebGL::memorySize: 256
-  iOS::Architecture: 2
+  iOS::Architecture: 0
   iOS::ScriptingBackend: 0
   boolPropertyNames:
   - WebGL::dataCaching

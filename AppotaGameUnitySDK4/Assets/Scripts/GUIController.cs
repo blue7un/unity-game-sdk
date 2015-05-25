@@ -11,12 +11,12 @@ public class GUIController : MonoBehaviour {
 	void Start () {
 		#if UNITY_IPHONE
 		AppotaSDKHandler.Instance.Init();
-		AppotaSDKHandler.Instance.SetAutoShowLogin(false);
+		AppotaSDKHandler.Instance.SetAutoShowLoginDialog(false);
 		#endif
 
 		#if UNITY_ANDROID
 		AppotaSDKHandler.Instance.Init();
-		AppotaSDKHandler.Instance.SetAutoShowLogin(false);
+		AppotaSDKHandler.Instance.SetAutoShowLoginDialog(false);
 
 		#endif
 
@@ -47,7 +47,7 @@ public class GUIController : MonoBehaviour {
 		}
 		
 		if(GUI.Button(new Rect(ScreenWidth / 3, 50 + ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "Logout", customButton)) {
-			AppotaSDKHandler.Instance.Logout ();
+			AppotaSDKHandler.Instance.Logout (false);
 		}
 
 		if(GUI.Button(new Rect(ScreenWidth / 3, 60 + 2 * ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "Switch Account", customButton)) {
@@ -58,17 +58,17 @@ public class GUIController : MonoBehaviour {
 		text = "UserID: " + appotaSession.UserID;
 		GUI.TextArea(new Rect(10, 40, ScreenWidth / 4, ScreenHeight / 10), text, 200, customButton);
 
-		if(AppotaSDKHandler.Instance.IsUserLogin()){	
+		if(AppotaSDKHandler.Instance.IsUserLoggedIn()){	
 			if(GUI.Button(new Rect(ScreenWidth / 3, 70 + 3 * ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "User Info", customButton)) {
-				AppotaSDKHandler.Instance.ShowUserInfo ();
+				AppotaSDKHandler.Instance.ShowUserInfoView ();
 			}
 
-			if(GUI.Button(new Rect(ScreenWidth / 3, 80 + 4 * ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "Make Payment", customButton)) {
-				AppotaSDKHandler.Instance.MakePayment ("");
+			if(GUI.Button(new Rect(ScreenWidth / 3, 80 + 4 * ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "Payment", customButton)) {
+				AppotaSDKHandler.Instance.ShowPaymentView ();
 			}
 
-			if(GUI.Button(new Rect(ScreenWidth / 3, 90 + 5 * ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "Make Payment Package", customButton)) {
-				AppotaSDKHandler.Instance.MakePayment ("app.pkid.tym4K");
+			if(GUI.Button(new Rect(ScreenWidth / 3, 90 + 5 * ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "Payment With Package", customButton)) {
+				AppotaSDKHandler.Instance.ShowPaymentViewWithPackageID ("app.pkid.tym4K");
 			}
 
 		}

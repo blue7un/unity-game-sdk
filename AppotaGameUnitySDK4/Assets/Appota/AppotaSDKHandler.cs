@@ -24,7 +24,7 @@ public class AppotaSDKHandler {
 	private static extern void init();
 	
 	[DllImport("__Internal")]
-	private static extern void setSDKButtonVisible(bool isVisible);
+	private static extern void setSDKButtonVisibility(bool isVisible);
 	
 	[DllImport("__Internal")]
 	private static extern void setKeepLoginSession(bool isKeepLoginSession);
@@ -42,7 +42,13 @@ public class AppotaSDKHandler {
 	
 	[DllImport("__Internal")]
 	private static extern void showUserInfoView();
-	
+
+	[DllImport("__Internal")]
+	private static extern void showRegisterView();
+
+	[DllImport("__Internal")]
+	private static extern void showTransactionHistory();
+
 	[DllImport("__Internal")]
 	private static extern void showLoginView();
 	
@@ -59,20 +65,17 @@ public class AppotaSDKHandler {
 	private static extern void switchAccount();
 	
 	[DllImport("__Internal")]
-	private static extern void showTransactionHistory();
+	private static extern void logout(bool willShowLoginView);
 	
 	[DllImport("__Internal")]
-	private static extern void logOut();
-	
-	[DllImport("__Internal")]
-	private static extern bool checkUserLogin();
+	private static extern bool isUserLoggedIn();
 	
 	// Payment functions
 	[DllImport("__Internal")]
 	private static extern void showPaymentView();
 	
 	[DllImport("__Internal")]
-	private static extern void showPaymentViewWithPackage(string packageID);
+	private static extern void showPaymentViewWithPackageID(string packageID);
 	
 	[DllImport("__Internal")]
 	private static extern void sendStateToWrapper(string state);
@@ -111,8 +114,8 @@ public class AppotaSDKHandler {
 	/*
 	 * Call this function to setting hide or show SDK floating button
 	 * */
-	public void SetSDKButtonVisible(bool isVisible){
-		setSDKButtonVisible(isVisible);
+	public void SetSDKButtonVisibility(bool isVisible){
+		setSDKButtonVisibility(isVisible);
 	}
 	
 	/*
@@ -127,7 +130,7 @@ public class AppotaSDKHandler {
 	 * This function will control the Appota Login View will be automatically show at app lauching (when user's not logged in)
 	 * Or you have to call [ShowLoginView](#show-login-view) function to show the LoginView.
 	 * */
-	public void SetAutoShowLogin(bool autoShowLogin) {
+	public void SetAutoShowLoginDialog(bool autoShowLogin) {
 		setAutoShowLogin(autoShowLogin);
 	}
 
@@ -153,9 +156,9 @@ public class AppotaSDKHandler {
 	/*
 	 * Logout function
 	 * */
-	public void Logout() {
+	public void Logout(bool willShowLoginView) {
 		Debug.Log ("Start logout");
-		logOut();
+		logout(willShowLoginView);
 	}
 	
 	/*
@@ -168,9 +171,25 @@ public class AppotaSDKHandler {
 	}
 	
 	/*
+	 * This function will show register view  
+	 * */
+	public void ShowRegisterView()
+	{
+		showRegisterView();
+	}
+
+	/*
+	 * This function will show transaction history view  
+	 * */
+	public void ShowTransactionHistory()
+	{
+		showTransactionHistory();
+	}
+
+	/*
 	 * This function will show user profile view  
 	 * */
-	public void ShowUserInfo()
+	public void ShowUserInfoView()
 	{
 		showUserInfoView();
 	}
@@ -178,8 +197,8 @@ public class AppotaSDKHandler {
 	/*
 	 * This function will return user logged in state
 	 * */
-	public bool IsUserLogin() {
-		return checkUserLogin();
+	public bool IsUserLoggedIn() {
+		return isUserLoggedIn();
 	}
 	
 	/*
@@ -215,11 +234,10 @@ public class AppotaSDKHandler {
 	{
 		inviteFacebookFriends();
 	}
-	
-//	// Have to call this function before Init() function.
-//	public void HideWelcomeView(bool autoHideWelcomeView) {
-//		setHideWelcomeView (autoHideWelcomeView);
-//	}
+
+	public void SetHideWelcomeView(bool autoHideWelcomeView) {
+		setHideWelcomeView (autoHideWelcomeView);
+	}
 
 	#endregion
 	
@@ -227,7 +245,7 @@ public class AppotaSDKHandler {
 	/*
 	 * Show payment view with default list payment packages
 	 * */
-	public void MakePayment()
+	public void ShowPaymentView()
 	{
 		showPaymentView();
 	}
@@ -235,13 +253,21 @@ public class AppotaSDKHandler {
 	/*
 	 * Show a specific package depends on your in-game mechanism
 	 * */
-	public void MakePayment(string packageID)
+	public void ShowPaymentViewWithPackageID(string packageID)
 	{
-		showPaymentViewWithPackage(packageID);
+		showPaymentViewWithPackageID(packageID);
 	}
 	
 	public void SendStateToWrapper(string state) {
 		sendStateToWrapper(state);
+	}
+
+	/*
+	 * This function will close payment view  
+	 * */
+	public void ClosePaymentView()
+	{
+		closePaymentView();
 	}
 	#endregion
 	
@@ -282,11 +308,11 @@ public class AppotaSDKHandler {
 		Debug.Log("Called init Android ");
 	}
 	
-	public void SetAutoShowLogin(bool autoShowLogin) {
+	public void SetAutoShowLoginDialog(bool autoShowLogin) {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		object[] args = new object[1];
 		args [0] = autoShowLogin;
-		cls_AppotaUnityHandler.CallStatic("SetAutoShowLogin", args);
+		cls_AppotaUnityHandler.CallStatic("SetAutoShowLoginDialog", args);
 	}
 	
 	public void SetKeepLoginSession(bool isKeepLoginSession){
@@ -297,14 +323,14 @@ public class AppotaSDKHandler {
 	}
 	
 	// Have to call this function before Init() function.
-	public void HideWelcomeView(bool autoHideWelcomeView) {
+	public void SetHideWelcomeView(bool autoHideWelcomeView) {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		object[] args = new object[1];
 		args [0] = autoHideWelcomeView;
-		cls_AppotaUnityHandler.CallStatic("HideWelcomeView", args);
+		cls_AppotaUnityHandler.CallStatic("SetHideWelcomeView", args);
 	}
 
-	public void SetSDKButtonVisible(bool isVisibility) {
+	public void SetSDKButtonVisibility(bool isVisibility) {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		object[] args = new object[1];
 		args [0] = isVisibility;
@@ -331,10 +357,14 @@ public class AppotaSDKHandler {
 	#endregion
 	
 	#region User functions
-	public void Logout() {
+	public void Logout(bool willShowLoginView) {
 		Debug.Log ("Start logout");
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		cls_AppotaUnityHandler.CallStatic("Logout");
+
+		object[] args = new object[1];
+		args [0] = willShowLoginView;
+
+		cls_AppotaUnityHandler.CallStatic("Logout", args);
 	}
 	
 	public void SwitchAccount()
@@ -343,10 +373,22 @@ public class AppotaSDKHandler {
 		cls_AppotaUnityHandler.CallStatic("SwitchAccount");
 	}
 	
-	public void ShowUserInfo()
+	public void ShowUserInfoView()
 	{
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		cls_AppotaUnityHandler.CallStatic("ShowUserInfo");
+		cls_AppotaUnityHandler.CallStatic("ShowUserInfoView");
+	}
+
+	public void ShowRegisterView()
+	{
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		cls_AppotaUnityHandler.CallStatic("ShowRegisterView");
+	}
+
+	public void ShowTransactionHistory()
+	{
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		cls_AppotaUnityHandler.CallStatic("ShowTransactionHistory");
 	}
 	
 	public void ShowLoginView()
@@ -379,9 +421,19 @@ public class AppotaSDKHandler {
 		cls_AppotaUnityHandler.CallStatic("InviteFacebookFriend");
 	}
 	
-	public bool IsUserLogin() {
+	public bool IsUserLoggedIn() {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		return cls_AppotaUnityHandler.CallStatic<bool>("IsUserLogin");
+		return cls_AppotaUnityHandler.CallStatic<bool>("IsUserLoggedIn");
+	}
+
+	public void SetCharacter(string characterName, string characterID, string serverName, string serverID) {
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		object[] args = new object[4];
+		args [0] = characterName;
+		args [1] = characterID;
+		args [2] = serverName;
+		args [3] = serverID;
+		cls_AppotaUnityHandler.CallStatic("SetCharacter", args);
 	}
 	
 	/*
@@ -393,26 +445,29 @@ public class AppotaSDKHandler {
 	#endregion
 	
 	#region Payment functions
-	public void MakePayment(string packageID)
+	public void ShowPaymentView()
+	{
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		cls_AppotaUnityHandler.CallStatic("ShowPaymentView");
+	}
+
+	public void ShowPaymentViewWithPackageID(string packageID)
 	{
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		
 		object[] args = new object[1];
 		args [0] = packageID;
 		
-		cls_AppotaUnityHandler.CallStatic("MakePayment", args);
+		cls_AppotaUnityHandler.CallStatic("ShowPaymentViewWithPackageID", args);
 	}
+
 	
-	public void SetCharacter(string characterName, string characterID, string serverName, string serverID) {
+	public void ClosePaymentView()
+	{
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		object[] args = new object[4];
-		args [0] = characterName;
-		args [1] = characterID;
-		args [2] = serverName;
-		args [3] = serverID;
-		cls_AppotaUnityHandler.CallStatic("SetCharacter", args);
+		cls_AppotaUnityHandler.CallStatic("ClosePaymentView");
 	}
-	
+
 	public void SendStateToWrapper(string state) {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		object[] args = new object[1];
@@ -450,12 +505,12 @@ public class AppotaSDKHandler {
 	#endregion
 	
 	#region Notification functions
-//	public void SetPushDeviceToken(string message) {
-//		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-//		object[] args = new object[1];
-//		args [0] = message;
-//		cls_AppotaUnityHandler.CallStatic("SetPushDeviceToken", args);
-//	}
+	public void SetPushDeviceToken(string message) {
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		object[] args = new object[1];
+		args [0] = message;
+		cls_AppotaUnityHandler.CallStatic("SetPushDeviceToken", args);
+	}
 	
 	public void SetPushGroup(string groupName) {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
