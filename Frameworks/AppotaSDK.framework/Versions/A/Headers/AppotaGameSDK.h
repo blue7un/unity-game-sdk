@@ -32,7 +32,7 @@
  *
  *  @param isVisble
  */
-- (void) setSDKButtonVisible:(BOOL)isVisble;
+- (void) setSDKButtonVisibility:(BOOL)isVisble;
 /**
  *  set keep login session
  *
@@ -78,18 +78,28 @@
  *
  *  @return YES - NO based on user login state
  */
-+ (BOOL) checkUserLogin;
++ (BOOL) isUserLoggedIn;
 
 /**
- *  Logout function
+ *  Logout function and show Login View base isShowLoginView param.
  */
-+ (void) logOut;
++ (void) logOutWithShowLoginView:(BOOL)isShowLoginView;
 /**
  *  get User Infor
  *
  *  @return AppotaUserLoginResult object
  */
 + (AppotaUserLoginResult *) getUserInfo;
+
+/**
+ *  show history of transaction
+ */
++(void)showTransactionHistory;
+
+/**
+ *  show user profile view
+ */
++ (void) showUserInfoView;
 
 #pragma mark -- Payment feature
 /**
@@ -101,7 +111,7 @@
  *
  *  @param packageID :NSString
  */
-+ (void) showPaymentViewWithPackage:(NSString *)packageID;
++ (void) showPaymentViewWithPackageID:(NSString *)packageID;
 /**
  *  Close payment View 
  *
@@ -133,17 +143,6 @@
  *  @param viewName :  Required = YES . Description: NSString View name
  */
 + (void) sendViewWithName:(NSString*) viewName;
-
-#pragma mark -- Other features
-/**
- *  show history of transaction
- */
-+(void)showTransactionHistory;
-
-/**
- *  show user profile view
- */
-+ (void) showProfileView;
 
 #pragma mark -- Other function class and properties
 /**
