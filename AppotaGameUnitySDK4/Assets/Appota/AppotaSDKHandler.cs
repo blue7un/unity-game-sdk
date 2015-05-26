@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System;
+using System.Text;
 
 public class AppotaSDKHandler {
 	
@@ -100,7 +102,12 @@ public class AppotaSDKHandler {
 	[DllImport("__Internal")]
 	private static extern bool registerPushNotificationWithGroupName(string name);
 
+	// Facebook App Event functions 
+	[DllImport("__Internal")]
+	private static extern void fbLogEvent(string name);
 
+	[DllImport("__Internal")]
+	private static extern void fbLogEventWithParameter(string name, double value, string parameters);
 
 	#region SDK functions
 	/*
@@ -290,8 +297,18 @@ public class AppotaSDKHandler {
 		registerPushNotificationWithGroupName(groupName);
 	}
 	#endregion
-	
+
+	#region Facebook App Events functions
+	public void FBLogEvent(string name) {
+		fbLogEvent(name);
+	}
+
+	public void FBLogEventWithParameter(string name, double value, Dictionary<string, string> dictionary) {
+		fbLogEventWithParameter(name, value, ConvertDictionaryToString(dictionary));
+	}
+	#endregion
 	#endif
+
 	#if UNITY_ANDROID
 	private AndroidJavaClass cls_AppotaUnityHandler;
 	
@@ -342,18 +359,7 @@ public class AppotaSDKHandler {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		cls_AppotaUnityHandler.CallStatic("FinishSDK");
 	}
-
-	public void ActivateApp()
-	{
-		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		cls_AppotaUnityHandler.CallStatic("ActivateApp");
-	}
-
-	public void DeactivateApp()
-	{
-		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		cls_AppotaUnityHandler.CallStatic("DeactivateApp");
-	}
+	
 	#endregion
 	
 	#region User functions
@@ -520,6 +526,36 @@ public class AppotaSDKHandler {
 	}
 	#endregion
 
+	#region Facebook App Events functions
+	public void ActivateFBAppEvent()
+	{
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		cls_AppotaUnityHandler.CallStatic("ActivateFBAppEvent");
+	}
+	
+	public void DeactivateFBAppEvent()
+	{
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		cls_AppotaUnityHandler.CallStatic("DeactivateFBAppEvent");
+	}
+
+	public void FBLogEvent(string name) {
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		object[] args = new object[1];
+		args [0] = name;
+		cls_AppotaUnityHandler.CallStatic("FBLogEvent", args);
+	}
+	
+	public void FBLogEventWithParameter(string name, double value, Dictionary<string, string> dictionary) {
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		object[] args = new object[3];
+		args [0] = name;
+		args [1] = value;
+		args [2] = ConvertDictionaryToString(dictionary);
+		cls_AppotaUnityHandler.CallStatic("FBLogEventWithParameter", args);
+	}
+	#endregion
+
 	#region Other Functions
 	public void ConfigureAppFlyer() {
 		if (AppotaSetting.UsingAppFlyer) {
@@ -545,4 +581,17 @@ public class AppotaSDKHandler {
 	#endregion
 	#endif
 
+	private string ConvertDictionaryToString(Dictionary<string, string> dictionary) {
+		StringBuilder builder = new StringBuilder();
+		foreach (KeyValuePair<string, string> pair in dictionary)
+		{
+			builder.Append(pair.Key).Append(":").Append(pair.Value).Append(';');
+		}
+		string result = builder.ToString();
+		
+		// Remove the final delimiter
+		result = result.TrimEnd(';');
+		
+		return result;
+	}
 }

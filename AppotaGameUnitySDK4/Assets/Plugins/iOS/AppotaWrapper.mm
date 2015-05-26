@@ -2,6 +2,10 @@
 #import "AppotaSDK/AppotaSDK.h"
 #import <FacebookSDK/FacebookSDK.h>
 
+@interface AppotaWrapper()
++ (NSMutableDictionary *) unpackToDictionary: (NSString *) parameters;
+@end
+
 @implementation AppotaWrapper
 
 static AppotaWrapper* sharedMyInstance = nil;
@@ -14,6 +18,18 @@ static AppotaWrapper* sharedMyInstance = nil;
     return sharedMyInstance;
 } // end sharedInstance()
 
+
++ (NSMutableDictionary *) unpackToDictionary: (NSString *) parameters {
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    NSArray *pairs = [parameters componentsSeparatedByString:@";"];
+    
+    for (NSString *str in pairs) {
+        NSArray *contentPair = [str componentsSeparatedByString:@":"];
+        [dictionary setValue:[contentPair objectAtIndex:1] forKey:[contentPair objectAtIndex:0]];
+    }
+    
+    return dictionary;
+}
 
 extern "C" {
     char* cStringCopy(const char* string)
@@ -137,6 +153,18 @@ extern "C" {
     // Notification Functions
     const void registerPushNotificationWithGroupName(const char *name){
         [AppotaGameSDK registerPushNotificationWithGroupName:[NSString stringWithUTF8String:name]];
+    }
+    
+    // Facebook AppEvent functions
+    const void fbLogEvent(const char *name){
+        [FBAppEvents logEvent:[NSString stringWithUTF8String:name]];
+    }
+    
+    const void fbLogEventWithParameter(const char *name, double value, const char *parameters){
+        NSDictionary *paramDictionary = [AppotaWrapper unpackToDictionary:[NSString stringWithUTF8String:parameters]];
+        NSLog(@"FBLogEvent: %@", paramDictionary);
+        [FBAppEvents logEvent:[NSString stringWithUTF8String:name] valueToSum:value parameters:paramDictionary];
+        
     }
 }
 

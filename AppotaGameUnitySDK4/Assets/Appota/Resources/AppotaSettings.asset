@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b618b83d21f94b4a9a217775f7473af, type: 3}
   m_Name: AppotaSettings
   m_EditorClassIdentifier: 
-  facebookAppID: 355161784671889
+  facebookAppID: 435546253225772
   facebookAppSecretID: 
   twitterConsumerKey: 8JssO2TP6DPUvsMxIiuBA
   twitterConsumerSecret: t20smaekjNGQONWvN63joVQQ3xZmoGmbnjeunFjI
@@ -23,8 +23,8 @@ MonoBehaviour:
   usingAppFlyer: 0
   appleAppID: 
   appFlyerKey: ARDuQcYYMeAiZycPmvoQxg
-  usingAdsWork: 0
-  adsWorkConversionID: 953955369
-  adsWorkLabel: iag7CLmF0FwQqejwxgM
-  adsWorkValue: 0.00
-  adsWorkIsRepeatable: 0
+  usingAdWords: 0
+  adWordsConversionID: 
+  adWordsLabel: 
+  adWordsValue: 
+  adWordsIsRepeatable: 0

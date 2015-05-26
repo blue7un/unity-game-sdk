@@ -39,7 +39,7 @@
     <meta-data android:name="com.appota.twitter.consumer.key" android:value="8JssO2TP6DPUvsMxIiuBA" />
     <meta-data android:name="com.appota.twitter.consumer.secret" android:value="t20smaekjNGQONWvN63joVQQ3xZmoGmbnjeunFjI" />
     <!-- Set Facebook Application ID -->
-    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 355161784671889" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 435546253225772" />
     <meta-data android:name="com.onclan.gameId" android:value="" />
   </application>
 </manifest>
