@@ -33,13 +33,13 @@
     <!-- Declare Login Activity for Facebook login -->
     <activity android:name="com.appota.facebook.LoginActivity" android:label="@string/app_name" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     <!-- set Appota Api Key -->
-    <meta-data android:name="com.appota.apiKey" android:value="K-A164833-U00000-FSHFTL-AAB432B007C2EDBE" />
+    <meta-data android:name="com.appota.apiKey" android:value="K-A164834-U00000-SMB02Y-809329F27CB81310" />
     <meta-data android:name="com.crashlytics.ApiKey" android:value="041977b270d261673d4bb3f97e261b2427c6f6f0" />
     <!-- user this for twitter login -->
     <meta-data android:name="com.appota.twitter.consumer.key" android:value="8JssO2TP6DPUvsMxIiuBA" />
-    <meta-data android:name="com.appota.twitter.consumer.secret" android:value="t20smaekjNGQONWvN63joVQQ3xZmoGmbnjeunFjI" />
+    <meta-data android:name="com.appota.twitter.consumer.secret" android:value="pm9A54oKzsqLMOWZBzichjCL" />
     <!-- Set Facebook Application ID -->
-    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 435546253225772" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 789057937844518" />
     <meta-data android:name="com.onclan.gameId" android:value="" />
   </application>
 </manifest>
