@@ -66,7 +66,9 @@ extern "C" {
     }
     
     const void inviteFacebookFriends(){
-        [AppotaGameSDK inviteFacebookFriends];
+        [AppotaGameSDK inviteFacebookFriendsWithCompleteBlock:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+            
+        }];
     }
     
     // User Functions
@@ -103,7 +105,7 @@ extern "C" {
     }
     
     const void logout(bool willShowLoginView){
-        [AppotaGameSDK logOutWithShowLoginView:willShowLoginView];
+        [AppotaGameSDK logOut];
     }
     
     const bool isUserLoggedIn(){
