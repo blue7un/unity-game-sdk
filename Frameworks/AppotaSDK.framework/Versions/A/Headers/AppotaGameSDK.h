@@ -81,9 +81,9 @@
 + (BOOL) isUserLoggedIn;
 
 /**
- *  Logout function and show Login View base isShowLoginView param.
+ *  Logout function.
  */
-+ (void) logOutWithShowLoginView:(BOOL)isShowLoginView;
++ (void) logOut;
 /**
  *  get User Infor
  *
