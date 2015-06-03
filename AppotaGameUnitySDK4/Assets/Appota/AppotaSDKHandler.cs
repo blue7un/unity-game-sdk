@@ -114,6 +114,8 @@ public class AppotaSDKHandler {
 	 * Call this function in your first scene or when you want user to login
 	 * */
 	public void Init(){
+		AppotaSDKReceiver.InitializeGameObjects ();
+
 		init();
 		Debug.Log("Called init iOS ");
 	}
