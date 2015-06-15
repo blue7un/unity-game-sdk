@@ -76,4 +76,11 @@ typedef NS_ENUM(NSInteger, AppotaCountryCode) {
  *  @return carrier Name
  */
 - (NSString *) getCarrierNameFromCountryCodeType;
+
+/**
+ *  List app to verify called in feedback function
+ *
+ *  @return list verify app
+ */
+- (NSArray*) getVerifyApps;
 @end

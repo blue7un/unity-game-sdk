@@ -33,13 +33,15 @@ typedef NS_ENUM(NSInteger, SMSTYPE) {
 
 - (id) initWithPaymentMethod:(PAYMENT_METHOD) paymentMethod;
 
+- (id) initWithPaymentMethod:(PAYMENT_METHOD)paymentMethod andObjectDictionary:(NSDictionary *)dictionary;
+
 @property (nonatomic, strong) NSArray *listAmount;
 @property (readonly) PAYMENT_METHOD paymentMethod;
 
 - (NSString*) getPaymentCollectionImageName;
 - (NSString*) getPaymentCollectionName;
 - (id) getVendorName;
-
+- (NSString *) getCurrency;
 +(PAYMENT_METHOD) getPaymentMethodFromString:(NSString*) pMethod;
 + (NSString*) getStringFromPaymentMethod:(PAYMENT_METHOD) pMethod;
 - (SMSTYPE)getSMSType;
