@@ -11,7 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 typedef void (^AppotaInviteFriendBlock) (FBWebDialogResult result, NSURL *resultURL, NSError *error);
-
+typedef void (^AppotaSDKUserLoginResultObjectBlock) (AppotaUserLoginResult *object);
 @class AppotaPaymentCollectionObject_V4;
 @interface AppotaGameSDK (Advance)
 /**
@@ -28,12 +28,24 @@ typedef void (^AppotaInviteFriendBlock) (FBWebDialogResult result, NSURL *result
  *  show facebook login
  */
 + (void) showFacebookLogin;
+
++ (void) showFacebookLoginWithCompleteBlock:(AppotaSDKUserLoginResultObjectBlock) completeBlock
+                              andErrorBlock:(AppotaSDKErrorBlock) errorBlock;
+
++ (void) showFacebookLoginWithPermissions:(NSArray *)permissions
+                     andWithCompleteBlock:(AppotaSDKUserLoginResultObjectBlock) completeBlock
+                            andErrorBlock:(AppotaSDKErrorBlock) errorBlock;
 /**
  *  show google login
  */
 + (void) showGoogleLogin;
+
++ (void) showGoogleLoginWithCompleteBlock:(AppotaSDKUserLoginResultObjectBlock) completeBlock
+                            andErrorBlock:(AppotaSDKErrorBlock) errorBlock;
 /**
  *  show Twitter login
  */
 + (void) showTwitterLogin;
++ (void) showTwitterLoginWithCompleteBlock:(AppotaSDKUserLoginResultObjectBlock) completeBlock
+                             andErrorBlock:(AppotaSDKErrorBlock) errorBlock;
 @end

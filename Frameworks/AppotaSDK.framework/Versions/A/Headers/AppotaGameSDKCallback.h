@@ -25,6 +25,14 @@
  * Callback when payment error
  */
 - (void) didPaymentErrorWithMessage:(NSString *)message withError:(NSError *)error;
+/*
+ * Callback when close Payment View
+ */
+- (void) didClosePaymentView;
+/*
+ * Callback update userInfo
+ */
+- (void) didUpdateUserInfo:(AppotaUserLoginResult *)userLoginResult;
 @required
 
 

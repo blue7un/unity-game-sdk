@@ -41,7 +41,7 @@ public class IDController : EditorWindow {
 	private static IDController windows;
 	void OnEnable()
 	{
-		appotaLogo = Resources.LoadAssetAtPath("Assets/Appota/Resources/appota_logo.png", typeof(Texture2D)) as Texture2D;
+		appotaLogo = AssetDatabase.LoadAssetAtPath("Assets/Appota/Resources/appota_logo.png", typeof(Texture2D)) as Texture2D;
 		
 	}
 	
