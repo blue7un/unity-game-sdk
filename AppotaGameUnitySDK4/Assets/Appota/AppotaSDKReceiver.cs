@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Threading;
 using SimpleJSON;
 
 public class AppotaSDKReceiver : MonoBehaviour {
 	private static GameObject playGameObject;
 	private static bool initialized;
-
+	
 	private static AppotaSDKReceiver _instance;
 	
 	// Singleton for SDK handler
@@ -25,9 +27,9 @@ public class AppotaSDKReceiver : MonoBehaviour {
 			playGameObject = new GameObject("AppotaSDKReceiver");
 			playGameObject.AddComponent(typeof(AppotaSDKReceiver));
 			//keep this game object around for all scenes
-			DontDestroyOnLoad(playGameObject);
+			DontDestroyOnLoad(playGameObject);		
 			initialized = true;
-		}
+		}	
 	}
 	
 	public void OnLoginSuccess(string appotaSession)
@@ -35,7 +37,7 @@ public class AppotaSDKReceiver : MonoBehaviour {
 		// Get User info from AppotaSession
 		AppotaSession appotaSessionObj = new AppotaSession(appotaSession);
 		AppotaSession.Instance.UpdateInstance(appotaSessionObj);
-
+		
 		Debug.Log ("AppotaSDK: Did login");
 	}
 	
@@ -43,7 +45,7 @@ public class AppotaSDKReceiver : MonoBehaviour {
 	{
 		Debug.Log ("AppotaSDK: Login Error: " + error);
 	}
-
+	
 	public void OnLogoutSuccess()
 	{ 
 		Debug.Log ("AppotaSDK: Did logout");
@@ -53,28 +55,38 @@ public class AppotaSDKReceiver : MonoBehaviour {
 	{
 		// Parse Transaction result into class AppotaPaymentResult.cs
 		AppotaPaymentResult paymentResult = new AppotaPaymentResult(transactionResult);
-
+		
 		// Parse amount, packageID, in AppPaymentResult
 		Debug.Log ("AppotaSDK: Did payment");
 		Debug.Log("Appota: " + transactionResult);
 	}
-
-	public void OnPaymentFailed(string error)
-	{
-		Debug.Log ("AppotaSDK: Payment Error: " + error);
-	}
-
-	public void OnCloseLoginView()
-	{
-		Debug.Log ("AppotaSDK: Close Login View");
+	
+	public void OnPaymentError(string error)
+    {
+        Debug.Log ("AppotaSDK: Payment Error: " + error);
+    }
+    
+    public void OnCloseLoginView()
+    {
+        Debug.Log ("AppotaSDK: Close Login View");
+    }
+    
+    public void OnClosePaymentView()
+    {
+        #if UNITY_ANDROID
+		// Must call this function to stop Callback Thread
+		AppotaThreadHandler.Instance.Stop();
+        #endif
+        
+        Debug.Log ("AppotaSDK: Close Payment View");
+    }
+    
+    public void GetPaymentState(string packageID)
+    {
+        Debug.Log ("AppotaSDK: PackageID: " + packageID);
+        string paymentState = packageID + "server1";
+        
+        AppotaSDKHandler.Instance.SendStateToWrapper(paymentState);
 	}
 	
-	public void GetPaymentState(string packageID)
-	{
-		Debug.Log ("AppotaSDK: PackageID: " + packageID);
-		string paymentState = packageID + "server1";
-
-		AppotaSDKHandler.Instance.SendStateToWrapper(paymentState);
-	}
-
 }

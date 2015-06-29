@@ -67,7 +67,7 @@ public class AppotaSDKHandler {
 	private static extern void switchAccount();
 	
 	[DllImport("__Internal")]
-	private static extern void logout(bool willShowLoginView);
+	private static extern void logout();
 	
 	[DllImport("__Internal")]
 	private static extern bool isUserLoggedIn();
@@ -165,9 +165,9 @@ public class AppotaSDKHandler {
 	/*
 	 * Logout function
 	 * */
-	public void Logout(bool willShowLoginView) {
+	public void Logout() {
 		Debug.Log ("Start logout");
-		logout(willShowLoginView);
+		logout();
 	}
 	
 	/*
@@ -365,14 +365,11 @@ public class AppotaSDKHandler {
 	#endregion
 	
 	#region User functions
-	public void Logout(bool willShowLoginView) {
+	public void Logout() {
 		Debug.Log ("Start logout");
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 
-		object[] args = new object[1];
-		args [0] = willShowLoginView;
-
-		cls_AppotaUnityHandler.CallStatic("Logout", args);
+		cls_AppotaUnityHandler.CallStatic("Logout");
 	}
 	
 	public void SwitchAccount()
@@ -383,6 +380,8 @@ public class AppotaSDKHandler {
 	
 	public void ShowUserInfoView()
 	{
+		AppotaThreadHandler.Instance.Start();
+
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		cls_AppotaUnityHandler.CallStatic("ShowUserInfoView");
 	}
@@ -395,6 +394,8 @@ public class AppotaSDKHandler {
 
 	public void ShowTransactionHistory()
 	{
+		AppotaThreadHandler.Instance.Start();
+
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		cls_AppotaUnityHandler.CallStatic("ShowTransactionHistory");
 	}
@@ -455,12 +456,16 @@ public class AppotaSDKHandler {
 	#region Payment functions
 	public void ShowPaymentView()
 	{
+		AppotaThreadHandler.Instance.Start();
+
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		cls_AppotaUnityHandler.CallStatic("ShowPaymentView");
 	}
 
 	public void ShowPaymentViewWithPackageID(string packageID)
 	{
+		AppotaThreadHandler.Instance.Start();
+
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		
 		object[] args = new object[1];

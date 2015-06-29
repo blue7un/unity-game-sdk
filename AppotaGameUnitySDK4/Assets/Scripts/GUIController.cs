@@ -48,7 +48,7 @@ public class GUIController : MonoBehaviour {
 		}
 		
 		if(GUI.Button(new Rect(ScreenWidth / 3, 50 + ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "Logout", customButton)) {
-			AppotaSDKHandler.Instance.Logout (false);
+			AppotaSDKHandler.Instance.Logout ();
 		}
 
 		if(GUI.Button(new Rect(ScreenWidth / 3, 60 + 2 * ScreenHeight / 10,ScreenWidth / 3,ScreenHeight / 10), "Switch Account", customButton)) {

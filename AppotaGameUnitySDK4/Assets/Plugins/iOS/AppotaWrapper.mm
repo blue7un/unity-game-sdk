@@ -104,7 +104,7 @@ extern "C" {
         [AppotaGameSDK showTransactionHistory];
     }
     
-    const void logout(bool willShowLoginView){
+    const void logout(){
         [AppotaGameSDK logOut];
     }
     
