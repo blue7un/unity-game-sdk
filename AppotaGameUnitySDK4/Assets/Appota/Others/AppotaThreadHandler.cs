@@ -5,6 +5,7 @@ using System;
 
 public class AppotaThreadHandler : MonoBehaviour {
 
+	#if UNITY_ANDROID
 	private Thread callbackThread;
 	private AndroidJavaClass cls_MessageFromSDK;
 	private AndroidJavaObject activityContext = null;
@@ -86,4 +87,5 @@ public class AppotaThreadHandler : MonoBehaviour {
 	{
 		canCallbackThreadRun = false;
 	}
+	#endif
 }
