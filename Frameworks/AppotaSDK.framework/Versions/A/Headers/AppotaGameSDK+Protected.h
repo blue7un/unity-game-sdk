@@ -10,7 +10,6 @@
 #import "AppotaTrackObject.h"
 #import "AppotaUserLoginResult.h"
 #import "AppotaDevConfigObject.h"
-@class FBFrictionlessRecipientCache;
 @interface AppotaGameSDK (Protected)
 @property(readonly, strong)  AppotaTrackObject *trackObject;
 @property(readonly, strong)  AppotaUserLoginResult *userLoginResultObject;
@@ -19,5 +18,4 @@
 @property(assign, nonatomic) BOOL isKeepLoginSession;
 @property (readwrite) BOOL autoShowPaymentButton;
 @property(assign,nonatomic) BOOL autoShowLoginDialog;
-@property (strong, nonatomic)  FBFrictionlessRecipientCache *friendCache;
 @end
