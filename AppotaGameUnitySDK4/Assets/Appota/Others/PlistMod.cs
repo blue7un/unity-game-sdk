@@ -58,7 +58,7 @@ public class PlistMod
 		return "";
 	}
     
-	public static void UpdatePlist(string path, string apikey, string fbAppId, string twitterConsumerKey, string twitterConsumerSecret, string googleClientID, string googleClientSecret)
+	public static void UpdatePlist(string path, string apikey, string fbAppId, string fbAppLinkUrl, string twitterConsumerKey, string twitterConsumerSecret, string googleClientID, string googleClientSecret)
     {
         const string fileName = "Info.plist";
         string fullPath = Path.Combine(path, fileName);
@@ -105,6 +105,12 @@ public class PlistMod
             AddChildElement(doc, dict, "key", "FacebookAppID");
 			AddChildElement(doc, dict, "string", fbAppId);
         }
+
+		if(!HasKey(dict, "FacebookAppLinkUrl"))
+		{
+			AddChildElement(doc, dict, "key", "FacebookAppLinkUrl");
+			AddChildElement(doc, dict, "string", fbAppLinkUrl);
+		}
 
 		if(!HasKey(dict, "TWITTER_CONSUMER_KEY"))
 		{
