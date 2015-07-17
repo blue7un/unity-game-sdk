@@ -59,6 +59,9 @@ public class AppotaSDKHandler {
 	
 	[DllImport("__Internal")]
 	private static extern void showFacebookLogin();
+
+	[DllImport("__Internal")]
+	private static extern void showFacebookLoginWithPermissions(string permissions);
 	
 	[DllImport("__Internal")]
 	private static extern void showTwitterLogin();
@@ -228,6 +231,23 @@ public class AppotaSDKHandler {
 	{
 		showFacebookLogin();
 	}
+
+	public void ShowFacebookLoginWithPermissions(string[] permissions)
+	{
+		StringBuilder builder = new StringBuilder();
+
+		foreach(string permission in permissions)
+		{
+			builder.Append(permission).Append("|");
+		}
+
+		string result = builder.ToString();
+		
+		// Remove the final delimiter
+		result = result.TrimEnd('|');
+        
+        showFacebookLoginWithPermissions(result);
+    }
 	
 	public void ShowGoogleLogin()
 	{

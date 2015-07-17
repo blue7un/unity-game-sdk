@@ -11,8 +11,8 @@
 #import "AppotaUserLoginResult.h"
 
 @protocol AppotaGameSDKCallback <NSObject>
+
 @optional
-//- (void) didFinishRegister:(NSDictionary*) userInfoDict;
 /*
  * Callback after close loginview
  */
@@ -33,15 +33,14 @@
  * Callback update userInfo
  */
 - (void) didUpdateUserInfo:(AppotaUserLoginResult *)userLoginResult;
+
+
 @required
-
-
 /**
  *  Get payment state base on AppotaPaymentPackage
  *
  *  @return PAYMENT_STATE
  */
-
 - (NSString*) getPaymentStateWithPackageID:(NSString *) packageID;
 
 /*
@@ -56,4 +55,5 @@
  * Callback when Payment success
  */
 - (void) didPaymentSuccessWithResult:(AppotaPaymentResult*) paymentResult withPackage:(NSString *) packageID;
+
 @end

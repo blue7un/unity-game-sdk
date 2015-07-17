@@ -11,7 +11,9 @@
 
 
 #define AppotaGameSDK_DEBUG NO
+
 #define APPOTA_BUILD_UNITY
+#define APPOTA_BUILD_SPECIAL NO
 //#define APPOTAGameSDK_BUILD_ANE
 
 typedef void (^AppotaSDKStringBlock)(NSString *returnString);

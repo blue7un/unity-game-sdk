@@ -51,6 +51,8 @@ public class AppotaSetting : ScriptableObject
 	[HideInInspector] [SerializeField]
 	private string facebookAppSecretID;
 	[HideInInspector] [SerializeField]
+	private string facebookAppLinkUrl;
+	[HideInInspector] [SerializeField]
 	private string twitterConsumerKey;
 	[HideInInspector] [SerializeField]
 	private string twitterConsumerSecret;
@@ -106,6 +108,19 @@ public class AppotaSetting : ScriptableObject
 			if (Instance.facebookAppSecretID != value)
 			{
 				Instance.facebookAppSecretID = value;
+				DirtyEditor();
+			}
+		}
+	}
+
+	public static string FacebookAppLinkUrl
+	{
+		get { return Instance.facebookAppLinkUrl; }
+		set
+		{
+			if (Instance.facebookAppLinkUrl != value)
+			{
+				Instance.facebookAppLinkUrl = value;
 				DirtyEditor();
 			}
 		}

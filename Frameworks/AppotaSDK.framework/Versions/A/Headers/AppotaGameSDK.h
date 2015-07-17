@@ -154,7 +154,7 @@
  *
  *  @return Callback state
  */
-+ (BOOL) handleOpenURL:(NSURL*) url
++ (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL*) url
      sourceApplication:(NSString*) sourceApplication
             annotation:(id) annotation;
 

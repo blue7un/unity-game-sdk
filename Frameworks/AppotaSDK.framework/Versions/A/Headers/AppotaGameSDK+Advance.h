@@ -8,9 +8,7 @@
 
 #import "AppotaGameSDK.h"
 #import "AppotaSDKConst.h"
-#import <FacebookSDK/FacebookSDK.h>
 
-typedef void (^AppotaInviteFriendBlock) (FBWebDialogResult result, NSURL *resultURL, NSError *error);
 typedef void (^AppotaSDKUserLoginResultObjectBlock) (AppotaUserLoginResult *object);
 @class AppotaPaymentCollectionObject_V4;
 @interface AppotaGameSDK (Advance)
@@ -23,7 +21,8 @@ typedef void (^AppotaSDKUserLoginResultObjectBlock) (AppotaUserLoginResult *obje
 /**
  *  invite facebook friends
  */
-+ (void)inviteFacebookFriendsWithCompleteBlock:(AppotaInviteFriendBlock) inviteBlock;
++ (void)inviteFacebookFriendsWithCompleteBlock:(AppotaSDKDictionaryBlock) resultBlock
+                                 andErorrBlock:(AppotaSDKErrorBlock) errorBlock;
 /**
  *  show facebook login
  */

@@ -1,6 +1,8 @@
 #import "AppotaWrapper.h"
 #import "AppotaSDK/AppotaSDK.h"
-#import <FacebookSDK/FacebookSDK.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface AppotaWrapper()
 + (NSMutableDictionary *) unpackToDictionary: (NSString *) parameters;
@@ -66,7 +68,9 @@ extern "C" {
     }
     
     const void inviteFacebookFriends(){
-        [AppotaGameSDK inviteFacebookFriendsWithCompleteBlock:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+        [AppotaGameSDK inviteFacebookFriendsWithCompleteBlock:^(NSDictionary *dict) {
+            
+        } andErorrBlock:^(NSError *error) {
             
         }];
     }
@@ -86,6 +90,16 @@ extern "C" {
     
     const void showFacebookLogin(){
         [AppotaGameSDK showFacebookLogin];
+    }
+    
+    const void showFacebookLoginWithPermissions(const char *permissions){
+        NSString *_permissions = [NSString stringWithUTF8String:permissions];
+        NSArray *permissionArray = [_permissions componentsSeparatedByString:@"|"];
+        [AppotaGameSDK showFacebookLoginWithPermissions:permissionArray andWithCompleteBlock:^(AppotaUserLoginResult *object) {
+            
+        } andErrorBlock:^(NSError *error) {
+            
+        }];
     }
     
     const void showTwitterLogin(){
@@ -159,13 +173,13 @@ extern "C" {
     
     // Facebook AppEvent functions
     const void fbLogEvent(const char *name){
-        [FBAppEvents logEvent:[NSString stringWithUTF8String:name]];
+        [FBSDKAppEvents logEvent:[NSString stringWithUTF8String:name]];
     }
     
     const void fbLogEventWithParameter(const char *name, double value, const char *parameters){
         NSDictionary *paramDictionary = [AppotaWrapper unpackToDictionary:[NSString stringWithUTF8String:parameters]];
         NSLog(@"FBLogEvent: %@", paramDictionary);
-        [FBAppEvents logEvent:[NSString stringWithUTF8String:name] valueToSum:value parameters:paramDictionary];
+        [FBSDKAppEvents logEvent:[NSString stringWithUTF8String:name] valueToSum:value parameters:paramDictionary];
         
     }
 }
@@ -203,7 +217,7 @@ extern "C" {
     
     UnitySendMessage("AppotaSDKReceiver", "OnLoginSuccess", [json UTF8String]);
     
-    [FBAppEvents logEvent:@"appota_mobile_complete_login"];
+    [FBSDKAppEvents logEvent:@"appota_mobile_complete_login"];
 }
 
 /*
@@ -252,9 +266,9 @@ extern "C" {
     UnitySendMessage("AppotaSDKReceiver", "OnPaymentSuccess", [json UTF8String]);
     
     // Purchase
-    [FBAppEvents logPurchase:[paymentResult getAmountPaymentResult] currency:[paymentResult currency]
-                  parameters:@{FBAppEventParameterNameContentType:[paymentResult type],
-                               FBAppEventParameterNameContentID:[paymentResult packageID]}];
+    [FBSDKAppEvents logPurchase:[paymentResult getAmountPaymentResult] currency:[paymentResult currency]
+                     parameters:@{FBSDKAppEventParameterNameContentType:[paymentResult type],
+                                  FBSDKAppEventParameterNameContentID:[paymentResult packageID]}];
 }
 
 - (void) didPaymentErrorWithMessage:(NSString *)message withError:(NSError *)error {

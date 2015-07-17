@@ -58,7 +58,7 @@ public class AppControllerMod
 				fixedAppController += "[AppotaGameSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];\n[OCSDKConfigure handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];\nreturn true;";
 			}
 			else if (System.Type.GetType("AppotaSDKHandler,Assembly-CSharp") != null) {
-				fixedAppController += "return [AppotaGameSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];";
+				fixedAppController += "return [AppotaGameSDK application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];";
 			}
 			else if (System.Type.GetType("OnClanSDKHandler,Assembly-CSharp") != null) {
 				fixedAppController += "return [OCSDKConfigure handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];";
@@ -91,7 +91,7 @@ public class AppControllerMod
 			}
 			
 			// Import Facebook header
-			finalFixedAppController += "\n#import <FacebookSDK/FacebookSDK.h>";
+			finalFixedAppController += "\n#import <FBSDKCoreKit/FBSDKCoreKit.h> \n#import <FBSDKLoginKit/FBSDKLoginKit.h> \n#import <FBSDKShareKit/FBSDKShareKit.h>";
 		}
 		
 		finalFixedAppController += AppControllerSource.Substring(finalFixupEnd+1);
@@ -145,8 +145,8 @@ public class AppControllerMod
 		
 		string fbActiveString = AppControllerSource.Substring(0, fbActivePosEnd);
 		
-		if (AppControllerSource.IndexOf("FBAppEvents activateApp", System.StringComparison.Ordinal) <= 0){
-			fbActiveString += "{\n\t[FBAppEvents activateApp];";
+		if (AppControllerSource.IndexOf("FBSDKAppEvents activateApp", System.StringComparison.Ordinal) <= 0){
+			fbActiveString += "{\n\t[FBSDKAppEvents activateApp];";
 		}
 		
 		fbActiveString += AppControllerSource.Substring(fbActivePosEnd+1);

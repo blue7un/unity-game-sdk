@@ -11,6 +11,7 @@ public class IDController : EditorWindow {
 
 	static string _facebookID;
 	static string _facebookSecretID;
+	static string _facebookAppLinkUrl;
 	static string _twitterKey;
 	static string _twitterSecret;
 	static string _googleID;
@@ -61,6 +62,7 @@ public class IDController : EditorWindow {
 
 		_facebookID = AppotaSetting.FacebookAppID;
 		_facebookSecretID = AppotaSetting.FacebookAppSecretID;
+		_facebookAppLinkUrl = AppotaSetting.FacebookAppLinkUrl;
 		_twitterKey = AppotaSetting.TwitterConsumerKey;
 		_twitterSecret = AppotaSetting.TwitterConsumerSecret;
 		_googleID = AppotaSetting.GoogleClientId;
@@ -104,6 +106,8 @@ public class IDController : EditorWindow {
 			_facebookID = EditorGUILayout.TextField("Facebook ID", _facebookID);
 			#if UNITY_WP8
 			_facebookSecretID = EditorGUILayout.TextField("Facebook Secret ID", _facebookSecretID);
+			#elif UNITY_IOS
+			_facebookAppLinkUrl = EditorGUILayout.TextField("Facebook App Link URL", _facebookAppLinkUrl);
 			#endif
 			_twitterKey = EditorGUILayout.TextField("Twitter Key", _twitterKey);
 			_twitterSecret = EditorGUILayout.TextField("Twitter Secret", _twitterSecret);
@@ -174,6 +178,7 @@ public class IDController : EditorWindow {
 	{
 		AppotaSetting.FacebookAppID = _facebookID;
 		AppotaSetting.FacebookAppSecretID = _facebookSecretID;
+		AppotaSetting.FacebookAppLinkUrl = _facebookAppLinkUrl;
 		AppotaSetting.TwitterConsumerKey = _twitterKey;
 		AppotaSetting.TwitterConsumerSecret = _twitterSecret;
 		AppotaSetting.GoogleClientId = _googleID;

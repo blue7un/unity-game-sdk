@@ -26,6 +26,12 @@ typedef NS_ENUM(NSInteger, SMSTYPE) {
     SMSTYPE_OTP,
     SMSTYPE_DIRECT
 };
+
+typedef NS_ENUM(NSInteger, EWALLETTYPE){
+    EWALLETTYPE_OTP,
+    EWALLETTYPE_OTHER
+    
+};
 // Collection of payment object with same payment machenism
 @interface AppotaPaymentCollectionObject_V4 : AppotaBaseObject {
     
@@ -45,4 +51,5 @@ typedef NS_ENUM(NSInteger, SMSTYPE) {
 +(PAYMENT_METHOD) getPaymentMethodFromString:(NSString*) pMethod;
 + (NSString*) getStringFromPaymentMethod:(PAYMENT_METHOD) pMethod;
 - (SMSTYPE)getSMSType;
+- (EWALLETTYPE) getEwalletType;
 @end
