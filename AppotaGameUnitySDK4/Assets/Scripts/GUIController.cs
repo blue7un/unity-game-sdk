@@ -16,7 +16,6 @@ public class GUIController : MonoBehaviour {
 
 		#if UNITY_ANDROID
 		AppotaSDKHandler.Instance.Init();
-		AppotaSDKHandler.Instance.SetKeepLoginSession(false);
 		AppotaSDKHandler.Instance.SetAutoShowLoginDialog(true);
 
 		#endif
