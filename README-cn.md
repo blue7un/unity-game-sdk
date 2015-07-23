@@ -65,13 +65,13 @@ AppotaSDKHandler.Instance.Init();
 	**注** :若不调用该功能， 系统就默认保留登陆会话。
 	
 ------
-- `SetAutoShowLogin:(BOOL)` <a name="set-auto-show-login-dialog"> </a> 该功控制 Appota 登陆界面当应用运营时是否自动显示 （当用户还没登陆时） 或者你要调用 [[AppotaGameSDK showLoginView]](#show-login-view)函数来刷出登陆界面。
+- `SetAutoShowLoginDialog:(BOOL)` <a name="set-auto-show-login-dialog"> </a> 该功控制 Appota 登陆界面当应用运营时是否自动显示 （当用户还没登陆时） 或者你要调用 [[AppotaGameSDK showLoginView]](#show-login-view)函数来刷出登陆界面。
 
   **注* :若不调用该功能，就默认在当应用开始运营，用户还没登陆时自动显示登陆界面（Login View)。
   
 -----
   
-- 当你要显示或者隐藏SDK浮动按钮就调用该功能`SetSDKButtonVisible:(BOOL)` <a name = "set-sdk-button-visible"> </a>。
+- 当你要显示或者隐藏SDK浮动按钮就调用该功能`SetSDKButtonVisibility:(BOOL)` <a name = "set-sdk-button-visible"> </a>。
 
   **注** :若不调用该功能，系统就默认打开应用后显示SDK浮动按钮。
 
@@ -215,7 +215,7 @@ public void  OnCloseLoginView();
 你可以默认支付包列表显示支付界面 (该列表配置在[Appota Developer Portal](https://developer.appota.com/beta/) )
 
 ```
-AppotaSDKHandler.Instance.ShowPaymentView()
+AppotaSDKHandler.Instance.MakePayment()
 ```
 ![](images/list_item.gif)
 
@@ -223,7 +223,7 @@ AppotaSDKHandler.Instance.ShowPaymentView()
 您可以用属于您游戏机制的一个指定包显示支付界面
 
 ```
-AppotaGameSDK.Instance.ShowPaymentViewWithPackageID(string packageID)
+AppotaGameSDK.Instance.MakePayment(string packageID)
 ```
 
 ![](images/one_item.gif)

@@ -69,10 +69,10 @@ There are some functions to control SDK flows, have to call them after `AppotaSD
 
 - `SetKeepLoginSession(BOOL)` <a name="set-keep-login-session"> </a> this function will control the Appota Login Session will be kept or removed at app lauching (when session's removed user has to login again when app start).   
 **Note** If this function is not called, login session will be kept by default.
-- `SetAutoShowLogin(BOOL)` <a name="set-auto-show-login-dialog"> </a> this function will control the Appota Login View will be automatically show at app lauching (when user's not logged in) or you have to call [ShowLoginView](#show-login-view) function to show the LoginView.   
+- `SetAutoShowLoginDialog(BOOL)` <a name="set-auto-show-login-dialog"> </a> this function will control the Appota Login View will be automatically show at app lauching (when user's not logged in) or you have to call [ShowLoginView](#show-login-view) function to show the LoginView.   
 **Note** If this function is not called, login view will automatically show at app lauching (when user's not logged in)
 
-- `SetSDKButtonVisible(BOOL)` call this function to setting hide or show SDK floating button
+- `SetSDKButtonVisibility(BOOL)` call this function to setting hide or show SDK floating button
 
 - `FinishSDK()` call this function in `OnApplicationQuit` script
 ###2.2. User function <a name="head2-user-function"> </a>
@@ -211,7 +211,7 @@ You have 3 methods to show payment view. Each payment view represents one or lis
 You can show payment view with default list payment packages (which is configured on [Appota Developer Portal]())
 
 ```
-AppotaSDKHandler.Instance.ShowPaymentView()
+AppotaSDKHandler.Instance.MakePayment()
 ```
 ![](images/list_item.gif)
 
@@ -221,7 +221,7 @@ AppotaSDKHandler.Instance.ShowPaymentView()
 You can show a specific package depends on your in-game mechanism
 
 ```
-AppotaGameSDK.Instance.ShowPaymentViewWithPackageID(string packageID)
+AppotaGameSDK.Instance.MakePayment(string packageID)
 ```
 
 ![](images/one_item.gif)
