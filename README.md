@@ -303,3 +303,5 @@ public void setPushGroup(string groupName)
 - `PackageID` each payment package in game should be defined along with a package ID (provided by SDKTool) to identify package.
 - `PaymentState` payment state must be implemented in `GetPaymentState` function. And use `PackageID` and game server information to build up `PaymentState`.   
 For example packageID: `com.gold.package1` - (defined in integration process) corresponds with a package of 1000 gold and current game user is X in server Y. Then payment state can be constructed : com.gold.package1_1000_gold_X_Y (depends on your format).
+Flow of `getPaymentState` function: 
+![State](images/payment_state_seq.png)
