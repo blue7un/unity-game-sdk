@@ -402,7 +402,7 @@ AppotaSDKHandler.Instance.SwitchAccount();
 
 <p>可以默认支付包来显示支付界面(配置在<a href="">Appota Developer Portal</a>)</p>
 
-<pre><code>AppotaSDKHandler.Instance.MakePayment()
+<pre><code>AppotaSDKHandler.Instance.ShowPaymentView()
 </code></pre>
 
 <p><img src="images/list_item.gif" alt="" /></p>
@@ -413,7 +413,7 @@ AppotaSDKHandler.Instance.SwitchAccount();
 
 <p>按你们游戏内包的机制你可以显示某一种支付界面</p>
 
-<pre><code>AppotaGameSDK.Instance.MakePayment(string packageID)
+<pre><code>AppotaGameSDK.Instance.ShowPaymentViewWithPackageID(string packageID)
 </code></pre>
 
 <p><img src="images/one_item.gif" alt="" /></p>
