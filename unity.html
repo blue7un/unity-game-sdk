@@ -402,7 +402,7 @@ Callback when user close login view at app launching</p>
 
 <p>You can show payment view with default list payment packages (which is configured on <a href="">Appota Developer Portal</a>)</p>
 
-<pre><code>AppotaSDKHandler.Instance.MakePayment()
+<pre><code>AppotaSDKHandler.Instance.ShowPaymentView()
 </code></pre>
 
 <p><img src="images/list_item.gif" alt="" /></p>
@@ -413,7 +413,7 @@ Callback when user close login view at app launching</p>
 
 <p>You can show a specific package depends on your in-game mechanism</p>
 
-<pre><code>AppotaGameSDK.Instance.MakePayment(string packageID)
+<pre><code>AppotaGameSDK.Instance.ShowPaymentViewWithPackageID(string packageID)
 </code></pre>
 
 <p><img src="images/one_item.gif" alt="" /></p>

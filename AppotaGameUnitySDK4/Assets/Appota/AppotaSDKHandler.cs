@@ -376,6 +376,12 @@ public class AppotaSDKHandler {
 		cls_AppotaUnityHandler.CallStatic("SetSDKButtonVisibility", args);
     }
 	
+	public void UseSmallSDKButton()
+	{
+		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
+		cls_AppotaUnityHandler.CallStatic("UseSmallSDKButton");
+	}
+
 	public void FinishSDK()
 	{
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
