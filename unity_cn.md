@@ -194,7 +194,7 @@ public void  OnCloseLoginView();
 可以默认支付包来显示支付界面(配置在[Appota Developer Portal]())
 
 ```
-AppotaSDKHandler.Instance.showPaymentView()
+AppotaSDKHandler.Instance.ShowPaymentView()
 ```
 ![](images/list_item.gif)
 
@@ -204,7 +204,7 @@ AppotaSDKHandler.Instance.showPaymentView()
 按你们游戏内包的机制你可以显示某一种支付界面
 
 ```
-AppotaGameSDK.Instance.showPaymentViewWithPackageID(string packageID)
+AppotaGameSDK.Instance.ShowPaymentViewWithPackageID(string packageID)
 ```
 
 ![](images/one_item.gif)
