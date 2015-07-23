@@ -10,6 +10,7 @@ ChangeLog
 - Fix bank issues(iOS)
 - Fix Payment package not showing(Android)
 - Add loading in banks payment (Android)
+- Add UseSmallSDKButton() function (Android)
 
 **Version 4.0.6:**
 
