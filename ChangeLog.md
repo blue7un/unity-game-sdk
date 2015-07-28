@@ -12,6 +12,7 @@ ChangeLog
 - Add loading in banks payment (Android)
 - Add UseSmallSDKButton() function (Android)
 - Add retry dialog for GooglePlay Payment if not success
+- Change amout type to float in order to display transaction result for Google Play Payment
 - Add namespace to avoid conflicting with Facebook SDK
 
 **Version 4.0.6:**
