@@ -5,12 +5,15 @@ ChangeLog
 
 **Version 4.0.7:**
 
-- Fix callback issues in Android platform
 - Add FBAppLinkURL in Plist (iOS)
 - Fix bank issues(iOS)
+- Fix callback issues (Android)
 - Fix Payment package not showing(Android)
 - Add loading in banks payment (Android)
 - Add UseSmallSDKButton() function (Android)
+- Add retry dialog for GooglePlay Payment if not success
+- Change amout type to float in order to display transaction result for Google Play Payment
+- Add namespace to avoid conflicting with Facebook SDK
 
 **Version 4.0.6:**
 

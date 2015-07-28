@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facebookAppID: 435546253225772
   facebookAppSecretID: 
+  facebookAppLinkUrl: 
   twitterConsumerKey: 8JssO2TP6DPUvsMxIiuBA
   twitterConsumerSecret: t20smaekjNGQONWvN63joVQQ3xZmoGmbnjeunFjI
   googleClientId: 80598588743-5a45rsdlejpqrs1g71nlfkle1edg729c.apps.googleusercontent.com

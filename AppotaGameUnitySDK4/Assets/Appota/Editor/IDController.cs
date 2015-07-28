@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
 using System;
+using Appota;
 
 [CustomEditor(typeof(AppotaSetting))]
 public class IDController : EditorWindow {
@@ -31,7 +32,7 @@ public class IDController : EditorWindow {
 
 	private AppotaSetting instance;
 	static bool isUsingOnClanSDK = false;
-	static bool isUsingAppotaSDK = false;
+	//static bool isUsingAppotaSDK = false;
 	static int minHeight;
 	static int minWidth;
 
@@ -49,7 +50,7 @@ public class IDController : EditorWindow {
 	[MenuItem ("Appota/Configurations")]
 	static void Init(){
 		isUsingOnClanSDK = System.Type.GetType("OnClanSDKHandler,Assembly-CSharp") != null;
-		isUsingAppotaSDK = System.Type.GetType("AppotaSDKHandler,Assembly-CSharp") != null;
+		//isUsingAppotaSDK = System.Type.GetType("AppotaSDKHandler,Assembly-CSharp") != null;
 		
 		windows = GetWindow(typeof (IDController), false, "Appota", true) as IDController;
 
