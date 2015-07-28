@@ -53,6 +53,10 @@ To use the SDK for the iOS platform, drag and drop <code>AppotaSDK.framework</co
 
 Tick on checkbox: “Copy items into destination group's folder (if needed)”.
 
+### 1.5 Other setting <a name="other-setting"> </a>
+To use other setting like admob and Appsflyer please fill in your developer ID
+![Appsflyer](images/appsflyer_img.png)
+
 ##2. Client API <a name="head1-client-api"> </a>
 
 ###2.1 Init and setup SDK <a name = "head2-init-sdk"> </a>
