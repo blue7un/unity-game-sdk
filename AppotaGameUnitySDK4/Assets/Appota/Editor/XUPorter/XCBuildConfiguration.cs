@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace UnityEditor.XCodeEditor
+namespace UnityEditor.XCodeEditor.Appota
 {
 	public class XCBuildConfiguration : PBXObject
 	{

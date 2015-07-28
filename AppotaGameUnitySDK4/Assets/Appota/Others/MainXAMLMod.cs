@@ -2,17 +2,19 @@
 using System.IO;
 using System.Xml;
 
-public class MainXAMLMod : MonoBehaviour {
-
-	const string stringHeader = "using System;\nusing APTCallback; \nusing APTPaymentResult;\nusing APTPaymentService;";
-	const string stringImplClass = @"MainPage : PhoneApplicationPage, AppotaSDKCallback
+namespace Appota
+{
+	public class MainXAMLMod : MonoBehaviour {
+		
+		const string stringHeader = "using System;\nusing APTCallback; \nusing APTPaymentResult;\nusing APTPaymentService;";
+		const string stringImplClass = @"MainPage : PhoneApplicationPage, AppotaSDKCallback
     {";
-	const string stringFunctionInit = @"
+		const string stringFunctionInit = @"
 			SetupGeolocator();
             SDKInit();
         }";
-	const string stringParagraph = 
-		@"
+		const string stringParagraph = 
+			@"
 		
 		AppotaGameSDK gameSDK;
 
@@ -130,51 +132,52 @@ public class MainXAMLMod : MonoBehaviour {
         }
 	}
 }";
-	
-	public static void UpdateMainPageXAML(string path){
-
-		var reader = new StreamReader(path);
-
-		if (reader == null){
-			Debug.Log("Can not find MainPage.xaml.xml in path: " + path);
-			return;
+		
+		public static void UpdateMainPageXAML(string path){
+			
+			var reader = new StreamReader(path);
+			
+			if (reader == null){
+				Debug.Log("Can not find MainPage.xaml.xml in path: " + path);
+				return;
+			}
+			
+			string text = reader.ReadToEnd();
+			reader.Close();
+			
+			if(text.IndexOf("SDKInit();", System.StringComparison.Ordinal) > 0){
+				return;
+			}
+			
+			int indexHeaderStart = text.IndexOf("using", System.StringComparison.Ordinal);
+			int indexHeaderEnd = text.IndexOf(";", indexHeaderStart);
+			
+			string fixedText = text.Substring(0, indexHeaderStart);
+			fixedText += stringHeader;
+			fixedText += text.Substring(indexHeaderEnd + 1);
+			
+			int indexImplClassStart = fixedText.IndexOf("MainPage", System.StringComparison.Ordinal);
+			int indexImplClassEnd = fixedText.IndexOf("{", indexImplClassStart);
+			
+			string fixedText1 = fixedText.Substring(0, indexImplClassStart);
+			fixedText1 += stringImplClass;
+			fixedText1 += fixedText.Substring(indexImplClassEnd + 1);
+			
+			int indexSDKInitStart = fixedText1.IndexOf("SetupGeolocator();", System.StringComparison.Ordinal);
+			int indexSDKInitSEnd = fixedText1.IndexOf("}", indexSDKInitStart);
+			
+			string fixedText2 = fixedText1.Substring(0, indexSDKInitStart);
+			fixedText2 += stringFunctionInit;
+			fixedText2 += fixedText1.Substring(indexSDKInitSEnd + 1);
+			
+			string fixedText3 = fixedText2.Substring(0, fixedText2.Length - 4);
+			fixedText3 += stringParagraph;
+			
+			var writer = new StreamWriter(path, false);
+			writer.Write(fixedText3);
+			Debug.Log ("text 3: " + fixedText3);
+			
+			writer.Close();
 		}
-
-		string text = reader.ReadToEnd();
-		reader.Close();
-
-		if(text.IndexOf("SDKInit();", System.StringComparison.Ordinal) > 0){
-			return;
-		}
-
-		int indexHeaderStart = text.IndexOf("using", System.StringComparison.Ordinal);
-		int indexHeaderEnd = text.IndexOf(";", indexHeaderStart);
-
-		string fixedText = text.Substring(0, indexHeaderStart);
-		fixedText += stringHeader;
-		fixedText += text.Substring(indexHeaderEnd + 1);
-
-		int indexImplClassStart = fixedText.IndexOf("MainPage", System.StringComparison.Ordinal);
-		int indexImplClassEnd = fixedText.IndexOf("{", indexImplClassStart);
-
-		string fixedText1 = fixedText.Substring(0, indexImplClassStart);
-		fixedText1 += stringImplClass;
-		fixedText1 += fixedText.Substring(indexImplClassEnd + 1);
-
-		int indexSDKInitStart = fixedText1.IndexOf("SetupGeolocator();", System.StringComparison.Ordinal);
-		int indexSDKInitSEnd = fixedText1.IndexOf("}", indexSDKInitStart);
-
-		string fixedText2 = fixedText1.Substring(0, indexSDKInitStart);
-		fixedText2 += stringFunctionInit;
-		fixedText2 += fixedText1.Substring(indexSDKInitSEnd + 1);
-
-		string fixedText3 = fixedText2.Substring(0, fixedText2.Length - 4);
-		fixedText3 += stringParagraph;
-
-		var writer = new StreamWriter(path, false);
-		writer.Write(fixedText3);
-		Debug.Log ("text 3: " + fixedText3);
-
-		writer.Close();
 	}
 }

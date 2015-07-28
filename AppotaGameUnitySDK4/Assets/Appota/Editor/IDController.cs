@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
 using System;
+using Appota;
 
 [CustomEditor(typeof(AppotaSetting))]
 public class IDController : EditorWindow {

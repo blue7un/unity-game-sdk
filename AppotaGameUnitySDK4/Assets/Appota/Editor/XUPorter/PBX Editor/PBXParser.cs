@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace UnityEditor.XCodeEditor
+namespace UnityEditor.XCodeEditor.Appota
 {
 	public class PBXResolver
 	{
