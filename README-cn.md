@@ -49,6 +49,11 @@
 <code>FBSDKShareKit.framework</code> 和
 <code>FBSDKCoreKit.framework</code> 到 your Xcode project (project 从Unity3D 获取 )
 在checkbox打钩: “Copy items into destination group's folder (if needed)”.
+
+### 1.5 Other setting <a name="other-setting"> </a>
+要使用其它设置像AdMob的和Appsflyer请填写您的开发者ID
+![Appsflyer](images/appsflyer_img.png)
+
 ##2. Client API <a name="head1-client-api"> </a>
 ###2.1初始化并且设置 SDK <a name = "head2-init-sdk"> </a>
 相关class 和功能：  
