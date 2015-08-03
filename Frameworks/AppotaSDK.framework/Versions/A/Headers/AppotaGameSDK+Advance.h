@@ -47,4 +47,47 @@ typedef void (^AppotaSDKUserLoginResultObjectBlock) (AppotaUserLoginResult *obje
 + (void) showTwitterLogin;
 + (void) showTwitterLoginWithCompleteBlock:(AppotaSDKUserLoginResultObjectBlock) completeBlock
                              andErrorBlock:(AppotaSDKErrorBlock) errorBlock;
+/**
+ *  Login Appota with username and password  use Delegate
+ *
+ *  @param userName
+ *  @param passWord
+ */
++ (void) loginAppotaWithUsername:(NSString *) userName
+                        passWord:(NSString *) passWord;
+/**
+ *  Login Appota with username and password use block
+ *
+ *  @param userName
+ *  @param passWord
+ *  @param completionBlock
+ *  @param errorBlock
+ */
++ (void) loginAppotaWithUsername:(NSString *) userName
+                        passWord:(NSString *) passWord
+             withCompletionBlock:(AppotaSDKUserLoginResultObjectBlock ) completionBlock
+                   andErrorBlock:(AppotaSDKErrorBlock ) errorBlock;
+/**
+ *  register Appota use Delegate for Callback success or
+ *
+ *  @param userName
+ *  @param passWord
+ *  @param email
+ */
++ (void) registerAppotaWithUsername:(NSString *) userName
+                           passWord:(NSString *) passWord
+                           andEmail:(NSString *) email;
+/**
+ *  Register Appota use Block for Callback succees
+ *
+ *  @param userName
+ *  @param passWord
+ *  @param email
+ *  @param coml
+ */
++ (void) registerAppotaWithUsername:(NSString *) userName
+                           passWord:(NSString *) passWord
+                           andEmail:(NSString *) email
+                   withComleteBlock:(AppotaSDKUserLoginResultObjectBlock) completionBlock
+                      andErrorBlock:(AppotaSDKErrorBlock ) errorBlock;
 @end

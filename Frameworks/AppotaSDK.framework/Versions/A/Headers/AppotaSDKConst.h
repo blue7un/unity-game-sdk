@@ -38,6 +38,7 @@ typedef void (^AppotaSDKObjectHandler) (id object, NSError *error);
 //
 #define APPOTA_LANGUAGE_KEY @"kAppotaLangKey"
 #define APPOTAGame_SDK_VERSION @"4.0"
+#define APPOTAGame_SDK_LABEL_VERSION @"4.0.8"
 #define APPOTAGame_SDK_BUILD 40
 #define APPOTA_GAME_DEVICE_TOKEN_KEY @"appota_game_push_device_token"
 #define APPOTA_LOGIN_DICT_KEY_SAVED @"key_appota_login_dict_saved"
