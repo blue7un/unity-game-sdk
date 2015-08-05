@@ -69,11 +69,16 @@ typedef void (^AppotaSDKObjectHandler) (id object, NSError *error);
 //Device
 #define APPOTAGameSDK_IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define APPOTAGameSDK_IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-#define APPOTAGameSDK_IS_IPHONE_4 (APPOTAGameSDK_IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 480.0f)
-#define APPOTAGameSDK_IS_IPHONE_5 (APPOTAGameSDK_IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 568.0f)
-#define APPOTAGameSDK_IS_IPHONE_6 (APPOTAGameSDK_IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 667.f)
-#define APPOTAGameSDK_IS_IPHONE_6PLUS (APPOTAGameSDK_IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 736.f)
 
+#define APPOTA_SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define APPOTA_SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define APPOTA_SCREEN_MAX_LENGTH (MAX(APPOTA_SCREEN_WIDTH, APPOTA_SCREEN_HEIGHT))
+#define APPOTA_SCREEN_MIN_LENGTH (MIN(APPOTA_SCREEN_WIDTH, APPOTA_SCREEN_HEIGHT))
+
+#define APPOTAGameSDK_IS_IPHONE_4 (APPOTAGameSDK_IS_IPHONE && APPOTA_SCREEN_MAX_LENGTH == 480.0)
+#define APPOTAGameSDK_IS_IPHONE_5 (APPOTAGameSDK_IS_IPHONE && APPOTA_SCREEN_MAX_LENGTH == 568.0)
+#define APPOTAGameSDK_IS_IPHONE_6 (APPOTAGameSDK_IS_IPHONE && APPOTA_SCREEN_MAX_LENGTH == 667.0)
+#define APPOTAGameSDK_IS_IPHONE_6PLUS (APPOTAGameSDK_IS_IPHONE && APPOTA_SCREEN_MAX_LENGTH == 736.0)
 
 
 //Orientation
