@@ -45,6 +45,7 @@ Create new project from [https://console.developers.google.com](https://console.
 ####1.3.2. Configure Unity project
 
 - Use `FacebookAppID`, `ApiKey`, `GoogleClientID`, `GoogleClientSecret` has created in [IntegrateSDK](#head1-integrate-sdk) to update setting
+- Create your `Facebook App Link URL` to have new `Facebook Invite` function inside your SDK ([Create Facebook AppLink URL](https://developers.facebook.com/quickstarts/?platform=app-links-host))
 
 <img src="images/config.png" style="width:400;height:400">
 
