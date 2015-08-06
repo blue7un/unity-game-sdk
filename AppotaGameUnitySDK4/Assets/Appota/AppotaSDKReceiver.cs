@@ -86,13 +86,6 @@ public class AppotaSDKReceiver : MonoBehaviour {
     {
         Debug.Log ("AppotaSDK: PackageID: " + packageID);
 		string paymentState = packageID;
-        
-		// Game info can be set and change during your game play via GlobalGameVariables
-		string gameServerID = GlobalGameVariables.Instance.gameServerID;
-		string gameUserID = GlobalGameVariables.Instance.gameUserID;
-		string gameInfo = GlobalGameVariables.Instance.gameInfo;
-		
-		paymentState += "|" + gameInfo + "|" + gameServerID + "|" + gameUserID;
 
 #if UNITY_ANDROID || UNITY_IPHONE
         AppotaSDKHandler.Instance.SendStateToWrapper(paymentState);
