@@ -30,10 +30,12 @@ public class AppotaSDKHandler {
 	
 	[DllImport("__Internal")]
 	private static extern void setKeepLoginSession(bool isKeepLoginSession);
-
-	// Notification functions
+	
 	[DllImport("__Internal")]
 	private static extern bool setHideWelcomeView(bool isHideWelcomeView);
+
+	[DllImport("__Internal")]
+	private static extern bool setHidePaymentView(bool isHidePaymentView);
 	
 	[DllImport("__Internal")]
 	private static extern void inviteFacebookFriends();
@@ -267,6 +269,10 @@ public class AppotaSDKHandler {
 	public void SetHideWelcomeView(bool autoHideWelcomeView) {
 		setHideWelcomeView (autoHideWelcomeView);
 	}
+
+	public void SetHidePaymentView(bool isHidePaymentView) {
+		setHidePaymentView (isHidePaymentView);
+    }
 
 	#endregion
 	
