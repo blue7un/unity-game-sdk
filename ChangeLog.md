@@ -9,6 +9,7 @@ ChangeLog
 - Fixed crash Facebook sdk ver 4.4.0 (iOS)
 - Remove require current password for update password(Android)
 - Add setHidePaymentView functions(Only effect by clicking SDK Floating button)
+- Update Facebook frameworks(iOS)
 
 **Version 4.0.7:**
 
