@@ -13,6 +13,7 @@ ChangeLog
 |`ShowPaymentButton`, `HidePaymentButton`|`SetSDKButtonVisibility(BOOL)`|call `SetSDKButtonVisibility(BOOL)` true or false to hide or show floating button|
 |`OnSwitchAccountSuccess`, `OnLogoutSuccess`|Removed|When user call switch account, and switched it'll callback in `OnLoginSuccess`, logout immidiatedly without callback when `logOut` called|
 
+
 - New function:
 
 ## 1. SDK
