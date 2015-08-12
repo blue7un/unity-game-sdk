@@ -44,6 +44,13 @@
  */
 - (void) setAutoShowLoginDialog:(BOOL)autoShowLoginDialog;
 /**
+ *  set hide payment view when tap on payment button
+ *
+ *  @param isHidePaymentView
+ */
+- (void) setHidePaymentView:(BOOL)isHidePaymentView;
+
+/**
  *  Delegate for callback function to handle PAYMENT, LOGIN callback
  */
 @property (nonatomic, weak) id<AppotaGameSDKCallback> delegate;

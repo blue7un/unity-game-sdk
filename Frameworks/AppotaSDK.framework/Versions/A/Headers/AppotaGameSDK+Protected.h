@@ -17,5 +17,6 @@
 @property(nonatomic, assign) BOOL isHideWelcomeView;
 @property(assign, nonatomic) BOOL isKeepLoginSession;
 @property (readwrite) BOOL autoShowPaymentButton;
-@property(assign,nonatomic) BOOL autoShowLoginDialog;
+@property (assign, nonatomic) BOOL autoShowLoginDialog;
+@property (assign, nonatomic) BOOL isHidePaymentView;
 @end

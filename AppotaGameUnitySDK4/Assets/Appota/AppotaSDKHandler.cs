@@ -30,10 +30,12 @@ public class AppotaSDKHandler {
 	
 	[DllImport("__Internal")]
 	private static extern void setKeepLoginSession(bool isKeepLoginSession);
-
-	// Notification functions
+	
 	[DllImport("__Internal")]
 	private static extern bool setHideWelcomeView(bool isHideWelcomeView);
+
+	[DllImport("__Internal")]
+	private static extern bool setHidePaymentView(bool isHidePaymentView);
 	
 	[DllImport("__Internal")]
 	private static extern void inviteFacebookFriends();
@@ -267,6 +269,10 @@ public class AppotaSDKHandler {
 	public void SetHideWelcomeView(bool autoHideWelcomeView) {
 		setHideWelcomeView (autoHideWelcomeView);
 	}
+
+	public void SetHidePaymentView(bool isHidePaymentView) {
+		setHidePaymentView (isHidePaymentView);
+    }
 
 	#endregion
 	
@@ -544,13 +550,6 @@ public class AppotaSDKHandler {
 	#endregion
 	
 	#region Notification functions
-	public void SetPushDeviceToken(string message) {
-		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
-		object[] args = new object[1];
-		args [0] = message;
-		cls_AppotaUnityHandler.CallStatic("SetPushDeviceToken", args);
-	}
-	
 	public void SetPushGroup(string groupName) {
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		object[] args = new object[1];

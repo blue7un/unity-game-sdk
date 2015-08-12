@@ -62,6 +62,10 @@ extern "C" {
     const void setHideWelcomeView(bool property) {
         [[AppotaGameSDK sharedInstance] setHideWelcomeView: property];
     }
+
+    const void setHidePaymentView(bool property) {
+        [[AppotaGameSDK sharedInstance] setHidePaymentView: property];
+    }
     
     const void setKeepLoginSession(bool isKeepLoginSession) {
         [[AppotaGameSDK sharedInstance] setKeepLoginSession:isKeepLoginSession];
