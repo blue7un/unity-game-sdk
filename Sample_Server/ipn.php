@@ -35,6 +35,12 @@ function appota_payment($fields) {
                                 $currency . $revenue. $sandbox . $state . $status . $target . $trans_id.
                                 $trans_type . CLIENT_SECRET );
                 break;
+            case 'BANK':
+                $check_hash = md5( $amount . $country_code .
+                                $currency . $revenue. $sandbox . $state . $status . $target . $trans_id.
+                                $trans_type . CLIENT_SECRET );
+                break;
+                
             case 'SMS':
                 $phone              = $fields['phone'];
                 $message            = $fields['message'];
