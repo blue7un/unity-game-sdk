@@ -1,15 +1,21 @@
 ChangeLog
 =====
+## 0. Changes from SDK
+- Config SDK: Add `Other Setting` and change GUI, only require `Appota APIKey` for Appota setting, remove `ClientID`, `ClientSecret`, `UsingSandBox`
+- Class name `AppotaSDKHanler` and `AppotaSDKReceiver` not change
+- Function change:
+
+|SDK3|SDK4|Change|
+|--|--|---|
+|`SetAutoShowLogin`|`SetAutoShowLoginDialog`|Auto show login dialog at SDK init|
+|`SetState`|`GetPaymentState(string packageID)`|Change machenism implement `GetPaymentState(String)` callback|
+|`GetUserID`|`GetAppotaSession`|Return `AppotaSession` object, to get userId, userName, ... by `session.UserID`, `session.UserName`|
+|`ShowPaymentButton`, `HidePaymentButton`|`SetSDKButtonVisibility(BOOL)`|call `SetSDKButtonVisibility(BOOL)` true or false to hide or show floating button|
+|`OnSwitchAccountSuccess`, `OnLogoutSuccess`|Removed|When user call switch account, and switched it'll callback in `OnLoginSuccess`, logout immidiatedly without callback when `logOut` called|
+
+- New function:
 
 ## 1. SDK
-
-**Version 4.0.8:**
-
-- Fixed error update user info (iOS)
-- Fixed crash Facebook sdk ver 4.4.0 (iOS)
-- Remove require current password for update password(Android)
-- Add setHidePaymentView functions(Only effect by clicking SDK Floating button)
-- Update Facebook frameworks(iOS)
 
 **Version 4.0.7:**
 
