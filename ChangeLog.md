@@ -6,8 +6,8 @@ ChangeLog
 - Function change:
 
 |SDK3|SDK4|Change|
-|--|--|---|
-|`SetAutoShowLogin`|`SetAutoShowLoginDialog`|Auto show login dialog at SDK init|
+|------|-----|------|
+|`SetAutoShowLogin`|`SetAutoShowLoginDialog`|Aut----o s---how--- login dialog at SDK init|
 |`SetState`|`GetPaymentState(string packageID)`|Change machenism implement `GetPaymentState(String)` callback|
 |`GetUserID`|`GetAppotaSession`|Return `AppotaSession` object, to get userId, userName, ... by `session.UserID`, `session.UserName`|
 |`ShowPaymentButton`, `HidePaymentButton`|`SetSDKButtonVisibility(BOOL)`|call `SetSDKButtonVisibility(BOOL)` true or false to hide or show floating button|
