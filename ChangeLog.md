@@ -20,6 +20,15 @@ ChangeLog
 
 ## 1. SDK
 
+**Version 4.0.8:**
+
+- Fixed error update user info (iOS)
+- Fixed crash Facebook sdk ver 4.4.0 (iOS)
+- Remove require current password for update password(Android)
+- Add setHidePaymentView functions(Only effect by clicking SDK Floating button)
+- Update Facebook frameworks(iOS)
+- Fix state null issues
+
 **Version 4.0.7:**
 
 - Add FBAppLinkURL in Plist (iOS)
