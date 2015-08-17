@@ -11,15 +11,15 @@
 /**
  State of AppotaGameSDK to provide correct GUI
  */
-//#ifdef APPOTAGameSDK_BUILD_ANE
-//#ifdef __cplusplus
-//extern "C" {
-//#endif
-//    typedef void *      FREContext;
-//#ifdef __cplusplus
-//}
-//#endif
-//#endif
+#ifdef APPOTAGameSDK_BUILD_ANE
+#ifdef __cplusplus
+extern "C" {
+#endif
+    typedef void *      FREContext;
+#ifdef __cplusplus
+}
+#endif
+#endif
 
 typedef enum {
     AppotaGameSDKNormalState,
@@ -52,10 +52,10 @@ typedef enum {
  */
 + (NSArray*) getListPayment;
 
-//#ifdef APPOTAGameSDK_BUILD_ANE
-//+ (FREContext )getANEContext;
-//+ (void) setANEContext:(FREContext )context;
-//#endif
+#ifdef APPOTAGameSDK_BUILD_ANE
++ (FREContext )getANEContext;
++ (void) setANEContext:(FREContext )context;
+#endif
 
 /**
  *  Get list payment - return list of AppotaSDKPaymentCollection object
