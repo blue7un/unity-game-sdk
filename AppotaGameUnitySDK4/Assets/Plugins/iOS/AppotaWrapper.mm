@@ -204,12 +204,16 @@ extern "C" {
  */
 - (void) didLoginSuccess:(AppotaUserLoginResult*) userLoginResult {
     NSLog(@"Login Success!!!");
+    if (!userLoginResult.accessToken) {
+        return;
+    }
+    NSString *email = userLoginResult.email ? userLoginResult.email : @"";
     NSString *json = @"{";
     json = [json stringByAppendingString:@"\"accessToken\":\""];
     json = [json stringByAppendingString:userLoginResult.accessToken];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"\"email\":\""];
-    json = [json stringByAppendingString:userLoginResult.email];
+    json = [json stringByAppendingString:email];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"\"userId\":\""];
     json = [json stringByAppendingString:userLoginResult.userID];
@@ -263,7 +267,8 @@ extern "C" {
     json = [json stringByAppendingString:paymentResult.type];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"\"productID\":\""];
-    json = [json stringByAppendingString:paymentResult.appleProductID];
+    NSString *productID = paymentResult.appleProductID ? paymentResult.appleProductID : @"";
+    json = [json stringByAppendingString:productID];
     json = [json stringByAppendingString:@"\","];
     json = [json stringByAppendingString:@"}"];
     

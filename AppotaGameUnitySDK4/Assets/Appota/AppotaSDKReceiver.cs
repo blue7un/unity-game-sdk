@@ -71,6 +71,16 @@ public class AppotaSDKReceiver : MonoBehaviour {
     {
         Debug.Log ("AppotaSDK: Close Login View");
     }
+
+	public void OnOpenPaymentView()
+	{
+		#if UNITY_ANDROID
+		// Must call this function to start Callback Thread
+		AppotaThreadHandler.Instance.Start();
+		#endif
+		
+		Debug.Log ("AppotaSDK: Open Payment View");
+	}
     
     public void OnClosePaymentView()
     {

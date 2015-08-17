@@ -488,16 +488,12 @@ public class AppotaSDKHandler {
 	#region Payment functions
 	public void ShowPaymentView()
 	{
-		AppotaThreadHandler.Instance.Start();
-
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		cls_AppotaUnityHandler.CallStatic("ShowPaymentView");
 	}
 
 	public void ShowPaymentViewWithPackageID(string packageID)
 	{
-		AppotaThreadHandler.Instance.Start();
-
 		cls_AppotaUnityHandler = new AndroidJavaClass("com.appota.gamesdk.v4.unity.UnityHandler");
 		
 		object[] args = new object[1];

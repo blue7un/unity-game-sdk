@@ -73,7 +73,7 @@ public class AppotaThreadHandler : MonoBehaviour {
 		if (pid.Equals("") || pid == null)
 			return;
 		
-		// @pid: "packageID" + "@" + "unixtime"
+		// @pid: "packageID" + "@" + "unique_time"
 		string packageID = pid.Split('@')[0];
 		string pidTime = pid.Split('@')[1];
 		

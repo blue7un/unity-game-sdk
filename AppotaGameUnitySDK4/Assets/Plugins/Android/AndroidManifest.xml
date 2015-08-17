@@ -33,7 +33,7 @@
     <!-- Declare Login Activity for Facebook login -->
     <activity android:name="com.appota.facebook.LoginActivity" android:label="@string/app_name" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     <!-- set Appota Api Key -->
-    <meta-data android:name="com.appota.apiKey" android:value="K-A174848-U00000-NBEBGP-8BFDB9C12280DA67" />
+    <meta-data android:name="com.appota.apiKey" android:value="K-A170007-U00000-NOUL1Z-D24F6013164CCF32" />
     <meta-data android:name="com.crashlytics.ApiKey" android:value="041977b270d261673d4bb3f97e261b2427c6f6f0" />
     <!-- user this for twitter login -->
     <meta-data android:name="com.appota.twitter.consumer.key" android:value="8JssO2TP6DPUvsMxIiuBA" />
