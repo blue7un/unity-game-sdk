@@ -35,6 +35,12 @@ function appota_payment($fields) {
                                 $currency . $revenue. $sandbox . $state . $status . $target . $trans_id.
                                 $trans_type . CLIENT_SECRET );
                 break;
+            case 'BANK':
+                $check_hash = md5( $amount . $country_code .
+                                $currency . $revenue. $sandbox . $state . $status . $target . $trans_id.
+                                $trans_type . CLIENT_SECRET );
+                break;
+                
             case 'SMS':
                 $phone              = $fields['phone'];
                 $message            = $fields['message'];
@@ -45,14 +51,14 @@ function appota_payment($fields) {
                 break;
             case 'APPLE_ITUNES':
                 $productid              = $fields['productid'];    
-                $check_hash = md5( $amount . $code . $country_code .
-                                $currency . $revenue. $productid . $message . $phone . $sandbox . $state . $status . $target . $trans_id.
+                $check_hash = md5( $amount . $country_code .
+                                $currency . $revenue. $productid . $sandbox . $state . $status . $target . $trans_id.
                                 $trans_type . CLIENT_SECRET );
                 break;
             case 'GOOGLE_PLAY':
                 $productid              = $fields['productid'];    
-                $check_hash = md5( $amount . $code . $country_code .
-                                $currency . $revenue. $productid . $message . $phone . $sandbox . $state . $status . $target . $trans_id.
+                $check_hash = md5( $amount . $country_code .
+                                $currency . $revenue. $productid . $sandbox . $state . $status . $target . $trans_id.
                                 $trans_type . CLIENT_SECRET );
                 
             default :

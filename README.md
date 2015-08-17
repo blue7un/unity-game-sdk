@@ -216,7 +216,7 @@ You have 3 methods to show payment view. Each payment view represents one or lis
 You can show payment view with default list payment packages (which is configured on [Appota Developer Portal]())
 
 ```
-AppotaSDKHandler.Instance.MakePayment()
+AppotaSDKHandler.Instance.ShowPayment()
 ```
 ![](images/list_item.gif)
 
@@ -226,7 +226,7 @@ AppotaSDKHandler.Instance.MakePayment()
 You can show a specific package depends on your in-game mechanism
 
 ```
-AppotaGameSDK.Instance.MakePayment(string packageID)
+AppotaGameSDK.Instance.ShowPaymentWithPackageID(string packageID)
 ```
 
 ![](images/one_item.gif)
