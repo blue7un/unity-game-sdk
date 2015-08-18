@@ -137,6 +137,13 @@ namespace Appota
 				AddChildElement(doc, dict, "key", "GOOGLE_CLIENT_SECRET");
 				AddChildElement(doc, dict, "string", googleClientSecret);
 			}
+
+			// Support for iOS 9
+			if(!HasKey(dict, "NSAllowsArbitraryLoads"))
+			{
+				AddChildElement(doc, dict, "key", "NSAllowsArbitraryLoads");
+				AddChildElement(doc, dict, "true");
+            }
 			
 			
 			//here's how the custom url scheme should end up looking
