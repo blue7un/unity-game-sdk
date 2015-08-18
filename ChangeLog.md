@@ -28,6 +28,8 @@ ChangeLog
 - Add setHidePaymentView functions(Only effect by clicking SDK Floating button)
 - Update Facebook frameworks(iOS)
 - Fix state null issues
+- Add some functions to UIThread, fix bugs: "Can't create handler inside thread looper.prepare" 
+- Update Plist for iOS 9 
 
 **Version 4.0.7:**
 
