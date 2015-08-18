@@ -18,6 +18,7 @@ public class GUIController : MonoBehaviour {
 		AppotaSDKHandler.Instance.Init();
 		AppotaSDKHandler.Instance.SetAutoShowLoginDialog(true);
 		AppotaSDKHandler.Instance.UseSmallSDKButton();
+		AppotaSDKHandler.Instance.SetKeepLoginSession(true);
 		#endif
 
 	}
