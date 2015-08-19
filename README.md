@@ -304,7 +304,9 @@ public void setPushGroup(string groupName)
 - [AppotaPaymentResult](class-document/UnityClasses.md#appota-payment-result)
 
 ##4. FAQ and Glossary <a name="head1-faq"></a>
-- `IPN` is payment machenism used by Appota System to increase gold for game user. Detail in https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN
+- When using SDK in games with server and game user support. To prevent user to make payment before entering the game (actually choose server and game user). You should call `SetSDKButtonVisibility(False)` when configure the SDK and then call `SetSDKButtonVisibility(True)` when game user is ready.
+- `IPN` is payment machenism used by Appota System to increase gold for game user. Detail in https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN . Each app in Appota system will be configured with only one `IPN` url to callback when payment.
+- `PackageID` each payment package in game should be defined along with a package ID (provided by SDKTool) to identify package.
 - `PackageID` each payment package in game should be defined along with a package ID (provided by SDKTool) to identify package.
 - `PaymentState` payment state must be implemented in `GetPaymentState` function. And use `PackageID` and game server information to build up `PaymentState`.   
 For example packageID: `com.gold.package1` - (defined in integration process) corresponds with a package of 1000 gold and current game user is X in server Y. Then payment state can be constructed : com.gold.package1_1000_gold_X_Y (depends on your format).
