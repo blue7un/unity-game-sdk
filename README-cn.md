@@ -301,7 +301,9 @@ public void setPushGroup(string groupName)
 - [AppotaPaymentResult](class-document/UnityClasses.md#appota-payment-result)
 
 ##4. FAQ and Glossary <a name="head1-faq"></a>
-- `IPN` 是Appota系统为玩家新增元宝的机制. 具体查看： [IPN](https://github.com/appota/ios-game-sdk/wiki/Passive-Confirmation-via-IPN)
+- 当游戏服务器和游戏的用户使用支持SDK。为了防止用户在进入游戏之前进行支付（实际上是选择服务器和游戏的用户）。你应该叫`SetSDKButtonVisibility(FALSE)`当配置SDK，然后调用`SetSDKButtonVisibility(TRUE)`当游戏用户准备。
+- `IPN` 是Appota系统为玩家增加元宝的机制. 具体查看 [IPN](https://github.com/appota/ios-game-sdk/wiki/%E5%8D%B3-%E6%97%B6-%E4%BB%98-%E6%AC%BE-%E9%80%9A-%E7%9F%A5). 在Appota系统中的每个应用程序将只有一个`IPN` URL被配置为回调时支付。
+
 - `PackageID`每个游戏内的支付包应该附带 package ID (提供SDKTool) 来确认包。
 - `PaymentState` <a name = "head3-payment-state"> </a> 要在`getPaymentStateWithPackageID:` 函数实施。 使用`PackageID`和游戏服务器信息来建设 PaymentState.  
 比如 packageID:  `com.gold.package1` - ((在集成过程中界定)对应于1000元宝档位和Y服的X玩家。支付状态设为： com.gold.package1_1000_gold_X_Y (按你的格式). 
