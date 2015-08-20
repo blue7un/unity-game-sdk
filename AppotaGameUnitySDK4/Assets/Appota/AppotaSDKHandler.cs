@@ -351,6 +351,13 @@ public class AppotaSDKHandler {
 		cls_AppotaUnityHandler.CallStatic("Init");
 		
 		Debug.Log("Called init Android ");
+
+		// Configure Adwords and AppFlyer 
+		if (AppotaSetting.UsingAdWords)
+			AppotaSDKHandler.Instance.ConfigureAdwords();
+
+		if (AppotaSetting.UsingAppFlyer)
+			AppotaSDKHandler.Instance.ConfigureAppFlyer();
 	}
 	
 	public void SetAutoShowLoginDialog(bool autoShowLogin) {
