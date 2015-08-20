@@ -30,6 +30,7 @@ ChangeLog
 - Fix state null issues
 - Add some functions to UIThread, fix bugs: "Can't create handler inside thread looper.prepare" 
 - Update Plist for iOS 9 
+- Add Configure AdWords and AppFlyer into SDK Init() function
 
 **Version 4.0.7:**
 
